@@ -11,6 +11,6 @@ class World {
   }
 
   draw() {
-    this.ctx.drawImage(this.charakter.img, this.charakter.x, this.charakter.y, 200, 200);
+    this.ctx.drawImage(this.charakter.img, this.charakter.x, this.charakter.y, this.charakter.height, this.charakter.width);
   }
 }
