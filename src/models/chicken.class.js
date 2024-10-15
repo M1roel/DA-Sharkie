@@ -1,3 +1,3 @@
-class Chicken extends MoveableObject{
+class Chicken extends MoveableObject {
     
 }
