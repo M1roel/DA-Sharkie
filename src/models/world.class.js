@@ -1,7 +1,7 @@
 class World {
   charakter = new Character();
 
-  enemies = [new Chicken(), new Chicken(), new Chicken()];
+  enemies = [new Fish(), new Fish(), new Fish()];
 
   draw() {}
 }
