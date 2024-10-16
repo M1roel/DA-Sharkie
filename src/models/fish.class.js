@@ -12,7 +12,7 @@ class Fish extends MoveableObject {
     
     animate() {
         setInterval(() => {
-            this.x -= 0.15;
+            this.x -= 0.3;
         }, 1000 / 60);
     }
 }
