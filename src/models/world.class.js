@@ -1,6 +1,6 @@
 class World {
   charakter = new Character();
-
+  backgroundObjects = [new BackgroundObject('/public/img/3. Background/Dark/1.png')];
   enemies = [new Fish(), new Fish(), new Fish()];
   lights = [new Light()];
 
@@ -16,19 +16,25 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.drawImage(this.charakter.img, this.charakter.x, this.charakter.y, this.charakter.height, this.charakter.width);
-
-    this.enemies.forEach(enemy => {
-      this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.height, enemy.width);
-    })
-
-    this.lights.forEach(light => {
-      this.ctx.drawImage(light.img, light.x, light.y, light.height, light.width);
-    })
+    this.addToMap(this.charakter);
+    this.addObjectsToMap(this.lights);
+    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.backgroundObjects);
+   
 
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  addObjectsToMap(objects) {
+    objects.forEach(o => {
+      this.addToMap(o);
+    })
+  }
+
+  addToMap(mo) {
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.height, mo.width);
   }
 }
