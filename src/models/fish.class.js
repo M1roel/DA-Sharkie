@@ -8,11 +8,10 @@ class Fish extends MoveableObject {
         this.height = 100;
         this.width = 100;
         this.animate();
+        this.speed = 0.15 + Math.random() * 0.5
     }
     
     animate() {
-        setInterval(() => {
-            this.x -= 0.3;
-        }, 1000 / 60);
+        this.moveLeft();
     }
 }
