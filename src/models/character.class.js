@@ -40,12 +40,11 @@ class Character extends MoveableObject {
 
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.RIGHT) {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         let i = this.currentImage % this.IMAGES_SWIM.length;
         let path = this.IMAGES_SWIM[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-        this.moveRight();
       } else {
         let i = this.currentImage % this.IMAGES_IDLE.length;
         let path = this.IMAGES_IDLE[i];
@@ -53,15 +52,15 @@ class Character extends MoveableObject {
         this.currentImage++;
       }
     }, 1000 / 5);
-  }
 
-  moveRight() {     
-      this.x += 10;
-  }
+    setInterval(() => {
+      if (this.world.keyboard.RIGHT) {
+        this.x += 3;
+      }
 
-  moveLeft() {
-    this.x -= 10;
+      if (this.world.keyboard.LEFT) {
+        this.x -= 3;
+      }
+    }, 1000 / 60);
   }
-
-  jump() {}
 }
