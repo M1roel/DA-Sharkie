@@ -63,6 +63,16 @@ class Character extends MoveableObject {
         this.x -= 3;
         this.otherDirection = true;
       }
+
+      if (this.world.keyboard.UP) {
+        this.y -= 3;
+        this.otherDirection = false;
+      }
+
+      if (this.world.keyboard.DOWN) {
+        this.y += 3;
+        this.otherDirection = false;
+      }
     }, 1000 / 60);
   }
 }

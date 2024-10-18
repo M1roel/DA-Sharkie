@@ -7,6 +7,7 @@ class World {
   canvas;
   ctx;
   keyboard;
+  camera_x;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -22,12 +23,16 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.translate(this.camera_x, 0);
     
     this.addObjectsToMap(this.backgroundObjects);
     this.addToMap(this.charakter);
     this.addObjectsToMap(this.lights);
     this.addObjectsToMap(this.enemies);
    
+    this.ctx.translate(-this.camera_x, 0);
+
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
