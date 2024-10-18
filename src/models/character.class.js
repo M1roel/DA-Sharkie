@@ -54,6 +54,10 @@ class Character extends MoveableObject {
     }, 1000 / 5);
 
     setInterval(() => {
+      this.world.camera_x = -this.x;
+    }, 1000 / 60);
+
+    setInterval(() => {
       if (this.world.keyboard.RIGHT) {
         this.x += 3;
         this.otherDirection = false;
@@ -67,16 +71,16 @@ class Character extends MoveableObject {
       if (this.world.keyboard.UP) {
         this.y -= 3;
         if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
-            this.otherDirection = false;
+          this.otherDirection = false;
         }
-    }
+      }
 
-    if (this.world.keyboard.DOWN) {
+      if (this.world.keyboard.DOWN) {
         this.y += 3;
         if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
-            this.otherDirection = false;
+          this.otherDirection = false;
         }
-    }
+      }
     }, 1000 / 60);
   }
 }
