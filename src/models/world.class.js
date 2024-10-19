@@ -1,9 +1,9 @@
 class World {
   charakter = new Character();
   backgroundObjects = [
-    new BackgroundObject('/public/img/3. Background/Dark/1.png', 0),
-    new BackgroundObject('/public/img/3. Background/Dark/2.png', 719)
-];
+    new BackgroundObject("/public/img/3. Background/Dark/1.png", 0),
+    new BackgroundObject("/public/img/3. Background/Dark/2.png", 719),
+  ];
   enemies = [new Fish(), new Fish(), new Fish()];
   lights = [new Light()];
 
@@ -15,7 +15,7 @@ class World {
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
-    this.keyboard = keyboard
+    this.keyboard = keyboard;
     this.draw();
     this.setWorld();
   }
@@ -28,12 +28,12 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
-    
+
     this.addObjectsToMap(this.backgroundObjects);
     this.addToMap(this.charakter);
     this.addObjectsToMap(this.lights);
     this.addObjectsToMap(this.enemies);
-   
+
     this.ctx.translate(-this.camera_x, 0);
 
     let self = this;
@@ -43,13 +43,13 @@ class World {
   }
 
   addObjectsToMap(objects) {
-    objects.forEach(o => {
+    objects.forEach((o) => {
       this.addToMap(o);
-    })
+    });
   }
 
   addToMap(mo) {
-    if(mo.otherDirection) {
+    if (mo.otherDirection) {
       this.ctx.save();
       this.ctx.translate(mo.width, 0);
       this.ctx.scale(-1, 1);
