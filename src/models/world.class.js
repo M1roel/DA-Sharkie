@@ -1,12 +1,8 @@
 class World {
   charakter = new Character();
-  backgroundObjects = [
-    new BackgroundObject('/public/img/3. Background/Dark/1.png', 0),
-    new BackgroundObject('/public/img/3. Background/Dark/2.png', 719),
-    new BackgroundObject('/public/img/3. Background/Dark/2.png', -719)
-  ];
-  enemies = [new Fish(), new Fish(), new Fish()];
-  lights = [new Light()];
+  backgroundObjects = level1.backgroundObjects;
+  enemies = level1.enemies;
+  lights = level1.lights;
 
   canvas;
   ctx;
