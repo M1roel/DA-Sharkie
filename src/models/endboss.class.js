@@ -29,7 +29,7 @@ class Endboss extends MoveableObject {
       let path = this.IMAGES_INTRODUCE[i];
       this.img = this.imageCache[path];
       this.currentImage++;
-  
+
       if (this.currentImage < this.IMAGES_INTRODUCE.length) {
         this.animateOnce();
       } else {
@@ -37,16 +37,16 @@ class Endboss extends MoveableObject {
         this.startInfiniteAnimation();
       }
     }, 1000 / 5);
-}
-  
+  }
+
   startInfiniteAnimation() {
     this.animateInfinite();
   }
-  
+
   animateInfinite() {
     setInterval(() => {
-      let i = this.currentImage % this.IMAGES_FLOATING.length; 
-      let path = this.IMAGES_FLOATING[i]; 
+      let i = this.currentImage % this.IMAGES_FLOATING.length;
+      let path = this.IMAGES_FLOATING[i];
       this.img = this.imageCache[path];
       this.currentImage++;
     }, 1000 / 5);
