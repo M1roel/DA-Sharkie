@@ -36,7 +36,7 @@ class Endboss extends MoveableObject {
         this.currentImage = 0;
         this.startInfiniteAnimation();
       }
-    }, 1000 / 5);
+    }, 1000 / 8);
   }
 
   startInfiniteAnimation() {
