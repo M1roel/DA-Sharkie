@@ -7,6 +7,7 @@ class World {
   keyboard;
   camera_x = 0;
   endbossShow = false;
+  background_sound = new Audio('/src/audio/background.mp3');
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -14,6 +15,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.background_sound.play();
   }
 
   setWorld() {
