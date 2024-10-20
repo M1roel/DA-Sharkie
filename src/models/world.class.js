@@ -28,6 +28,7 @@ class World {
     this.addToMap(this.charakter);
     this.addObjectsToMap(this.level.lights);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
 
     this.ctx.translate(-this.camera_x, 0);
 
