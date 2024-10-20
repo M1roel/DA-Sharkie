@@ -15,6 +15,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.background_sound.loop = true;
     this.background_sound.play();
   }
 
