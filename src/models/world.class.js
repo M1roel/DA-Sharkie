@@ -6,6 +6,7 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  endbossShow = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -28,9 +29,13 @@ class World {
     this.addToMap(this.charakter);
     this.addObjectsToMap(this.level.lights);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.endboss);
+    if (this.endbossShow) {
+      this.addToMap(this.level.endboss);
+    }
 
     this.ctx.translate(-this.camera_x, 0);
+
+    this.checkPlayerPosition();
 
     let self = this;
     requestAnimationFrame(function () {
@@ -55,6 +60,13 @@ class World {
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
+    }
+  }
+
+  checkPlayerPosition() {
+    if (this.charakter.x > 200 && !this.endbossShow) {
+      this.endbossShow = true;
+      this.level.endboss.startAnimation();
     }
   }
 }

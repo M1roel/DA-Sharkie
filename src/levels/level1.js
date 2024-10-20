@@ -5,5 +5,5 @@ const level1 = new Level(
 
   [new Light()],
 
-  [new Endboss()]
+  new Endboss()
 );
