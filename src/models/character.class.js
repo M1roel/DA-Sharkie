@@ -40,38 +40,84 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/4.Attack/Fin slap/7.png",
     "/public/img/1.Sharkie/4.Attack/Fin slap/8.png",
   ];
+  IMAGES_LONGIDLE = [
+    "/public/img/1.Sharkie/2.Long_IDLE/I1.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I2.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I3.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I4.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I5.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I6.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I7.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I8.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I9.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I10.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I11.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I12.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I13.png",
+    "/public/img/1.Sharkie/2.Long_IDLE/I14.png"
+  ]
   world;
-  slapInProgress = false;
+  slapInProgress = false; 
+  longIdleInProgress = false;
   currentImage = 0;
+  idleTimer = 0;
+  idleLimit = 15 * 1000;
 
   constructor() {
     super().loadImg("/public/img/1.Sharkie/1.IDLE/1.png");
     this.loadImgs(this.IMAGES_IDLE);
     this.loadImgs(this.IMAGES_SWIM);
     this.loadImgs(this.IMAGES_SLAP);
+    this.loadImgs(this.IMAGES_LONGIDLE);
     this.animate();
   }
 
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        let i = this.currentImage % this.IMAGES_SWIM.length;
-        let path = this.IMAGES_SWIM[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-      } else if (this.world.keyboard.SPACE) {
-        let i = this.currentImage % this.IMAGES_SLAP.length;
-        let path = this.IMAGES_SLAP[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE) {
+        this.idleTimer = 0;
+        this.longIdleInProgress = false;
+        this.currentImage = 0;
+
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+          let i = this.currentImage % this.IMAGES_SWIM.length;
+          let path = this.IMAGES_SWIM[i];
+          this.img = this.imageCache[path];
+          this.currentImage++;
+        } else if (this.world.keyboard.SPACE) {
+          let i = this.currentImage % this.IMAGES_SLAP.length;
+          let path = this.IMAGES_SLAP[i];
+          this.img = this.imageCache[path];
+          this.currentImage++;
+        }
+
       } else {
-        let i = this.currentImage % this.IMAGES_IDLE.length;
-        let path = this.IMAGES_IDLE[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        this.idleTimer += 1000 / 5;
+        if (this.idleTimer >= this.idleLimit && !this.longIdleInProgress) {
+          this.longIdleInProgress = true;
+          this.currentImage = 0;
+        }
+
+        if (this.longIdleInProgress) {
+          if (this.currentImage < 9) {
+            let path = this.IMAGES_LONGIDLE[this.currentImage];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+          } else {
+            let i = (this.currentImage - 9) % 5 + 9;
+            let path = this.IMAGES_LONGIDLE[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+          }
+        } else {
+          let i = this.currentImage % this.IMAGES_IDLE.length;
+          let path = this.IMAGES_IDLE[i];
+          this.img = this.imageCache[path];
+          this.currentImage++;
+        }
       }
     }, 1000 / 5);
-
+  
     setInterval(() => {
       if (this.slapInProgress) {
         if (this.currentImage < this.IMAGES_SLAP.length) {
