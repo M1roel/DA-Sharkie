@@ -62,6 +62,7 @@ class Character extends MoveableObject {
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
+  finslap_sound = new Audio ('/src/audio/finslap.mp3')
 
   constructor() {
     super().loadImg("/public/img/1.Sharkie/1.IDLE/1.png");
@@ -137,6 +138,7 @@ class Character extends MoveableObject {
           let path = this.IMAGES_SLAP[this.currentImage];
           this.img = this.imageCache[path];
           this.currentImage++;
+          this.finslap_sound.play();
         } else {
           this.slapInProgress = false;
           this.currentImage = 0;
