@@ -73,31 +73,47 @@ class Character extends MoveableObject {
   }
 
   animate() {
+    this.animateMovement();
+    this.animateLongIdle();
+    this.animateSlap();
+    this.updateCamera();
+    this.moveCharacter();
+  }
+  
+  animateMovement() {
     setInterval(() => {
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE) {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        let i = this.currentImage % this.IMAGES_SWIM.length;
+        let path = this.IMAGES_SWIM[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      } else if (this.world.keyboard.SPACE) {
+        let i = this.currentImage % this.IMAGES_SLAP.length;
+        let path = this.IMAGES_SLAP[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      } else {
+        let i = this.currentImage % this.IMAGES_IDLE.length;
+        let path = this.IMAGES_IDLE[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
+    }, 1000 / 5);
+  }
+  
+  animateLongIdle() {
+    setInterval(() => {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN) {
         this.idleTimer = 0;
         this.longIdleInProgress = false;
-        this.currentImage = 0;
-
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          let i = this.currentImage % this.IMAGES_SWIM.length;
-          let path = this.IMAGES_SWIM[i];
-          this.img = this.imageCache[path];
-          this.currentImage++;
-        } else if (this.world.keyboard.SPACE) {
-          let i = this.currentImage % this.IMAGES_SLAP.length;
-          let path = this.IMAGES_SLAP[i];
-          this.img = this.imageCache[path];
-          this.currentImage++;
-        }
-
       } else {
         this.idleTimer += 1000 / 5;
+    
         if (this.idleTimer >= this.idleLimit && !this.longIdleInProgress) {
           this.longIdleInProgress = true;
           this.currentImage = 0;
         }
-
+  
         if (this.longIdleInProgress) {
           if (this.currentImage < 9) {
             let path = this.IMAGES_LONGIDLE[this.currentImage];
@@ -109,15 +125,12 @@ class Character extends MoveableObject {
             this.img = this.imageCache[path];
             this.currentImage++;
           }
-        } else {
-          let i = this.currentImage % this.IMAGES_IDLE.length;
-          let path = this.IMAGES_IDLE[i];
-          this.img = this.imageCache[path];
-          this.currentImage++;
         }
       }
     }, 1000 / 5);
+  }
   
+  animateSlap() {
     setInterval(() => {
       if (this.slapInProgress) {
         if (this.currentImage < this.IMAGES_SLAP.length) {
@@ -133,29 +146,33 @@ class Character extends MoveableObject {
         this.currentImage = 0;
       }
     }, 1000 / 10);
-
+  }
+  
+  updateCamera() {
     setInterval(() => {
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
-
+  }
+  
+  moveCharacter() {
     setInterval(() => {
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.x += 3;
         this.otherDirection = false;
       }
-
+  
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.x -= 3;
         this.otherDirection = true;
       }
-
+  
       if (this.world.keyboard.UP) {
         this.y -= 3;
         if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
           this.otherDirection = false;
         }
       }
-
+  
       if (this.world.keyboard.DOWN) {
         this.y += 3;
         if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
@@ -164,4 +181,5 @@ class Character extends MoveableObject {
       }
     }, 1000 / 60);
   }
+   
 }
