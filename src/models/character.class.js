@@ -56,6 +56,22 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/2.Long_IDLE/I13.png",
     "/public/img/1.Sharkie/2.Long_IDLE/I14.png"
   ]
+
+  IMAGES_DEAD = [
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/1.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/2.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/3.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/4.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/5.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/6.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/7.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/8.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/9.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/10.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/11.png',
+    '/public/img/1.Sharkie/6.dead/1.Poisoned/12.png'
+  ]
+
   world;
   slapInProgress = false; 
   longIdleInProgress = false;
@@ -70,6 +86,7 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_SWIM);
     this.loadImgs(this.IMAGES_SLAP);
     this.loadImgs(this.IMAGES_LONGIDLE);
+    this.loadImgs(this.IMAGES_DEAD);
     this.animate();
   }
 
