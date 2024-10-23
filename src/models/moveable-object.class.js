@@ -6,6 +6,7 @@ class MoveableObject {
   img;
   imageCache = {};
   otherDirection = false;
+  energy = 100;
 
   loadImg(path) {
     this.img = new Image();
@@ -27,6 +28,21 @@ class MoveableObject {
   moveLeft() {
     setInterval(() => {
       this.x -= this.speed;
-  }, 1000 / 60);
+    }, 1000 / 60);
+  }
+
+  isColliding(mo) {
+    return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+  }
+
+  hit() {
+    this.energy -= 5;
+    if ((this.energy < 0)) {
+      this.energy = 0;
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
   }
 }

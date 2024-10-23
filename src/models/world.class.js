@@ -17,10 +17,22 @@ class World {
     this.setWorld();
     this.background_sound.loop = true;
     this.background_sound.play();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.charakter.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if(this.charakter.isColliding(enemy)) {
+          this.charakter.hit();
+          console.log('Collision with chracter', this.charakter.energy)
+        }
+      });
+    }, 1000);
   }
 
   draw() {
