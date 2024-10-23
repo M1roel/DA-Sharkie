@@ -20,7 +20,7 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/1.IDLE/15.png",
     "/public/img/1.Sharkie/1.IDLE/16.png",
     "/public/img/1.Sharkie/1.IDLE/17.png",
-    "/public/img/1.Sharkie/1.IDLE/18.png",
+    "/public/img/1.Sharkie/1.IDLE/18.png"
   ];
   IMAGES_SWIM = [
     "/public/img/1.Sharkie/3.Swim/1.png",
@@ -28,7 +28,7 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/3.Swim/3.png",
     "/public/img/1.Sharkie/3.Swim/4.png",
     "/public/img/1.Sharkie/3.Swim/5.png",
-    "/public/img/1.Sharkie/3.Swim/6.png",
+    "/public/img/1.Sharkie/3.Swim/6.png"
   ];
   IMAGES_SLAP = [
     "/public/img/1.Sharkie/4.Attack/Fin slap/1.png",
@@ -38,7 +38,7 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/4.Attack/Fin slap/5.png",
     "/public/img/1.Sharkie/4.Attack/Fin slap/6.png",
     "/public/img/1.Sharkie/4.Attack/Fin slap/7.png",
-    "/public/img/1.Sharkie/4.Attack/Fin slap/8.png",
+    "/public/img/1.Sharkie/4.Attack/Fin slap/8.png"
   ];
   IMAGES_LONGIDLE = [
     "/public/img/1.Sharkie/2.Long_IDLE/I1.png",
@@ -62,7 +62,7 @@ class Character extends MoveableObject {
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
-  finslap_sound = new Audio ('/src/audio/finslap.mp3')
+  finslap_sound = new Audio ('/src/audio/finslap.mp3');
 
   constructor() {
     super().loadImg("/public/img/1.Sharkie/1.IDLE/1.png");
