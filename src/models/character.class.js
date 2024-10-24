@@ -49,6 +49,10 @@ class Character extends MoveableObject {
 
   animateLongIdle() {
     setInterval(() => {
+      if (this.isDead()) {
+        return;
+      }
+
       if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN) {
         this.idleTimer = 0;
         this.longIdleInProgress = false;
@@ -78,6 +82,10 @@ class Character extends MoveableObject {
 
   animateSlap() {
     setInterval(() => {
+      if (this.isDead()) {
+        return;
+      }
+
       if (this.slapInProgress) {
         if (this.currentImage < this.IMAGES_SLAP.length) {
           let path = this.IMAGES_SLAP[this.currentImage];
@@ -103,6 +111,10 @@ class Character extends MoveableObject {
 
   moveCharacter() {
     setInterval(() => {
+      if (this.isDead()) {
+        return;
+      }
+
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.x += 3;
         this.otherDirection = false;

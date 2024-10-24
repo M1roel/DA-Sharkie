@@ -6,6 +6,7 @@ class MoveableObject {
   img;
   imageCache = {};
   otherDirection = false;
+  deathAnimationFinished = false;
   energy = 100;
 
   loadImg(path) {
@@ -46,10 +47,24 @@ class MoveableObject {
     return this.energy == 0;
   }
 
+  checkDeathAnimationFinished(array) {
+    if (array === 'IMAGES_DEAD' && this.currentImage >= this[array].length) {
+      this.deathAnimationFinished = true;
+      this.currentImage = this[array].length - 1;
+    }
+  }
+
   loadAnimation(array) {
-    let i = this.currentImage % this[array].length;
-    let path = this[array][i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
+    if (array === 'IMAGES_DEAD' && this.deathAnimationFinished) {
+      let lastImageIndex = this[array].length - 1;
+      let path = this[array][lastImageIndex];
+      this.img = this.imageCache[path];
+    } else {
+      let i = this.currentImage % this[array].length;
+      let path = this[array][i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+      this.checkDeathAnimationFinished(array);
+    }
   }
 }
