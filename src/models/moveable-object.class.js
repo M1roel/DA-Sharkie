@@ -37,12 +37,19 @@ class MoveableObject {
 
   hit() {
     this.energy -= 5;
-    if ((this.energy < 0)) {
+    if (this.energy < 0) {
       this.energy = 0;
     }
   }
 
   isDead() {
     return this.energy == 0;
+  }
+
+  loadAnimation(array) {
+    let i = this.currentImage % this[array].length;
+    let path = this[array][i];
+    this.img = this.imageCache[path];
+    this.currentImage++;
   }
 }
