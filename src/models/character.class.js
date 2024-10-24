@@ -97,24 +97,20 @@ class Character extends MoveableObject {
     this.updateCamera();
     this.moveCharacter();
   }
+
+  loadAnimation(array){
+    let i = this.currentImage % this[array].length;
+        let path = this[array][i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+  }
   
   animateMovement() {
     setInterval(() => {
       if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        let i = this.currentImage % this.IMAGES_SWIM.length;
-        let path = this.IMAGES_SWIM[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-      } else if (this.world.keyboard.SPACE) {
-        let i = this.currentImage % this.IMAGES_SLAP.length;
-        let path = this.IMAGES_SLAP[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        this.loadAnimation('IMAGES_SWIM');
       } else {
-        let i = this.currentImage % this.IMAGES_IDLE.length;
-        let path = this.IMAGES_IDLE[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        this-this.loadAnimation('IMAGES_IDLE');
       }
     }, 1000 / 5);
   }
