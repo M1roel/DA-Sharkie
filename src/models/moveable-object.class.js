@@ -3,6 +3,8 @@ class MoveableObject {
   y = 300;
   height = 200;
   width = 200;
+  hitboxWidth = 100;
+  hitboxHeight = 100;
   img;
   imageCache = {};
   otherDirection = false;
@@ -33,16 +35,28 @@ class MoveableObject {
   }
 
   isColliding(mo) {
-    return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+    return this.x + this.hitboxWidth > mo.x && this.y + this.hitboxHeight > mo.y && this.x < mo.x + mo.hitboxWidth && this.y < mo.y + mo.hitboxHeight;
   }
 
   hit() {
-    this.energy -= 5;
-    if (this instanceof Character) {
-      this.loadAnimation("IMAGES_POISONED");
+    if (this.isDead()) {
+      return;
     }
+
+    this.energy -= 5;
+
+    this.handleHitAnimation();
+
     if (this.energy < 0) {
       this.energy = 0;
+    }
+  }
+
+  handleHitAnimation() {
+    if (this instanceof Fish) {
+      this.loadAnimation("IMAGES_POISONED");
+    } else if (this instanceof Character) {
+      this.loadAnimation("IMAGES_POISONED");
     }
   }
 
