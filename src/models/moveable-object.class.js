@@ -38,6 +38,9 @@ class MoveableObject {
 
   hit() {
     this.energy -= 5;
+    if (this instanceof Character) {
+      this.loadAnimation("IMAGES_POISONED");
+    }
     if (this.energy < 0) {
       this.energy = 0;
     }
@@ -48,14 +51,14 @@ class MoveableObject {
   }
 
   checkDeathAnimationFinished(array) {
-    if (array === 'IMAGES_DEAD' && this.currentImage >= this[array].length) {
+    if (array === "IMAGES_DEAD" && this.currentImage >= this[array].length) {
       this.deathAnimationFinished = true;
       this.currentImage = this[array].length - 1;
     }
   }
 
   loadAnimation(array) {
-    if (array === 'IMAGES_DEAD' && this.deathAnimationFinished) {
+    if (array === "IMAGES_DEAD" && this.deathAnimationFinished) {
       let lastImageIndex = this[array].length - 1;
       let path = this[array][lastImageIndex];
       this.img = this.imageCache[path];

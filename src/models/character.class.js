@@ -6,7 +6,7 @@ class Character extends MoveableObject {
   IMAGES_SWIM = ["/public/img/1.Sharkie/3.Swim/1.png", "/public/img/1.Sharkie/3.Swim/2.png", "/public/img/1.Sharkie/3.Swim/3.png", "/public/img/1.Sharkie/3.Swim/4.png", "/public/img/1.Sharkie/3.Swim/5.png", "/public/img/1.Sharkie/3.Swim/6.png"];
   IMAGES_SLAP = ["/public/img/1.Sharkie/4.Attack/Fin slap/1.png", "/public/img/1.Sharkie/4.Attack/Fin slap/2.png", "/public/img/1.Sharkie/4.Attack/Fin slap/3.png", "/public/img/1.Sharkie/4.Attack/Fin slap/4.png", "/public/img/1.Sharkie/4.Attack/Fin slap/5.png", "/public/img/1.Sharkie/4.Attack/Fin slap/6.png", "/public/img/1.Sharkie/4.Attack/Fin slap/7.png", "/public/img/1.Sharkie/4.Attack/Fin slap/8.png"];
   IMAGES_LONGIDLE = ["/public/img/1.Sharkie/2.Long_IDLE/I1.png", "/public/img/1.Sharkie/2.Long_IDLE/I2.png", "/public/img/1.Sharkie/2.Long_IDLE/I3.png", "/public/img/1.Sharkie/2.Long_IDLE/I4.png", "/public/img/1.Sharkie/2.Long_IDLE/I5.png", "/public/img/1.Sharkie/2.Long_IDLE/I6.png", "/public/img/1.Sharkie/2.Long_IDLE/I7.png", "/public/img/1.Sharkie/2.Long_IDLE/I8.png", "/public/img/1.Sharkie/2.Long_IDLE/I9.png", "/public/img/1.Sharkie/2.Long_IDLE/I10.png", "/public/img/1.Sharkie/2.Long_IDLE/I11.png", "/public/img/1.Sharkie/2.Long_IDLE/I12.png", "/public/img/1.Sharkie/2.Long_IDLE/I13.png", "/public/img/1.Sharkie/2.Long_IDLE/I14.png"];
-
+  IMAGES_POISONED = ["/public/img/1.Sharkie/5.Hurt/1.Poisoned/1.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/2.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/3.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/4.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/5.png"];
   IMAGES_DEAD = ["/public/img/1.Sharkie/6.dead/1.Poisoned/1.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/2.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/3.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/4.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/5.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/6.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/7.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/8.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/9.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/10.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/11.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/12.png"];
 
   world;
@@ -24,6 +24,7 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_SLAP);
     this.loadImgs(this.IMAGES_LONGIDLE);
     this.loadImgs(this.IMAGES_DEAD);
+    this.loadImgs(this.IMAGES_POISONED);
     this.animate();
   }
 
