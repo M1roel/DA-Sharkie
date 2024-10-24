@@ -3,8 +3,8 @@ class MoveableObject {
   y = 300;
   height = 200;
   width = 200;
-  hitboxWidth = 100;
-  hitboxHeight = 100;
+  hitboxWidth = 0;
+  hitboxHeight = 0;
   img;
   imageCache = {};
   otherDirection = false;
