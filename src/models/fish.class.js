@@ -17,12 +17,12 @@ class Fish extends MoveableObject {
       this.loadImgs(this.IMAGES_VIOLET);
     }
 
-    this.x = 250 + Math.random() * 400;
+    this.x = 500 + Math.random() * 4000;
     this.y = 20 + Math.random() * 400;
     this.height = 100;
     this.width = 100;
     this.animate();
-    this.speed = 0.15 + Math.random() * 0.5;
+    this.speed = 0.15 + Math.random() * 0.9;
   }
 
   animate() {

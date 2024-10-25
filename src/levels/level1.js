@@ -1,6 +1,6 @@
 const backgroundObjects = [];
 const backgroundWidth = 719;
-const fishCount = 8;
+const fishCount = 20;
 
 
 backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
