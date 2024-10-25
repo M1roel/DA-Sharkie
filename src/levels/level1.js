@@ -10,7 +10,7 @@ for (let i = 0; i < 8; i++) {
 function createRandomFish() {
   const colors = ['GREEN', 'RED', 'VIOLET'];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  return new Fish(randomColor);
+  return new Fish(randomColor);  
 }
 
 const fishArray = [];
