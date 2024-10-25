@@ -85,11 +85,10 @@ class Character extends MoveableObject {
   }
 
   animateSlap() {
-    setInterval(() => {
-      if (this.isDead()) {
-        return;
-      }
-
+    setInterval(() => {      
+    if (this.isDead()) {
+      return;
+    }
       if (this.slapInProgress) {
         if (this.currentImage < this.IMAGES_SLAP.length) {
           let path = this.IMAGES_SLAP[this.currentImage];
