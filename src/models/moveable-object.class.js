@@ -5,6 +5,8 @@ class MoveableObject {
   width = 200;
   hitboxWidth = 0;
   hitboxHeight = 0;
+  enrageWidth = 100;
+  enrageHeight = 100;
   img;
   imageCache = {};
   otherDirection = false;
@@ -36,6 +38,10 @@ class MoveableObject {
 
   isColliding(mo) {
     return this.x + this.hitboxWidth > mo.x && this.y + this.hitboxHeight > mo.y && this.x < mo.x + mo.hitboxWidth && this.y < mo.y + mo.hitboxHeight;
+  }
+
+  isNear(mo) {
+    return this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
   }
 
   hit() {

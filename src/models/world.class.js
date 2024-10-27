@@ -18,6 +18,7 @@ class World {
     this.background_sound.loop = true;
     this.background_sound.play();
     this.checkCollisions();
+    this.checkEnrage();
   }
 
   setWorld() {
@@ -33,6 +34,19 @@ class World {
         }
       });
     }, 1000);
+  }
+
+  checkEnrage() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.charakter.isNear(enemy)) {
+          console.log("Charakter ist nah genug");
+          enemy.getEnrage();
+        } else {
+          enemy.resetEnrage();
+        }
+      });
+    }, 500);
   }
 
   draw() {
