@@ -67,18 +67,35 @@ class Fish extends MoveableObject {
 
       this.speed /= 1.5;
 
-      if (this.color === "GREEN") {
-        this.loadImg(this.IMAGES_GREEN[0]);
-      } else if (this.color === "RED") {
-        this.loadImg(this.IMAGES_RED[0]);
-      } else if (this.color === "VIOLET") {
-        this.loadImg(this.IMAGES_VIOLET[0]);
-      }
+      this.animateEnrageReverse(this.enrageImages);
 
       this.loadImgs(this.currentImages);
-
       this.currentImage = 0;
     }
+  }
+
+  animateEnrageReverse(array) {
+    let reverseIndex = array.length - 1;
+    this.currentImage = reverseIndex;
+
+    const reverseInterval = setInterval(() => {
+      if (reverseIndex < 0) {
+        clearInterval(reverseInterval);
+
+        if (this.color === "GREEN") {
+          this.loadImg(this.IMAGES_GREEN[0]);
+        } else if (this.color === "RED") {
+          this.loadImg(this.IMAGES_RED[0]);
+        } else if (this.color === "VIOLET") {
+          this.loadImg(this.IMAGES_VIOLET[0]);
+        }
+        return;
+      }
+
+      let path = array[reverseIndex];
+      this.img = this.imageCache[path];
+      reverseIndex--;
+    }, 1000 / 15);
   }
 
   animateEnrage(array) {
