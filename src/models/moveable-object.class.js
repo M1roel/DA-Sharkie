@@ -51,6 +51,9 @@ class MoveableObject {
 
     this.energy -= 5;
 
+    this.idleTimer = 0;
+    this.longIdleInProgress = false;
+
     this.handleHitAnimation();
 
     if (this.energy < 0) {
