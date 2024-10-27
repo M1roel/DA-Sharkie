@@ -85,24 +85,23 @@ class Fish extends MoveableObject {
     let initialLoopComplete = false;
 
     this.enrageInterval = setInterval(() => {
-        if (initialLoopComplete) {
-            clearInterval(this.enrageInterval);
-            this.animateBubbleswim(this.bubbleswimImages);
-        } else {
-            let i = this.currentImage;
-            let path = array[i];
-            this.img = this.imageCache[path];
-            
-            if (i === array.length - 1) {
-                initialLoopComplete = true;
-                this.currentImage = 0;
-            } else {
-                this.currentImage++;
-            }
-        }
-    }, 1000 / 15);
-}
+      if (initialLoopComplete) {
+        clearInterval(this.enrageInterval);
+        this.animateBubbleswim(this.bubbleswimImages);
+      } else {
+        let i = this.currentImage;
+        let path = array[i];
+        this.img = this.imageCache[path];
 
+        if (i === array.length - 1) {
+          initialLoopComplete = true;
+          this.currentImage = 0;
+        } else {
+          this.currentImage++;
+        }
+      }
+    }, 1000 / 15);
+  }
 
   animateBubbleswim(array) {
     this.bubbleswimInterval = setInterval(() => {
