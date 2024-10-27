@@ -14,6 +14,7 @@ class Fish extends MoveableObject {
   constructor(color) {
     super();
 
+    this.color = color;
     this.x = 500 + Math.random() * 4000;
     this.y = 20 + Math.random() * 400;
     this.height = 100;
@@ -45,12 +46,14 @@ class Fish extends MoveableObject {
   
   animate() {
     this.moveLeft();
+    this.resetEnrage();
   }
 
   getEnrage() {
     if (!this.enrageActive) {
       this.enrageActive = true;
-      this.animateEnrage(this.enrageImages); 
+      this.animateEnrage(this.enrageImages);
+      this.animateBubbleswim(this.bubbleswimImages);
       this.speed *= 1.5;
     }
   }
@@ -58,9 +61,15 @@ class Fish extends MoveableObject {
   resetEnrage() {
     if (this.enrageActive) {
       this.enrageActive = false;
+      if (this.color === "GREEN") {      
+        this.loadImg(this.IMAGES_GREEN[0]);
+      } else if (this.color === "RED") {      
+        this.loadImg(this.IMAGES_RED[0]);
+      } else if (this.color === "VIOLET") {
+        this.loadImg(this.IMAGES_VIOLET[0]);
+      }
       this.loadImgs(this.currentImages);
       this.speed /= 1.5;
-      cancelAnimationFrame(this.animationId);
     }
   }
 

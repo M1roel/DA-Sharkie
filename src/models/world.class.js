@@ -30,7 +30,6 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if(this.charakter.isColliding(enemy)) {
           this.charakter.hit();
-          console.log('Collision with chracter', this.charakter.energy)
         }
       });
     }, 1000);
@@ -40,7 +39,6 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.charakter.isNear(enemy)) {
-          console.log("Charakter ist nah genug");
           enemy.getEnrage();
         } else {
           enemy.resetEnrage();
