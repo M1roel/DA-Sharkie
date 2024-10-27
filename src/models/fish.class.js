@@ -46,7 +46,6 @@ class Fish extends MoveableObject {
   
   animate() {
     this.moveLeft();
-    this.resetEnrage();
   }
 
   getEnrage() {
