@@ -1,12 +1,12 @@
 class MoveableObject {
   x = 50;
   y = 300;
-  height = 100;
-  width = 100;
+  height = 200;
+  width = 200;
   hitboxWidth = 0;
   hitboxHeight = 0;
-  enrageWidth = 10;
-  enrageHeight = 10;
+  enrageWidth = 100;
+  enrageHeight = 100;
   img;
   imageCache = {};
   otherDirection = false;
