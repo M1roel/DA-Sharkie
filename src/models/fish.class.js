@@ -50,13 +50,8 @@ class Fish extends MoveableObject {
   getEnrage() {
     if (!this.enrageActive) {
       this.enrageActive = true;
-      try {        
-      this.animateEnrage(this.enrageImages);
-      } catch (error) {
-        console.log('Fehler beim laden der Bilder');
-      } 
+      this.animateEnrage(this.enrageImages); 
       this.speed *= 1.5;
-      console.log("Fish is enraged!");
     }
   }
 
@@ -65,17 +60,25 @@ class Fish extends MoveableObject {
       this.enrageActive = false;
       this.loadImgs(this.currentImages);
       this.speed /= 1.5;
-      console.log("Fish has calmed down.");
+      cancelAnimationFrame(this.animationId);
     }
   }
 
   animateEnrage(array) {
     setInterval(() => {
-      
-    }, interval);
-    let i = tis.currentImage % array.length;
+      let i = this.currentImage % array.length;
       let path = array[i];
       this.img = this.imageCache[path];
       this.currentImage++;
+    }, 1000 / 5);    
+  }
+
+  animateBubbleswim(array) {
+    setInterval(() => {
+      let i = this.currentImage % array.length;
+      let path = array[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, 1000 / 5); 
   }
 }
