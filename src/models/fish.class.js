@@ -38,7 +38,7 @@ class Fish extends MoveableObject {
 
   getEnrage() {
     if (!this.enrageActive) {
-      this.enrageActive = true;
+      this.enrageActive = true; 
       this.loadImgs(this.enrageImages);
       this.speed *= 1.5;
       console.log("Fish is enraged!");
@@ -56,5 +56,7 @@ class Fish extends MoveableObject {
 
   animate() {
     this.moveLeft();
+    this.getEnrage();
+    this.resetEnrage();
   }
 }
