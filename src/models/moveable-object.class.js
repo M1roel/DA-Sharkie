@@ -6,7 +6,7 @@ class MoveableObject {
   hitboxWidth = 0;
   hitboxHeight = 0;
   enrageWidth = 100;
-  enrageHeight = 100;
+  enrageHeight = 0;
   img;
   imageCache = {};
   otherDirection = false;
