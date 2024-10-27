@@ -9,9 +9,12 @@ class Character extends MoveableObject {
   IMAGES_POISONED = ["/public/img/1.Sharkie/5.Hurt/1.Poisoned/1.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/2.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/3.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/4.png", "/public/img/1.Sharkie/5.Hurt/1.Poisoned/5.png"];
   IMAGES_DEAD = ["/public/img/1.Sharkie/6.dead/1.Poisoned/1.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/2.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/3.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/4.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/5.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/6.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/7.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/8.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/9.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/10.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/11.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/12.png"];
   IMAGES_SHOCK = ["/public/img/1.Sharkie/5.Hurt/2.Electric shock/1.png", "/public/img/1.Sharkie/5.Hurt/2.Electric shock/2.png", "/public/img/1.Sharkie/5.Hurt/2.Electric shock/3.png"];
+  IMAGES_WITH_BUBBLE = ["/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png"];
+  IMAGES_WITH_PBUBBLE = ["/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png"]
 
   world;
   slapInProgress = false;
+  shotInProgress = false;
   longIdleInProgress = false;
   currentImage = 0;
   idleTimer = 0;
@@ -26,6 +29,8 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_LONGIDLE);
     this.loadImgs(this.IMAGES_DEAD);
     this.loadImgs(this.IMAGES_POISONED);
+    this.loadImgs(this.IMAGES_WITH_BUBBLE);
+    this.loadImgs(this.IMAGES_WITH_PBUBBLE);
     this.hitboxWidth = 160;
     this.hitboxHeight = 160;
     this.animate();
@@ -35,6 +40,7 @@ class Character extends MoveableObject {
     this.animateMovement();
     this.animateLongIdle();
     this.animateSlap();
+    this.animateShot();
     this.updateCamera();
     this.moveCharacter();
   }
@@ -101,6 +107,27 @@ class Character extends MoveableObject {
         }
       } else if (this.world.keyboard.SPACE && !this.slapInProgress) {
         this.slapInProgress = true;
+        this.currentImage = 0;
+      }
+    }, 1000 / 10);
+  }
+
+  animateShot() {
+    setInterval(() => {      
+    if (this.isDead()) {
+      return;
+    }
+      if (this.shotInProgress) {
+        if (this.currentImage < this.IMAGES_WITH_BUBBLE.length) {
+          let path = this.IMAGES_WITH_BUBBLE[this.currentImage];
+          this.img = this.imageCache[path];
+          this.currentImage++;
+        } else {
+          this.shotInProgress = false;
+          this.currentImage = 0;
+        }
+      } else if (this.world.keyboard.E && !this.shotInProgress) {
+        this.shotInProgress = true;
         this.currentImage = 0;
       }
     }, 1000 / 10);
