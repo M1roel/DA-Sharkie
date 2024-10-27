@@ -5,6 +5,9 @@ class Fish extends MoveableObject {
   IMAGES_GREEN_ENRAGE = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png"];
   IMAGES_RED_ENRAGE = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/2.transition5.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim5.png"];
   IMAGES_VIOLET_ENRAGE = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png"];
+  IMAGES_GREEN_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png"];
+  IMAGES_RED_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim5.png"];
+  IMAGES_VIOLET_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png"];
   
   currentImage = 0;
 
@@ -22,17 +25,21 @@ class Fish extends MoveableObject {
       this.loadImg(this.IMAGES_GREEN[0]);
       this.currentImages = this.IMAGES_GREEN;
       this.enrageImages = this.IMAGES_GREEN_ENRAGE;
+      this.bubbleswimImages = this.IMAGES_GREEN_BUBBLESWIN;
     } else if (color === "RED") {      
       this.loadImg(this.IMAGES_RED[0]);
       this.currentImages = this.IMAGES_RED;
       this.enrageImages = this.IMAGES_RED_ENRAGE;
+      this.bubbleswimImages = this.IMAGES_RED_BUBBLESWIN;
     } else if (color === "VIOLET") {
       this.loadImg(this.IMAGES_VIOLET[0]);
       this.currentImages = this.IMAGES_VIOLET;
       this.enrageImages = this.IMAGES_VIOLET_ENRAGE;
+      this.bubbleswimImages = this.IMAGES_VIOLET_BUBBLESWIN;
     }
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
+    this.loadImgs(this.bubbleswimImages);
     this.animate();
   }
   
@@ -64,5 +71,14 @@ class Fish extends MoveableObject {
       this.img = this.imageCache[path];
       this.currentImage++;
     }, 1000 / 5);    
+  }
+
+  animateBubbleswim(array) {
+    setInterval(() => {
+      let i = this.currentImage % array.length;
+      let path = array[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, 1000 / 5); 
   }
 }
