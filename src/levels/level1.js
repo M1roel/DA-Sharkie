@@ -32,5 +32,6 @@ const jellyfishArray = [];
 for (let i = 0; i < jellyfishCount; i++) {
   jellyfishArray.push(createRandomJellyfish());
 }
+const allEnemies = [...fishArray, ...jellyfishArray];
 
-const level1 = new Level(backgroundObjects, fishArray, jellyfishArray, [new Light()], new Endboss());
+const level1 = new Level(backgroundObjects, allEnemies, [new Light()], new Endboss());

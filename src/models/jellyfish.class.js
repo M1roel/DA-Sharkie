@@ -30,4 +30,64 @@ class Jellyfish extends MoveableObject {
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
   }
+
+  getEnrage() {
+    if (!this.enrageActive) {
+      this.enrageActive = true;
+      this.animateEnrage(this.enrageImages);
+      this.speed *= 1.5;
+    }
+  }
+
+  resetEnrage() {
+    if (this.enrageActive) {
+      this.enrageActive = false;
+
+      clearInterval(this.enrageInterval);
+
+      this.speed /= 1.5;
+
+      this.animateEnrageReverse(this.enrageImages);
+      this.loadImgs(this.currentImages);
+      this.currentImage = 0;
+    }
+  }
+
+  animateEnrage(array) {
+    let initialLoopComplete = false;
+
+    this.enrageInterval = setInterval(() => {
+      if (initialLoopComplete) {
+        clearInterval(this.enrageInterval);
+      } else {
+        let i = this.currentImage;
+        let path = array[i];
+        this.img = this.imageCache[path];
+
+        if (i === array.length - 1) {
+          initialLoopComplete = true;
+          this.currentImage = 0;
+        } else {
+          this.currentImage++;
+        }
+      }
+    }, 1000 / 15);
+  }
+
+  animateEnrageReverse(array) {
+    let reverseIndex = array.length - 1;
+    this.currentImage = reverseIndex;
+
+    const reverseInterval = setInterval(() => {
+      if (reverseIndex < 0) {
+        clearInterval(reverseInterval);
+        this.loadImg(this.currentImages[0]);
+        return;
+      }
+
+      let path = array[reverseIndex];
+      this.img = this.imageCache[path];
+      reverseIndex--;
+    }, 1000 / 15);
+  }
 }
