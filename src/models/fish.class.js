@@ -12,6 +12,7 @@ class Fish extends MoveableObject {
   currentImage = 0;
   enrageInterval;
   bubbleswimInterval;
+  swimInterval;
 
   constructor(color) {
     super();
@@ -48,6 +49,15 @@ class Fish extends MoveableObject {
 
   animate() {
     this.moveLeft();
+  }
+
+  animateSwim() {
+    this.swimInterval = setInterval(() => {
+      let i = this.currentImage % this.currentImages.length;
+      let path = this.currentImages[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, 1000 / 5);
   }
 
   getEnrage() {
