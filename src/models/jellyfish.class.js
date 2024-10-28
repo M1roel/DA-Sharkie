@@ -29,9 +29,5 @@ class Jellyfish extends MoveableObject {
 
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
-    this.animate();
   }
-
-  
-
 }

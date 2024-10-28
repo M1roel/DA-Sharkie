@@ -1,6 +1,7 @@
 const backgroundObjects = [];
 const backgroundWidth = 719;
 const fishCount = 20;
+const jellyfishCount = 10;
 
 
 backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
@@ -21,4 +22,15 @@ for (let i = 0; i < fishCount; i++) {
   fishArray.push(createRandomFish());
 }
 
-const level1 = new Level(backgroundObjects, fishArray, [new Light()], new Endboss());
+function createRandomJellyfish() {
+  const colors = ['LILA', 'YELLOW'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  return new Jellyfish(randomColor);  
+}
+
+const jellyfishArray = [];
+for (let i = 0; i < jellyfishCount; i++) {
+  jellyfishArray.push(createRandomJellyfish());
+}
+
+const level1 = new Level(backgroundObjects, fishArray, jellyfishArray, [new Light()], new Endboss());
