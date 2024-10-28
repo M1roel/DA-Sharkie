@@ -3,7 +3,6 @@ const backgroundWidth = 719;
 const fishCount = 20;
 const jellyfishCount = 10;
 
-
 backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
 
 for (let i = 0; i < 8; i++) {
@@ -32,6 +31,7 @@ const jellyfishArray = [];
 for (let i = 0; i < jellyfishCount; i++) {
   jellyfishArray.push(createRandomJellyfish());
 }
+
 const allEnemies = [...fishArray, ...jellyfishArray];
 
 const level1 = new Level(backgroundObjects, allEnemies, [new Light()], new Endboss());
