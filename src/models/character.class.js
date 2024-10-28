@@ -10,7 +10,7 @@ class Character extends MoveableObject {
   IMAGES_DEAD = ["/public/img/1.Sharkie/6.dead/1.Poisoned/1.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/2.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/3.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/4.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/5.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/6.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/7.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/8.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/9.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/10.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/11.png", "/public/img/1.Sharkie/6.dead/1.Poisoned/12.png"];
   IMAGES_SHOCK = ["/public/img/1.Sharkie/5.Hurt/2.Electric shock/1.png", "/public/img/1.Sharkie/5.Hurt/2.Electric shock/2.png", "/public/img/1.Sharkie/5.Hurt/2.Electric shock/3.png"];
   IMAGES_WITH_BUBBLE = ["/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png"];
-  IMAGES_WITH_PBUBBLE = ["/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png"]
+  IMAGES_WITH_PBUBBLE = ["/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png", "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png"];
 
   world;
   slapInProgress = false;
@@ -63,74 +63,112 @@ class Character extends MoveableObject {
         return;
       }
 
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-        this.idleTimer = 0;
-        this.longIdleInProgress = false;
-      } else {
-        this.idleTimer += 1000 / 5;
-
-        if (this.idleTimer >= this.idleLimit && !this.longIdleInProgress) {
-          this.longIdleInProgress = true;
-          this.currentImage = 0;
-        }
-
-        if (this.longIdleInProgress) {
-          if (this.currentImage < 9) {
-            let path = this.IMAGES_LONGIDLE[this.currentImage];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-          } else {
-            let i = ((this.currentImage - 9) % 5) + 9;
-            let path = this.IMAGES_LONGIDLE[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-          }
-        }
+      if (this.checkForIdleReset()) {
+        return;
       }
+
+      this.idleTimer += 1000 / 5;
+
+      if (this.idleTimer >= this.idleLimit && !this.longIdleInProgress) {
+        this.startLongIdle();
+      }
+
+      this.longIdleAnimation();
     }, 1000 / 5);
   }
 
-  animateSlap() {
-    setInterval(() => {      
-    if (this.isDead()) {
-      return;
+  checkForIdleReset() {
+    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+      this.resetLongIdle();
+      return true;
     }
-      if (this.slapInProgress) {
-        if (this.currentImage < this.IMAGES_SLAP.length) {
-          let path = this.IMAGES_SLAP[this.currentImage];
-          this.img = this.imageCache[path];
-          this.currentImage++;
-          this.finslap_sound.play();
-        } else {
-          this.slapInProgress = false;
-          this.currentImage = 0;
-        }
-      } else if (this.world.keyboard.SPACE && !this.slapInProgress) {
-        this.slapInProgress = true;
-        this.currentImage = 0;
+    return false;
+  }
+
+  startLongIdle() {
+    this.longIdleInProgress = true;
+    this.currentImage = 0;
+  }
+
+  resetLongIdle() {
+    this.idleTimer = 0;
+    this.longIdleInProgress = false;
+  }
+
+  longIdleAnimation() {
+    if (this.longIdleInProgress) {
+      if (this.currentImage < 9) {
+        let path = this.IMAGES_LONGIDLE[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      } else {
+        let i = ((this.currentImage - 9) % 5) + 9;
+        let path = this.IMAGES_LONGIDLE[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
       }
+    }
+  }
+
+  animateSlap() {
+    setInterval(() => {
+      if (this.isDead()) {
+        return;
+      }
+      this.startSlap();
+      this.slapAnimation();
     }, 1000 / 10);
   }
 
-  animateShot() {
-    setInterval(() => {      
-    if (this.isDead()) {
-      return;
+  startSlap() {
+    if (this.world.keyboard.SPACE && !this.slapInProgress) {
+      this.slapInProgress = true;
+      this.currentImage = 0;
     }
-      if (this.shotInProgress) {
-        if (this.currentImage < this.IMAGES_WITH_BUBBLE.length) {
-          let path = this.IMAGES_WITH_BUBBLE[this.currentImage];
-          this.img = this.imageCache[path];
-          this.currentImage++;
-        } else {
-          this.shotInProgress = false;
-          this.currentImage = 0;
-        }
-      } else if (this.world.keyboard.E && !this.shotInProgress) {
-        this.shotInProgress = true;
+  }
+
+  slapAnimation() {
+    if (this.slapInProgress) {
+      if (this.currentImage < this.IMAGES_SLAP.length) {
+        let path = this.IMAGES_SLAP[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+        this.finslap_sound.play();
+      } else {
+        this.slapInProgress = false;
         this.currentImage = 0;
       }
+    }
+  }
+
+  animateShot() {
+    setInterval(() => {
+      if (this.isDead()) {
+        return;
+      }
+      this.startShot();
+      this.shotBubble();
     }, 1000 / 10);
+  }
+
+  startShot() {
+    if (this.world.keyboard.E && !this.shotInProgress) {
+      this.shotInProgress = true;
+      this.currentImage = 0;
+    }
+  }
+
+  shotBubble() {
+    if (this.shotInProgress) {
+      if (this.currentImage < this.IMAGES_WITH_BUBBLE.length) {
+        let path = this.IMAGES_WITH_BUBBLE[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      } else {
+        this.shotInProgress = false;
+        this.currentImage = 0;
+      }
+    }
   }
 
   updateCamera() {
