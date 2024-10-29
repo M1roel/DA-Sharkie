@@ -1,7 +1,7 @@
 class World {
   charakter = new Character();
   level = level1;
-
+  statusBar = new StatusBar();
   canvas;
   ctx;
   keyboard;
@@ -54,6 +54,7 @@ class World {
 
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addToMap(this.charakter);
+    this.addToMap(this.statusBar);
     this.addObjectsToMap(this.level.lights);
     this.addObjectsToMap(this.level.enemies);
     if (this.endbossShow) {
