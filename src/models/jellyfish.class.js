@@ -54,31 +54,45 @@ class Jellyfish extends MoveableObject {
 
   animate() {
     this.moveUp();
-  }
+    this.animateMoveUp();
+}
 
-  moveUp() {
+moveUp() {
     const targetY = this.y - 100;
     const upInterval = setInterval(() => {
-      if (this.y <= targetY) {
-        clearInterval(upInterval);
-        this.sinkBack();
-      } else {
-        this.y -= this.speed;
-      }
+        if (this.y <= targetY) {
+            clearInterval(upInterval);
+            this.sinkBack();
+        } else {
+            this.y -= this.speed;
+        }
     }, 1000 / 60);
-  }
+}
 
-  sinkBack() {
+animateMoveUp() {
+    this.animationInterval = setInterval(() => {
+        this.playSwimAnimation();
+    }, 1000 / 5);
+}
+
+playSwimAnimation() {
+    let path = this.currentImages[this.currentImage];
+    this.img = this.imageCache[path];
+    this.currentImage = (this.currentImage + 1) % this.currentImages.length;
+}
+
+sinkBack() {
     const initialY = this.y + 100;
     const downInterval = setInterval(() => {
-      if (this.y >= initialY) {
-        clearInterval(downInterval);
-        this.animate();
-      } else {
-        this.y += this.speed;
-      }
+        if (this.y >= initialY) {
+            clearInterval(downInterval);
+            clearInterval(this.animationInterval);
+            this.animate();
+        } else {
+            this.y += this.speed;
+        }
     }, 1000 / 30);
-  }
+}
 
   getEnrage() {
     if (!this.enrageActive) {
