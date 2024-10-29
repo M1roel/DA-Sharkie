@@ -36,6 +36,18 @@ class MoveableObject {
     }, 1000 / 60);
   }
 
+  moveUp() {
+    setInterval(() => {
+      this.y -= this.speed;
+    }, 1000 / 60);
+  }
+
+  moveDown() {
+    setInterval(() => {
+      this.y += this.speed;
+    }, 1000 / 60);
+  }
+
   isColliding(mo) {
     return this.x + this.hitboxWidth > mo.x && this.y + this.hitboxHeight > mo.y && this.x < mo.x + mo.hitboxWidth && this.y < mo.y + mo.hitboxHeight;
   }
