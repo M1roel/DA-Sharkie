@@ -11,7 +11,6 @@ class Fish extends MoveableObject {
 
   currentImage = 0;
   currentSwimImage = 0;
-  currentEnrageImage = 0;
   enrageInterval;
   bubbleswimInterval;
   swimInterval;
@@ -82,7 +81,6 @@ class Fish extends MoveableObject {
       this.animateEnrageReverse(this.enrageImages);
       this.loadImgs(this.currentImages);
       this.currentSwimImage = 0;
-      this.currentEnrageImage = 0;
       this.animateSwim(this.currentImages);
     }
   }
