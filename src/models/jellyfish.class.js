@@ -1,28 +1,8 @@
 class Jellyfish extends MoveableObject {
-  IMAGES_LILA = [
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 3.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png",
-  ];
-  IMAGES_YELLOW = [
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 3.png",
-    "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png",
-  ];
-  IMAGES_LILA_ENRAGE = [
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 3.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 4.png",
-  ];
-  IMAGES_YELLOW_ENRAGE = [
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 1.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 2.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 3.png",
-    "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 4.png",
-  ];
+  IMAGES_LILA = ["/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 1.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 2.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 3.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Lila 4.png"];
+  IMAGES_YELLOW = ["/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 3.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png"];
+  IMAGES_LILA_ENRAGE = ["/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 3.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 4.png"];
+  IMAGES_YELLOW_ENRAGE = ["/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 1.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 2.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 3.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 4.png"];
 
   currentImage = 0;
   enrageInterval;
@@ -55,44 +35,44 @@ class Jellyfish extends MoveableObject {
   animate() {
     this.moveUp();
     this.animateMoveUp();
-}
+  }
 
-moveUp() {
+  moveUp() {
     const targetY = this.y - 100;
     const upInterval = setInterval(() => {
-        if (this.y <= targetY) {
-            clearInterval(upInterval);
-            this.sinkBack();
-        } else {
-            this.y -= this.speed;
-        }
+      if (this.y <= targetY) {
+        clearInterval(upInterval);
+        this.sinkBack();
+      } else {
+        this.y -= this.speed;
+      }
     }, 1000 / 60);
-}
+  }
 
-animateMoveUp() {
+  animateMoveUp() {
     this.animationInterval = setInterval(() => {
-        this.playSwimAnimation();
+      this.playSwimAnimation();
     }, 1000 / 5);
-}
+  }
 
-playSwimAnimation() {
+  playSwimAnimation() {
     let path = this.currentImages[this.currentImage];
     this.img = this.imageCache[path];
     this.currentImage = (this.currentImage + 1) % this.currentImages.length;
-}
+  }
 
-sinkBack() {
+  sinkBack() {
     const initialY = this.y + 100;
     const downInterval = setInterval(() => {
-        if (this.y >= initialY) {
-            clearInterval(downInterval);
-            clearInterval(this.animationInterval);
-            this.animate();
-        } else {
-            this.y += this.speed;
-        }
+      if (this.y >= initialY) {
+        clearInterval(downInterval);
+        clearInterval(this.animationInterval);
+        this.animate();
+      } else {
+        this.y += this.speed;
+      }
     }, 1000 / 30);
-}
+  }
 
   getEnrage() {
     if (!this.enrageActive) {
