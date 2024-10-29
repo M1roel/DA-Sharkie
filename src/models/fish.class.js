@@ -10,6 +10,8 @@ class Fish extends MoveableObject {
   IMAGES_VIOLET_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png"];
 
   currentImage = 0;
+  currentSwimImage = 0;
+  currentEnrageImage = 0;
   enrageInterval;
   bubbleswimInterval;
   swimInterval;
@@ -49,20 +51,22 @@ class Fish extends MoveableObject {
 
   animate() {
     this.moveLeft();
+    this.animateSwim(this.currentImages);
   }
 
-  animateSwim() {
+  animateSwim(array) {
     this.swimInterval = setInterval(() => {
-      let i = this.currentImage % this.currentImages.length;
-      let path = this.currentImages[i];
+      let i = this.currentSwimImage % array.length; 
+      let path = array[i];
       this.img = this.imageCache[path];
-      this.currentImage++;
+      this.currentSwimImage++;
     }, 1000 / 5);
   }
 
   getEnrage() {
     if (!this.enrageActive) {
       this.enrageActive = true;
+      clearInterval(this.swimInterval);
       this.animateEnrage(this.enrageImages);
       this.speed *= 1.5;
     }
@@ -71,16 +75,15 @@ class Fish extends MoveableObject {
   resetEnrage() {
     if (this.enrageActive) {
       this.enrageActive = false;
-
       clearInterval(this.enrageInterval);
       clearInterval(this.bubbleswimInterval);
-
       this.speed /= 1.5;
 
       this.animateEnrageReverse(this.enrageImages);
-
       this.loadImgs(this.currentImages);
-      this.currentImage = 0;
+      this.currentSwimImage = 0;
+      this.currentEnrageImage = 0;
+      this.animateSwim(this.currentImages);
     }
   }
 
