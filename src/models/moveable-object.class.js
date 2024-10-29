@@ -1,21 +1,7 @@
-class MoveableObject extends DrawableObject {
- 
+class MoveableObject extends DrawableObject { 
   otherDirection = false;
   deathAnimationFinished = false;
   energy = 100;
-
-  loadImg(path) {
-    this.img = new Image();
-    this.img.src = path;
-  }
-
-  loadImgs(array) {
-    array.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
-  }
 
   moveRight() {
     console.log("Moving right");
