@@ -33,7 +33,7 @@ class World {
           this.statusBar.setPercentage(this.charakter.energy);
         }
       });
-    }, 1000);
+    }, 100);
   }
 
   checkEnrage() {
