@@ -4,6 +4,7 @@ class World {
   lifeStatusbar = new StatusBar(20, 10, "life");
   coinStatusbar = new StatusBar(20, 55, "coin");
   bottleStatusbar = new StatusBar(20, 100, "bottle");
+  throwableObjects = [new ThrowableObject()];
   canvas;
   ctx;
   keyboard;
@@ -74,6 +75,7 @@ class World {
 
     this.addObjectsToMap(this.level.lights);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.throwableObjects);
     if (this.endbossShow) {
       this.addToMap(this.level.endboss);
     }

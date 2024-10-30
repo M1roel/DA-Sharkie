@@ -1,7 +1,27 @@
 class MoveableObject extends DrawableObject {
   otherDirection = false;
   deathAnimationFinished = false;
+  speedY = 0;
+  speed = 0.15;
   energy = 100;
+  acceleration = 2.5;
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.isAboveGround() || this.speedY > 0) {
+        this.y -= this.speedY;
+        this.speedY -= this.acceleration;
+      }
+    }, 1000 / 25);
+  }
+
+  isAboveGround() {
+    if (this instanceof ThrowableObject) {
+      return true;
+    } else {
+      return this.y < 180;
+    }
+  }
 
   moveLeft() {
     setInterval(() => {
