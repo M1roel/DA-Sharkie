@@ -1,11 +1,7 @@
-class MoveableObject extends DrawableObject { 
+class MoveableObject extends DrawableObject {
   otherDirection = false;
   deathAnimationFinished = false;
   energy = 100;
-
-  moveRight() {
-    console.log("Moving right");
-  }
 
   moveLeft() {
     setInterval(() => {
@@ -33,7 +29,7 @@ class MoveableObject extends DrawableObject {
     return this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
   }
 
-  hit() {
+  hit(source) {
     if (this.isDead()) {
       return;
     }
@@ -43,18 +39,22 @@ class MoveableObject extends DrawableObject {
     this.idleTimer = 0;
     this.longIdleInProgress = false;
 
-    this.handleHitAnimation();
+    this.handleHitAnimation(source);
 
     if (this.energy < 0) {
       this.energy = 0;
     }
   }
 
-  handleHitAnimation() {
-    if (this instanceof Fish) {
-      this.loadAnimation("IMAGES_POISONED");
-    } else if (this instanceof Character) {
-      this.loadAnimation("IMAGES_POISONED");
+  handleHitAnimation(source) {
+    if (source === "fish") {
+      if (this instanceof Character) {
+        this.loadAnimation("IMAGES_POISONED");
+      }
+    } else if (source === "jellyfish") {
+      if (this instanceof Character) {
+        this.loadAnimation("IMAGES_SHOCK");
+      }
     }
   }
 

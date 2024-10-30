@@ -1,15 +1,15 @@
 class World {
   charakter = new Character();
   level = level1;
-  lifeStatusbar = new StatusBar(20, 10, 'life');
-  coinStatusbar = new StatusBar(20, 55, 'coin');
-  bottleStatusbar = new StatusBar(20, 100, 'bottle');
+  lifeStatusbar = new StatusBar(20, 10, "life");
+  coinStatusbar = new StatusBar(20, 55, "coin");
+  bottleStatusbar = new StatusBar(20, 100, "bottle");
   canvas;
   ctx;
   keyboard;
   camera_x = 0;
   endbossShow = false;
-  background_sound = new Audio('/src/audio/background.mp3');
+  background_sound = new Audio("/src/audio/background.mp3");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -30,8 +30,16 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
-        if(this.charakter.isColliding(enemy)) {
-          this.charakter.hit();
+        if (this.charakter.isColliding(enemy)) {
+          let sourceType;
+          if (enemy instanceof Fish) {
+            sourceType = "fish";
+          } else if (enemy instanceof Jellyfish) {
+            sourceType = "jellyfish";
+          } else {
+            return;
+          }
+          this.charakter.hit(sourceType);
           this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
         }
       });
@@ -81,7 +89,7 @@ class World {
   }
 
   addObjectsToMap(objects) {
-    objects.forEach(o => {
+    objects.forEach((o) => {
       this.addToMap(o);
     });
   }
