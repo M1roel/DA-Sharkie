@@ -1,9 +1,9 @@
 class World {
   charakter = new Character();
   level = level1;
-  lifeStatusbar = new StatusBar(60, 10, 'life');
-  coinStatusbar = new StatusBar(60, 55, 'coin');
-  bottleStatusbar = new StatusBar(60, 100, 'bottle');
+  lifeStatusbar = new StatusBar(20, 10, 'life');
+  coinStatusbar = new StatusBar(20, 55, 'coin');
+  bottleStatusbar = new StatusBar(20, 100, 'bottle');
   canvas;
   ctx;
   keyboard;
