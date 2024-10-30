@@ -5,17 +5,25 @@ class StatusBar extends DrawableObject {
 
   percentageEnergy = 100;
   coinsCollect = 0;
+  bottleCollect = 0;
 
-  constructor() {
+  constructor(x, y, type) {
     super();
-    this.loadImgs(this.IMAGES_LIFE);
-    this.loadImgs(this.IMAGES_COIN);
-    this.x = 60;
-    this.y = 10;
+    this.x = x;
+    this.y = y;
     this.width = 60;
     this.height = 200;
-    this.setPercentageEnergy(100);
-    this.setCoinsCollect(0);
+
+    if (type === 'life') {
+      this.loadImgs(this.IMAGES_LIFE);
+      this.setPercentageEnergy(100);
+    } else if (type === 'coin') {
+      this.loadImgs(this.IMAGES_COIN);
+      this.setCoinsCollect(0);
+    } else if  (type === 'bottle') {
+      this.loadImgs(this.IMAGES_BOTTLE);
+      this.setBottleCollect(0);
+    }
   }
 
   setPercentageEnergy(percentageEnergy) {
@@ -26,39 +34,40 @@ class StatusBar extends DrawableObject {
 
   setCoinsCollect(coinsCollect) {
     this.coinsCollect = coinsCollect;
-    let path = this.IMAGES_COIN[this.lifeImageIndex()];
+    let path = this.IMAGES_COIN[this.coinsImageIndex()];
+    this.img = this.imageCache[path];
+  }
+
+  setBottleCollect(bottleCollect) {
+    this.bottleCollect = bottleCollect;
+    let path = this.IMAGES_BOTTLE[this.bottleImageIndex()];
     this.img = this.imageCache[path];
   }
 
   lifeImageIndex() {
-    if (this.percentageEnergy == 100) {
-      return 0;
-    } else if (this.percentageEnergy > 80) {
-      return 1;
-    } else if (this.percentageEnergy > 60) {
-      return 2;
-    } else if (this.percentageEnergy > 40) {
-      return 3;
-    } else if (this.percentageEnergy > 5) {
-      return 4;
-    } else {
-      return 5;
-    }
+    if (this.percentageEnergy == 100) return 0;
+    else if (this.percentageEnergy > 80) return 1;
+    else if (this.percentageEnergy > 60) return 2;
+    else if (this.percentageEnergy > 40) return 3;
+    else if (this.percentageEnergy > 5) return 4;
+    else return 5;
   }
 
   coinsImageIndex() {
-    if (this.coinsCollect == 10) {
-        return 0;
-      } else if (this.coinsCollect > 8) {
-        return 1;
-      } else if (this.coinsCollect > 6) {
-        return 2;
-      } else if (this.coinsCollect > 4) {
-        return 3;
-      } else if (this.coinsCollect > 1) {
-        return 4;
-      } else {
-        return 5;
-      }
+    if (this.coinsCollect == 10) return 0;
+    else if (this.coinsCollect > 8) return 1;
+    else if (this.coinsCollect > 6) return 2;
+    else if (this.coinsCollect > 4) return 3;
+    else if (this.coinsCollect > 1) return 4;
+    else return 5;
+  }
+
+  bottleImageIndex() {
+    if (this.bottleCollect == 10) return 0;
+    else if (this.bottleCollect > 8) return 1;
+    else if (this.bottleCollect > 6) return 2;
+    else if (this.bottleCollect > 4) return 3;
+    else if (this.bottleCollect > 1) return 4;
+    else return 5;
   }
 }

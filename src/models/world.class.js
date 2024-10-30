@@ -1,8 +1,9 @@
 class World {
   charakter = new Character();
   level = level1;
-  lifeStatusbar = new StatusBar();
-  coinStatusbar = new StatusBar();
+  lifeStatusbar = new StatusBar(60, 10, 'life');
+  coinStatusbar = new StatusBar(60, 55, 'coin');
+  bottleStatusbar = new StatusBar(60, 100, 'bottle');
   canvas;
   ctx;
   keyboard;
@@ -60,6 +61,7 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.lifeStatusbar);
     this.addToMap(this.coinStatusbar);
+    this.addToMap(this.bottleStatusbar);
     this.ctx.translate(this.camera_x, 0);
 
     this.addObjectsToMap(this.level.lights);
