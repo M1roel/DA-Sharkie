@@ -6,6 +6,8 @@ class Jellyfish extends MoveableObject {
 
   currentImage = 0;
   enrageInterval;
+  upInterval;
+  animationInterval;
 
   constructor(color) {
     super();
@@ -39,9 +41,9 @@ class Jellyfish extends MoveableObject {
 
   moveUp() {
     const targetY = this.y - 100;
-    const upInterval = setInterval(() => {
+    this.upInterval = setInterval(() => {
       if (this.y <= targetY) {
-        clearInterval(upInterval);
+        clearInterval(this.upInterval);
         this.sinkBack();
       } else {
         this.y -= this.speed;
@@ -71,7 +73,7 @@ class Jellyfish extends MoveableObject {
       } else {
         this.y += this.speed;
       }
-    }, 1000 / 30);
+    }, 1000 / 15);
   }
 
   getEnrage() {
@@ -95,15 +97,16 @@ class Jellyfish extends MoveableObject {
 
   animateEnrage(array) {
     let initialLoopComplete = false;
+
     this.enrageInterval = setInterval(() => {
       if (initialLoopComplete) {
         clearInterval(this.enrageInterval);
+        this.animateEnrage(this.enrageImages);
       } else {
-        let i = this.currentImage;
-        let path = array[i];
+        let path = array[this.currentImage];
         this.img = this.imageCache[path];
 
-        if (i === array.length - 1) {
+        if (this.currentImage === array.length - 1) {
           initialLoopComplete = true;
           this.currentImage = 0;
         } else {
