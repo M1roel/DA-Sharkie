@@ -160,10 +160,13 @@ class Character extends MoveableObject {
 
   startShot() {
     if (this.world.keyboard.E && !this.shotInProgress) {
-      this.shotInProgress = true;
-      this.currentImage = 0;
+        this.shotInProgress = true;
+        this.createBubble("normal");
+    } else if (this.world.keyboard.P && !this.shotInProgress) {
+        this.shotInProgress = true;
+        this.createBubble("poison");
     }
-  }
+}
 
   shotBubble() {
     if (this.shotInProgress) {
@@ -176,6 +179,13 @@ class Character extends MoveableObject {
         this.currentImage = 0;
       }
     }
+  }
+
+  createBubble(type) {
+    const direction = this.otherDirection ? -1 : 1;
+    const bubble = new ThrowableObject(this.x + 20 * direction, this.y, type);
+    bubble.throw(direction);
+    this.world.throwables.push(bubble);
   }
 
   updateCamera() {

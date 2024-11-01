@@ -9,11 +9,21 @@ class ThrowableObject extends MoveableObject {
         this.throw(100, 150);
     }
 
-    throw() {
-        this.speedY = 30;
+    loadImageForType() {
+        if (this.type === "poison") {
+            this.loadImg("/public/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
+        } else {
+            this.loadImg("/public/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
+        }
+    }
+
+    throw(direction) {
+        this.speedY = this.type === "poison" ? 40 : 30;
         this.applyGravity();
         setInterval(() => {
-            this.x +=10;
+            this.x += 10 * direction;
         }, 25);
     }
 }
+
+

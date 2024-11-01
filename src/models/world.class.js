@@ -22,6 +22,7 @@ class World {
     this.background_sound.play();
     this.checkCollisions();
     this.checkEnrage();
+    this.throwables = [];
   }
 
   setWorld() {
