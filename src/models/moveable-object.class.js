@@ -51,7 +51,7 @@ class MoveableObject extends DrawableObject {
 
   hit(source) {
     if (this.isDead()) {
-      return;
+        return;
     }
 
     this.energy -= 5;
@@ -60,11 +60,12 @@ class MoveableObject extends DrawableObject {
     this.longIdleInProgress = false;
 
     this.handleHitAnimation(source);
-
-    if (this.energy < 0) {
-      this.energy = 0;
+    
+    if (this.energy <= 0) {
+        this.energy = 0;
+        this.deathSource = source;
     }
-  }
+}
 
   handleHitAnimation(source) {
     if (source === "fish") {
@@ -83,14 +84,14 @@ class MoveableObject extends DrawableObject {
   }
 
   checkDeathAnimationFinished(array) {
-    if (array === "IMAGES_DEAD" && this.currentImage >= this[array].length) {
+    if ((array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") && this.currentImage >= this[array].length) {
       this.deathAnimationFinished = true;
       this.currentImage = this[array].length - 1;
     }
   }
 
   loadAnimation(array) {
-    if (array === "IMAGES_DEAD" && this.deathAnimationFinished) {
+    if ((array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") && this.deathAnimationFinished) {
       let lastImageIndex = this[array].length - 1;
       let path = this[array][lastImageIndex];
       this.img = this.imageCache[path];
