@@ -4,7 +4,7 @@ class World {
   lifeStatusbar = new StatusBar(20, 10, "life");
   coinStatusbar = new StatusBar(20, 55, "coin");
   bottleStatusbar = new StatusBar(20, 100, "bottle");
-  throwableObjects = [new ThrowableObject()];
+  throwableObjects = [new ThrowableObject(300, 300)];
   canvas;
   ctx;
   keyboard;
