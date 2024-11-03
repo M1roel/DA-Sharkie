@@ -51,7 +51,7 @@ class MoveableObject extends DrawableObject {
 
   hit(source) {
     if (this.isDead()) {
-        return;
+      return;
     }
 
     this.energy -= 5;
@@ -60,12 +60,12 @@ class MoveableObject extends DrawableObject {
     this.longIdleInProgress = false;
 
     this.handleHitAnimation(source);
-    
+
     if (this.energy <= 0) {
-        this.energy = 0;
-        this.deathSource = source;
+      this.energy = 0;
+      this.deathSource = source;
     }
-}
+  }
 
   handleHitAnimation(source) {
     if (source === "fish") {

@@ -98,16 +98,34 @@ class World {
 
   addToMap(mo) {
     if (mo.otherDirection) {
-      this.ctx.save();
-      this.ctx.translate(mo.width, 0);
-      this.ctx.scale(-1, 1);
-      mo.x = mo.x * -1;
+      this.flipImage(mo);
     }
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.height, mo.width);
     if (mo.otherDirection) {
-      mo.x = mo.x * -1;
-      this.ctx.restore();
+      this.flipImageBack(mo);
     }
+    this.drawFrame(mo);
+    
+  }
+
+  drawFrame(mo) {
+    this.ctx.beginPath();
+    this.ctx.lineWidth = '5';
+    this.ctx.strokeStyle = 'blue';
+    this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
+    this.ctx.stroke();
+  }
+
+  flipImage(mo) {
+    this.ctx.save();
+      this.ctx.translate(mo.width, 0);
+      this.ctx.scale(-1, 1);
+      mo.x = mo.x * -1;
+  }
+
+  flipImageBack(mo) {
+    mo.x = mo.x * -1;
+      this.ctx.restore();
   }
 
   checkPlayerPosition() {
