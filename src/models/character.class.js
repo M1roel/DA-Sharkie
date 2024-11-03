@@ -155,14 +155,14 @@ class Character extends MoveableObject {
       }
       this.startShot();
       this.shotBubble();
-    }, 1000 / 10);
+    }, 1000 / 20);
   }
 
   startShot() {
     if (this.world.keyboard.E && !this.shotInProgress) {
         this.shotInProgress = true;
         this.createBubble("normal");
-    } else if (this.world.keyboard.P && !this.shotInProgress) {
+    } else if (this.world.keyboard.Q && !this.shotInProgress) {
         this.shotInProgress = true;
         this.createBubble("poison");
     }
@@ -185,7 +185,7 @@ class Character extends MoveableObject {
     const direction = this.otherDirection ? -1 : 1;
     const bubble = new ThrowableObject(this.x + 20 * direction, this.y, type);
     bubble.throw(direction);
-    this.world.throwables.push(bubble);
+    this.world.throwableObjects.push(bubble);
   }
 
   updateCamera() {
@@ -194,35 +194,35 @@ class Character extends MoveableObject {
     }, 1000 / 60);
   }
 
-  moveCharacter() {
+  moveCharacter() { 
     setInterval(() => {
       if (this.isDead()) {
         return;
       }
-
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.x += 3;
-        this.otherDirection = false;
-      }
-
-      if (this.world.keyboard.LEFT && this.x > 0) {
-        this.x -= 3;
-        this.otherDirection = true;
-      }
-
-      if (this.world.keyboard.UP) {
-        this.y -= 3;
-        if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
-          this.otherDirection = false;
-        }
-      }
-
-      if (this.world.keyboard.DOWN) {
-        this.y += 3;
-        if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT) {
-          this.otherDirection = false;
-        }
-      }
+      this.handleHorizontalMovement();
+      this.handleVerticalMovement();
     }, 1000 / 60);
+  }
+  
+  handleHorizontalMovement() {
+    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+      this.x += 3;
+      this.otherDirection = false;
+    }
+  
+    if (this.world.keyboard.LEFT && this.x > 0) {
+      this.x -= 3;
+      this.otherDirection = true;
+    }
+  }
+  
+  handleVerticalMovement() {
+    if (this.world.keyboard.UP) {
+      this.y -= 3;
+    }
+  
+    if (this.world.keyboard.DOWN) {
+      this.y += 3;
+    }
   }
 }

@@ -4,9 +4,8 @@ class ThrowableObject extends MoveableObject {
         super().loadImg("/public/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
         this.x = x;
         this.y = y;
-        this.height = 60;
+        this.height = 50;
         this.width = 50;
-        this.throw(100, 150);
     }
 
     loadImageForType() {
@@ -18,8 +17,10 @@ class ThrowableObject extends MoveableObject {
     }
 
     throw(direction) {
-        this.speedY = this.type === "poison" ? 40 : 30;
+        this.speedY = 20;
         this.applyGravity();
+        this.direction = direction;
+        console.log(direction);
         setInterval(() => {
             this.x += 10 * direction;
         }, 25);
