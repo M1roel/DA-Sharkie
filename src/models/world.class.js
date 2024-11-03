@@ -18,14 +18,18 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.background_sound.loop = true;
-    this.background_sound.play();
+    this.startBackgroundSound();
     this.checkCollisions();
     this.checkEnrage();
   }
 
   setWorld() {
     this.charakter.world = this;
+  }
+
+  startBackgroundSound() {
+    this.background_sound.loop = true;
+    this.background_sound.play();
   }
 
   checkCollisions() {
@@ -101,6 +105,7 @@ class World {
       this.flipImage(mo);
     }
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.height, mo.width);
+
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
@@ -109,11 +114,13 @@ class World {
   }
 
   drawFrame(mo) {
+    if(mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish) {
     this.ctx.beginPath();
     this.ctx.lineWidth = '5';
     this.ctx.strokeStyle = 'blue';
     this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
     this.ctx.stroke();
+    }
   }
 
   flipImage(mo) {
