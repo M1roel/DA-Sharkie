@@ -1,9 +1,11 @@
 class ThrowableObject extends MoveableObject {
 
-    constructor(x, y) {
+    constructor(x, y, type = 'normal') {
         super().loadImg("/public/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
         this.x = x;
         this.y = y;
+        this.type = type;
+        this.loadImageForType();
         this.height = 50;
         this.width = 50;
     }

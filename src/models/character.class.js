@@ -17,6 +17,7 @@ class Character extends MoveableObject {
   slapInProgress = false;
   shotInProgress = false;
   longIdleInProgress = false;
+  shotPressed = false;
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
@@ -37,6 +38,9 @@ class Character extends MoveableObject {
     this.hitboxWidth = 160;
     this.hitboxHeight = 160;
     this.animate();
+    window.addEventListener('keyup', () => {
+      this.shotPressed = false;
+  });
   }
 
   animate() {
@@ -150,23 +154,26 @@ class Character extends MoveableObject {
 
   animateShot() {
     setInterval(() => {
-      if (this.isDead()) {
-        return;
+      if (!this.isDead()) {
+        this.startShot();
+        this.shotBubble();
       }
-      this.startShot();
-      this.shotBubble();
     }, 1000 / 20);
   }
 
   startShot() {
-    if (this.world.keyboard.E && !this.shotInProgress) {
+    if (!this.shotPressed) {      
+      if (this.world.keyboard.E && !this.shotInProgress) {
+        this.shotPressed = true;
         this.shotInProgress = true;
         this.createBubble("normal");
-    } else if (this.world.keyboard.Q && !this.shotInProgress) {
+      } else if (this.world.keyboard.Q && !this.shotInProgress) {
+        this.shotPressed = true;
         this.shotInProgress = true;
         this.createBubble("poison");
+      }
     }
-}
+  }
 
   shotBubble() {
     if (this.shotInProgress) {
@@ -183,7 +190,9 @@ class Character extends MoveableObject {
 
   createBubble(type) {
     const direction = this.otherDirection ? -1 : 1;
-    const bubble = new ThrowableObject(this.x + 20 * direction, this.y, type);
+    const bubbleX = this.x + (100 * direction);
+    const bubbleY = this.y + 20;
+    const bubble = new ThrowableObject(bubbleX, bubbleY, type);
     bubble.throw(direction);
     this.world.throwableObjects.push(bubble);
   }
