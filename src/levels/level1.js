@@ -7,7 +7,7 @@ backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.pn
 
 const coins = [new Coin(200, 150), new Coin(400, 200), new Coin(600, 250)];
 
-const bottles =  [new Bottle(400, 260)];
+const bottles =  [new Bottle(300, 260)];
 
 for (let i = 0; i < 8; i++) {
   const img = i % 2 === 0 ? "/public/img/3. Background/Dark/2.png" : "/public/img/3. Background/Dark/1.png";

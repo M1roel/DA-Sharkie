@@ -5,7 +5,7 @@ class Bottle extends DrawableObject {
 
         this.x = x;
         this.y = y;
-        this.height = 50;
-        this.width = 50;
+        this.height = 75;
+        this.width = 75;
     }
 }
