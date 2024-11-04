@@ -89,7 +89,7 @@ class Character extends MoveableObject {
   }
 
   checkForIdleReset() {
-    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.E || this.world.keyboard.Q) {
       this.resetLongIdle();
       return true;
     }
