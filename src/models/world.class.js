@@ -80,6 +80,9 @@ class World {
     this.addObjectsToMap(this.level.lights);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
+
+    this.addObjectsToMap(this.level.coins);
+
     if (this.endbossShow) {
       this.addToMap(this.level.endboss);
     }
@@ -110,29 +113,28 @@ class World {
       this.flipImageBack(mo);
     }
     this.drawFrame(mo);
-    
   }
 
   drawFrame(mo) {
-    if(mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish) {
-    this.ctx.beginPath();
-    this.ctx.lineWidth = '5';
-    this.ctx.strokeStyle = 'blue';
-    this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
-    this.ctx.stroke();
+    if (mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish) {
+      this.ctx.beginPath();
+      this.ctx.lineWidth = "5";
+      this.ctx.strokeStyle = "blue";
+      this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
+      this.ctx.stroke();
     }
   }
 
   flipImage(mo) {
     this.ctx.save();
-      this.ctx.translate(mo.width, 0);
-      this.ctx.scale(-1, 1);
-      mo.x = mo.x * -1;
+    this.ctx.translate(mo.width, 0);
+    this.ctx.scale(-1, 1);
+    mo.x = mo.x * -1;
   }
 
   flipImageBack(mo) {
     mo.x = mo.x * -1;
-      this.ctx.restore();
+    this.ctx.restore();
   }
 
   checkPlayerPosition() {
