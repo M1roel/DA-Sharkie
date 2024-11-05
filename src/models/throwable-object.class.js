@@ -22,7 +22,6 @@ class ThrowableObject extends MoveableObject {
         this.speedY = 20;
         this.applyGravity();
         this.direction = direction;
-        console.log(direction);
         setInterval(() => {
             this.x += 10 * direction;
         }, 25);

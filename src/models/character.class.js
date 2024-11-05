@@ -21,6 +21,7 @@ class Character extends MoveableObject {
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
+  bottleCount = 0;
   finslap_sound = new Audio("/src/audio/finslap.mp3");
 
   constructor() {
@@ -158,7 +159,7 @@ class Character extends MoveableObject {
         this.startShot();
         this.shotBubble();
       }
-    }, 1000 / 20);
+    }, 1000 / 10);
   }
 
   startShot() {
