@@ -14,13 +14,13 @@ class StatusBar extends DrawableObject {
     this.width = 60;
     this.height = 200;
 
-    if (type === 'life') {
+    if (type === "life") {
       this.loadImgs(this.IMAGES_LIFE);
       this.setPercentageEnergy(100);
-    } else if (type === 'coin') {
+    } else if (type === "coin") {
       this.loadImgs(this.IMAGES_COIN);
       this.setCoinsCollect(0);
-    } else if  (type === 'bottle') {
+    } else if (type === "bottle") {
       this.loadImgs(this.IMAGES_BOTTLE);
       this.setBottleCollect(0);
     }
@@ -58,7 +58,7 @@ class StatusBar extends DrawableObject {
     else if (this.coinsCollect > 8) return 1;
     else if (this.coinsCollect > 6) return 2;
     else if (this.coinsCollect > 4) return 3;
-    else if (this.coinsCollect > 1) return 4;
+    else if (this.coinsCollect >= 1) return 4;
     else return 5;
   }
 
@@ -67,7 +67,7 @@ class StatusBar extends DrawableObject {
     else if (this.bottleCollect > 8) return 1;
     else if (this.bottleCollect > 6) return 2;
     else if (this.bottleCollect > 4) return 3;
-    else if (this.bottleCollect > 1) return 4;
+    else if (this.bottleCollect >= 1) return 4;
     else return 5;
   }
 
@@ -75,5 +75,11 @@ class StatusBar extends DrawableObject {
     this.coinsCollect++;
     this.setCoinsCollect(this.coinsCollect);
     console.log(`Münzen gesammelt: ${this.coinsCollect}`);
-}
+  }
+
+  increaseBottleCount() {
+    this.bottleCollect++;
+    this.setBottleCollect(this.bottleCollect);
+    console.log(`Flaschen gesammelt: ${this.bottleCollect}`);
+  }
 }

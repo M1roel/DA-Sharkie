@@ -36,6 +36,7 @@ class World {
     setInterval(() => {
       this.checkEnemyCollisions();
       this.checkCoinCollisions();
+      this.checkBottleCollision();
     }, 100);
   }
 
@@ -80,9 +81,9 @@ class World {
 
   collectBottle(index) {
     this.level.bottles.splice(index, 1);
-    this.charakter.increaseBottleCount();
-    this.coinStatusbar.setPercentage(this.charakter.coins);
-  }
+    this.bottleStatusbar.increaseBottleCount();
+    this.bottleStatusbar.setBottleCollect(this.bottleStatusbar.bottleCollect);
+  } 
 
   checkEnrage() {
     setInterval(() => {
