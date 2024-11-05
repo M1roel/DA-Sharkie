@@ -22,6 +22,9 @@ class Fish extends MoveableObject {
   IMAGES_GREEN_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png"];
   IMAGES_RED_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/2.bubbleswim5.png"];
   IMAGES_VIOLET_BUBBLESWIN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/3.bubbleswim5.png"];
+  IMAGES_GREEN_DEAD = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/1.Dead 1 (can animate by going up).png"];
+  IMAGES_RED_DEAD = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png"];
+  IMAGES_VIOLET_DEAD = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png"];
 
   /**
    * Represents a fish object that can swim and react to enrage events.
