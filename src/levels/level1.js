@@ -5,9 +5,7 @@ const jellyfishCount = 10;
 
 backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
 
-const coins = [new Coin(200, 150), new Coin(400, 200), new Coin(600, 250)];
-
-const bottles =  [new Bottle(300, 260)];
+const { coins, bottles } = generateRandomItems(10, 10);
 
 for (let i = 0; i < 8; i++) {
   const img = i % 2 === 0 ? "/public/img/3. Background/Dark/2.png" : "/public/img/3. Background/Dark/1.png";
@@ -34,6 +32,58 @@ function createRandomJellyfish() {
 const jellyfishArray = [];
 for (let i = 0; i < jellyfishCount; i++) {
   jellyfishArray.push(createRandomJellyfish());
+}
+
+function generateRandomItems(coinCount, bottleCount) {
+  const randomCoins = generateCoins(coinCount);
+  const randomBottles = generateBottles(bottleCount, randomCoins);
+  return { coins: randomCoins, bottles: randomBottles };
+}
+
+function generateCoins(count) {
+  const randomCoins = [];
+  while (randomCoins.length < count) {
+    const { x, y } = getRandomPosition();
+    const newCoin = new Coin(x, y);
+    if (isCoinPositionValid(randomCoins, newCoin)) {
+      randomCoins.push(newCoin);
+    }
+  }
+  return randomCoins;
+}
+
+function generateBottles(count, coins) {
+  const randomBottles = [];
+  while (randomBottles.length < count) {
+    const { x, y } = getRandomPosition();
+    const newBottle = new Bottle(x, y);
+    if (isBottlePositionValid(randomBottles, newBottle, coins)) {
+      randomBottles.push(newBottle);
+    }
+  }
+  return randomBottles;
+}
+
+function getRandomPosition() {
+  const x = Math.floor(Math.random() * (3250 - 200 + 1)) + 200;
+  const y = Math.floor(Math.random() * (400 - 50 + 1)) + 50;
+  return { x, y };
+}
+
+function isCoinPositionValid(coins, newCoin) {
+  return coins.every(coin => getDistance(coin, newCoin) >= 200);
+}
+
+function isBottlePositionValid(bottles, newBottle, coins) {
+  return bottles.every(bottle => getDistance(bottle, newBottle) >= 200) &&
+         coins.every(coin => getDistance(coin, newBottle) >= 200);
+}
+
+
+function getDistance(obj1, obj2) {
+  const dx = obj1.x - obj2.x;
+  const dy = obj1.y - obj2.y;
+  return Math.sqrt(dx * dx + dy * dy);
 }
 
 const allEnemies = [...fishArray, ...jellyfishArray];
