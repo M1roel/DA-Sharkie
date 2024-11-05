@@ -35,8 +35,8 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.checkEnemyCollisions();
-      this.checkCoinCollisions();
-      this.checkBottleCollision();
+      this.checkItemCollisions("coin");
+      this.checkItemCollisions("bottle");
     }, 100);
   }
 
@@ -57,33 +57,26 @@ class World {
     });
   }
 
-  checkCoinCollisions() {
-    this.level.coins.forEach((coin, index) => {
-      if (this.charakter.isColliding(coin)) {
-        this.collectCoin(index);
+  checkItemCollisions(type) {
+    const items = type === "coin" ? this.level.coins : this.level.bottles;
+    items.forEach((item, index) => {
+      if (this.charakter.isColliding(item)) {
+        this.collectItem(index, type);
       }
     });
   }
 
-  checkBottleCollision() {
-    this.level.bottles.forEach((bottle, index) => {
-      if (this.charakter.isColliding(bottle)) {
-        this.collectBottle(index);
-      }
-    });
+  collectItem(index, type) {
+    if (type === "coin") {
+      this.level.coins.splice(index, 1);
+      this.coinStatusbar.increaseCoinCount();
+      this.coinStatusbar.setCoinsCollect(this.coinStatusbar.coinsCollect);
+    } else if (type === "bottle") {
+      this.level.bottles.splice(index, 1);
+      this.bottleStatusbar.increaseBottleCount();
+      this.bottleStatusbar.setBottleCollect(this.bottleStatusbar.bottleCollect);
+    }
   }
-
-  collectCoin(index) {
-    this.level.coins.splice(index, 1);
-    this.coinStatusbar.increaseCoinCount();
-    this.coinStatusbar.setCoinsCollect(this.coinStatusbar.coinsCollect);
-}
-
-  collectBottle(index) {
-    this.level.bottles.splice(index, 1);
-    this.bottleStatusbar.increaseBottleCount();
-    this.bottleStatusbar.setBottleCollect(this.bottleStatusbar.bottleCollect);
-  } 
 
   checkEnrage() {
     setInterval(() => {

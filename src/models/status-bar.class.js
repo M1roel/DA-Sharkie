@@ -74,12 +74,10 @@ class StatusBar extends DrawableObject {
   increaseCoinCount() {
     this.coinsCollect++;
     this.setCoinsCollect(this.coinsCollect);
-    console.log(`Münzen gesammelt: ${this.coinsCollect}`);
   }
 
   increaseBottleCount() {
     this.bottleCollect++;
     this.setBottleCollect(this.bottleCollect);
-    console.log(`Flaschen gesammelt: ${this.bottleCollect}`);
   }
 }
