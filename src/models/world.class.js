@@ -34,21 +34,54 @@ class World {
 
   checkCollisions() {
     setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
-        if (this.charakter.isColliding(enemy)) {
-          let sourceType;
-          if (enemy instanceof Fish) {
-            sourceType = "fish";
-          } else if (enemy instanceof Jellyfish) {
-            sourceType = "jellyfish";
-          } else {
-            return;
-          }
-          this.charakter.hit(sourceType);
-          this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
-        }
-      });
+      this.checkEnemyCollisions();
+      this.checkCoinCollisions();
     }, 100);
+  }
+
+  checkEnemyCollisions() {
+    this.level.enemies.forEach((enemy) => {
+      if (this.charakter.isColliding(enemy)) {
+        let sourceType;
+        if (enemy instanceof Fish) {
+          sourceType = "fish";
+        } else if (enemy instanceof Jellyfish) {
+          sourceType = "jellyfish";
+        } else {
+          return;
+        }
+        this.charakter.hit(sourceType);
+        this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
+      }
+    });
+  }
+
+  checkCoinCollisions() {
+    this.level.coins.forEach((coin, index) => {
+      if (this.charakter.isColliding(coin)) {
+        this.collectCoin(index);
+      }
+    });
+  }
+
+  checkBottleCollision() {
+    this.level.bottles.forEach((bottle, index) => {
+      if (this.charakter.isColliding(bottle)) {
+        this.collectBottle(index);
+      }
+    });
+  }
+
+  collectCoin(index) {
+    this.level.coins.splice(index, 1);
+    this.coinStatusbar.increaseCoinCount();
+    this.coinStatusbar.setCoinsCollect(this.coinStatusbar.coinsCollect);
+}
+
+  collectBottle(index) {
+    this.level.bottles.splice(index, 1);
+    this.charakter.increaseBottleCount();
+    this.coinStatusbar.setPercentage(this.charakter.coins);
   }
 
   checkEnrage() {

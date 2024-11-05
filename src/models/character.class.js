@@ -21,6 +21,8 @@ class Character extends MoveableObject {
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
+  coinCount = 0;
+  bottleCount = 0;
   finslap_sound = new Audio("/src/audio/finslap.mp3");
 
   constructor() {
@@ -233,5 +235,10 @@ class Character extends MoveableObject {
     if (this.world.keyboard.DOWN) {
       this.y += 3;
     }
+  }
+
+  increaseCoinCount(){
+    this.coinCount++;
+    console.log(this.coinCount);
   }
 }

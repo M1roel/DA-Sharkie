@@ -70,4 +70,10 @@ class StatusBar extends DrawableObject {
     else if (this.bottleCollect > 1) return 4;
     else return 5;
   }
+
+  increaseCoinCount() {
+    this.coinsCollect++;
+    this.setCoinsCollect(this.coinsCollect);
+    console.log(`Münzen gesammelt: ${this.coinsCollect}`);
+}
 }
