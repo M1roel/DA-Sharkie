@@ -129,7 +129,31 @@ class Character extends MoveableObject {
       }
       this.startSlap();
       this.slapAnimation();
+      this.checkFinSlapCollision();
     }, 1000 / 10);
+  }
+
+  checkFinSlapCollision() {
+    if (this.slapInProgress) {
+      this.world.level.enemies.forEach((enemy) => {
+        if (enemy instanceof Fish && this.isColliding(enemy)) {
+          console.log("Fish wurde vom Fin Slap getroffen!");
+          this.handleFinSlapHit(enemy);
+        }
+      });
+    }
+  }
+
+  handleFinSlapHit(enemy) {
+    if (!enemy.hasBeenSlapped) {
+      enemy.hasBeenSlapped = true;
+      enemy.energy -= 10;
+      enemy.checkDeath();
+      this.finslap_sound.play();
+
+      // Hier kannst du weitere Reaktionen des Gegners hinzufügen, z.B. Animationen oder Effekte
+      setTimeout(() => enemy.hasBeenSlapped = false, 500); // Gegner kann nach 500 ms wieder getroffen werden
+    }
   }
 
   startSlap() {
