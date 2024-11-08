@@ -70,20 +70,24 @@ class Fish extends MoveableObject {
       this.currentImages = this.IMAGES_GREEN;
       this.enrageImages = this.IMAGES_GREEN_ENRAGE;
       this.bubbleswimImages = this.IMAGES_GREEN_BUBBLESWIN;
+      this.deathImages = this.IMAGES_GREEN_DEAD;
     } else if (color === "RED") {
       this.loadImg(this.IMAGES_RED[0]);
       this.currentImages = this.IMAGES_RED;
       this.enrageImages = this.IMAGES_RED_ENRAGE;
       this.bubbleswimImages = this.IMAGES_RED_BUBBLESWIN;
+      this.deathImages = this.IMAGES_RED_DEAD;
     } else if (color === "VIOLET") {
       this.loadImg(this.IMAGES_VIOLET[0]);
       this.currentImages = this.IMAGES_VIOLET;
       this.enrageImages = this.IMAGES_VIOLET_ENRAGE;
       this.bubbleswimImages = this.IMAGES_VIOLET_BUBBLESWIN;
+      this.deathImages = this.IMAGES_VIOLET_DEAD;
     }
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
     this.loadImgs(this.bubbleswimImages);
+    this.loadImgs(this.deathImages);
     this.animate();
   }
 
