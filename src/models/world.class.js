@@ -62,7 +62,6 @@ class World {
     if (this.charakter.slapInProgress) {
       this.level.enemies.forEach((enemy) => {
         if (this.charakter.isColliding(enemy)) {
-          console.log("Fish wurde vom Fin Slap getroffen!");
           if (enemy instanceof Fish) {
             enemy.handleFinSlapHit(enemy);
           }
