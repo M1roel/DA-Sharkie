@@ -59,11 +59,13 @@ class World {
   }
 
   checkFinSlapCollision() {
-    if (this.slapInProgress) {
-      this.world.level.enemies.forEach((enemy) => {
-        if (enemy instanceof Fish && this.isColliding(enemy)) {
+    if (this.charakter.slapInProgress) {
+      this.level.enemies.forEach((enemy) => {
+        if (this.charakter.isColliding(enemy)) {
           console.log("Fish wurde vom Fin Slap getroffen!");
-          this.handleFinSlapHit(enemy);
+          if (enemy instanceof Fish) {
+            enemy.handleFinSlapHit(enemy);
+          }
         }
       });
     }

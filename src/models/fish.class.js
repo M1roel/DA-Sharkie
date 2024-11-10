@@ -41,6 +41,7 @@ class Fish extends MoveableObject {
   enrageInterval;
   bubbleswimInterval;
   swimInterval;
+  isDead = false;
 
   constructor(color) {
     super();
@@ -211,9 +212,19 @@ class Fish extends MoveableObject {
   handleFinSlapHit(enemy) {
     if (!enemy.hasBeenSlapped) {
       enemy.hasBeenSlapped = true;
-      this.loadImgs(this.enemies.deathImages);
-      // Hier kannst du weitere Reaktionen des Gegners hinzufügen, z.B. Animationen oder Effekte
-      setTimeout(() => enemy.hasBeenSlapped = false, 500); // Gegner kann nach 500 ms wieder getroffen werden
+      this.isDead = true;
+
+      clearInterval(this.swimInterval);
+      clearInterval(this.enrageInterval);
+      clearInterval(this.bubbleswimInterval);
+
+      let path = this.deathImages[0];
+      this.img = this.imageCache[path];
+
+      const flyOffInterval = setInterval(() => {
+        this.x += 5;
+        this.y -= 5;
+      }, 1000 / 60);
     }
   }
 }
