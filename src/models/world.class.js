@@ -37,6 +37,7 @@ class World {
       this.checkEnemyCollisions();
       this.checkItemCollisions("coin");
       this.checkItemCollisions("bottle");
+      this.checkFinSlapCollision();
     }, 100);
   }
 
@@ -55,6 +56,17 @@ class World {
         this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
       }
     });
+  }
+
+  checkFinSlapCollision() {
+    if (this.slapInProgress) {
+      this.world.level.enemies.forEach((enemy) => {
+        if (enemy instanceof Fish && this.isColliding(enemy)) {
+          console.log("Fish wurde vom Fin Slap getroffen!");
+          this.handleFinSlapHit(enemy);
+        }
+      });
+    }
   }
 
   checkItemCollisions(type) {

@@ -207,4 +207,13 @@ class Fish extends MoveableObject {
       this.currentImage++;
     }, 1000 / 5);
   }
+
+  handleFinSlapHit(enemy) {
+    if (!enemy.hasBeenSlapped) {
+      enemy.hasBeenSlapped = true;
+      this.loadImgs(this.enemies.deathImages);
+      // Hier kannst du weitere Reaktionen des Gegners hinzufügen, z.B. Animationen oder Effekte
+      setTimeout(() => enemy.hasBeenSlapped = false, 500); // Gegner kann nach 500 ms wieder getroffen werden
+    }
+  }
 }
