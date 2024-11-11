@@ -39,6 +39,7 @@ class World {
       this.checkEnemyCollisions();
       this.checkItemCollisions("coin");
       this.checkItemCollisions("bottle");
+      this.checkFinSlapCollision();
     }, 100);
   }
 
@@ -57,6 +58,18 @@ class World {
         this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
       }
     });
+  }
+
+  checkFinSlapCollision() {
+    if (this.charakter.slapInProgress) {
+      this.level.enemies.forEach((enemy) => {
+        if (this.charakter.isColliding(enemy)) {
+          if (enemy instanceof Fish) {
+            enemy.handleFinSlapHit(enemy);
+          }
+        }
+      });
+    }
   }
 
   checkItemCollisions(type) {

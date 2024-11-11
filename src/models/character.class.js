@@ -239,6 +239,7 @@ class Character extends MoveableObject {
       }
       this.startSlap();
       this.slapAnimation();
+      this.world.checkFinSlapCollision();
     }, 1000 / 10);
   }
 

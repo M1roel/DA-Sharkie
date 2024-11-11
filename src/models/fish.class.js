@@ -41,6 +41,7 @@ class Fish extends MoveableObject {
   enrageInterval;
   bubbleswimInterval;
   swimInterval;
+  isDead = false;
 
   constructor(color) {
     super();
@@ -70,20 +71,24 @@ class Fish extends MoveableObject {
       this.currentImages = this.IMAGES_GREEN;
       this.enrageImages = this.IMAGES_GREEN_ENRAGE;
       this.bubbleswimImages = this.IMAGES_GREEN_BUBBLESWIN;
+      this.deathImages = this.IMAGES_GREEN_DEAD;
     } else if (color === "RED") {
       this.loadImg(this.IMAGES_RED[0]);
       this.currentImages = this.IMAGES_RED;
       this.enrageImages = this.IMAGES_RED_ENRAGE;
       this.bubbleswimImages = this.IMAGES_RED_BUBBLESWIN;
+      this.deathImages = this.IMAGES_RED_DEAD;
     } else if (color === "VIOLET") {
       this.loadImg(this.IMAGES_VIOLET[0]);
       this.currentImages = this.IMAGES_VIOLET;
       this.enrageImages = this.IMAGES_VIOLET_ENRAGE;
       this.bubbleswimImages = this.IMAGES_VIOLET_BUBBLESWIN;
+      this.deathImages = this.IMAGES_VIOLET_DEAD;
     }
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
     this.loadImgs(this.bubbleswimImages);
+    this.loadImgs(this.deathImages);
     this.animate();
   }
 
@@ -202,5 +207,24 @@ class Fish extends MoveableObject {
       this.img = this.imageCache[path];
       this.currentImage++;
     }, 1000 / 5);
+  }
+
+  handleFinSlapHit(enemy) {
+    if (!enemy.hasBeenSlapped) {
+      enemy.hasBeenSlapped = true;
+      this.isDead = true;
+
+      clearInterval(this.swimInterval);
+      clearInterval(this.enrageInterval);
+      clearInterval(this.bubbleswimInterval);
+
+      let path = this.deathImages[0];
+      this.img = this.imageCache[path];
+
+      const flyOffInterval = setInterval(() => {
+        this.x += 5;
+        this.y -= 5;
+      }, 1000 / 60);
+    }
   }
 }
