@@ -11,6 +11,8 @@ class World {
   camera_x = 0;
   endbossShow = false;
   background_sound = new Audio("/src/audio/background.mp3");
+  coin_sound = new Audio("/src/audio/coin_collect.mp3");
+  bottle_sound = new Audio("/src/audio/bottle_collect.mp3");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -71,10 +73,12 @@ class World {
       this.level.coins.splice(index, 1);
       this.coinStatusbar.increaseCoinCount();
       this.coinStatusbar.setCoinsCollect(this.coinStatusbar.coinsCollect);
+      this.coin_sound.play();
     } else if (type === "bottle") {
       this.level.bottles.splice(index, 1);
       this.bottleStatusbar.increaseBottleCount();
       this.bottleStatusbar.setBottleCollect(this.bottleStatusbar.bottleCollect);
+      this.bottle_sound.play();
     }
   }
 
