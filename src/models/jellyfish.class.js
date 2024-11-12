@@ -137,4 +137,23 @@ class Jellyfish extends MoveableObject {
       reverseIndex--;
     }, 1000 / 15);
   }
+
+  handleBubbleHit(enemy) {
+    if (!enemy.hasBeenSlapped) {
+      enemy.hasBeenSlapped = true;
+      this.isDead = true;
+
+      clearInterval(this.swimInterval);
+      clearInterval(this.enrageInterval);
+      clearInterval(this.bubbleswimInterval);
+
+      let path = this.deathImages[0];
+      this.img = this.imageCache[path];
+
+      const flyOffInterval = setInterval(() => {
+        this.x += 5;
+        this.y -= 5;
+      }, 1000 / 60);
+    }
+  }
 }

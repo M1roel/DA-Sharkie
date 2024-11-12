@@ -75,7 +75,7 @@ class World {
   checkBubbleCollision() {
     if (this.charakter.shotInProgress) {
       this.level.enemies.forEach((enemy) => {
-        if (this.checkBubbleCollision.isColliding(enemy)) {
+        if (this.bubble.isColliding(enemy)) {
           if (enemy instanceof Jellyfish) {
             enemy.handleBubbleHit(enemy);
           }
