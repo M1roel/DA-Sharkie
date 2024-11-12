@@ -72,6 +72,18 @@ class World {
     }
   }
 
+  checkBubbleCollision() {
+    if (this.charakter.shotInProgress) {
+      this.level.enemies.forEach((enemy) => {
+        if (this.checkBubbleCollision.isColliding(enemy)) {
+          if (enemy instanceof Jellyfish) {
+            enemy.handleBubbleHit(enemy);
+          }
+        }
+      });
+    }
+  }
+
   checkItemCollisions(type) {
     const items = type === "coin" ? this.level.coins : this.level.bottles;
     items.forEach((item, index) => {
