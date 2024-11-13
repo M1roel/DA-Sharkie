@@ -40,7 +40,22 @@ class World {
       this.checkItemCollisions("coin");
       this.checkItemCollisions("bottle");
       this.checkFinSlapCollision();
+      this.checkBubbleCollision();
+      this.checkAndRemoveBubbles();
+      this.removeDeadEnemies();
     }, 100);
+  }
+
+  removeDeadEnemies() {
+    this.level.enemies = this.level.enemies.filter((enemy) => {
+      if (enemy instanceof Jellyfish && enemy.isDead) {
+        return enemy.y > -100;
+      }
+      if (enemy instanceof Fish && enemy.isDead) {
+        return enemy.y > -100;
+      }
+      return true;
+    });
   }
 
   checkEnemyCollisions() {
@@ -70,6 +85,19 @@ class World {
         }
       });
     }
+  }
+
+  checkBubbleCollision() {
+    this.throwableObjects.forEach((bubble, bubbleIndex) => {
+      this.level.enemies.forEach((enemy) => {
+        if (bubble.isColliding(enemy)) {
+          if (enemy instanceof Jellyfish && !enemy.isDead) {
+            enemy.handleBubbleHit();
+            this.throwableObjects.splice(bubbleIndex, 1);
+          }
+        }
+      });
+    });
   }
 
   checkItemCollisions(type) {
@@ -186,6 +214,15 @@ class World {
     if (this.charakter.x > 4250 && !this.endbossShow) {
       this.endbossShow = true;
       this.level.endboss.startAnimation();
+    }
+  }
+
+  checkAndRemoveBubbles() {
+    for (let i = this.throwableObjects.length - 1; i >= 0; i--) {
+      let bubble = this.throwableObjects[i];
+      if (bubble.y > 500) {
+        this.throwableObjects.splice(i, 1);
+      }
     }
   }
 }

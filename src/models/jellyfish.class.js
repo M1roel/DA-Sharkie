@@ -3,11 +3,15 @@ class Jellyfish extends MoveableObject {
   IMAGES_YELLOW = ["/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 3.png", "/public/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 4.png"];
   IMAGES_LILA_ENRAGE = ["/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 1.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 2.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 3.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Green 4.png"];
   IMAGES_YELLOW_ENRAGE = ["/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 1.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 2.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 3.png", "/public/img/2.Enemy/2 Jelly fish/Súper dangerous/Pink 4.png"];
+  IMAGES_LILA_DEATH = ["/public/img/2.Enemy/2 Jelly fish/Dead/Lila/L1.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Lila/L2.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Lila/L3.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Lila/L4.png"];
+  IMAGES_YELLOW_DEATH = ["/public/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Yellow/y2.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Yellow/y3.png", "/public/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png"];
 
   currentImage = 0;
   enrageInterval;
   upInterval;
   animationInterval;
+  hitByBubble = false;
+  isDead = false;
 
   constructor(color) {
     super();
@@ -23,14 +27,17 @@ class Jellyfish extends MoveableObject {
       this.loadImg(this.IMAGES_LILA[0]);
       this.currentImages = this.IMAGES_LILA;
       this.enrageImages = this.IMAGES_LILA_ENRAGE;
+      this.deathImages = this.IMAGES_LILA_DEATH;
     } else if (color === "YELLOW") {
       this.loadImg(this.IMAGES_YELLOW[0]);
       this.currentImages = this.IMAGES_YELLOW;
       this.enrageImages = this.IMAGES_YELLOW_ENRAGE;
+      this.deathImages = this.IMAGES_YELLOW_DEATH;
     }
 
     this.loadImgs(this.currentImages);
     this.loadImgs(this.enrageImages);
+    this.loadImgs(this.deathImages);
     this.animate();
   }
 
@@ -132,4 +139,31 @@ class Jellyfish extends MoveableObject {
       reverseIndex--;
     }, 1000 / 15);
   }
+
+  handleBubbleHit() {
+    if (!this.hitByBubble) {
+      this.hitByBubble = true;
+      this.isDead = true;
+
+      clearInterval(this.upInterval);
+      clearInterval(this.animationInterval);
+      clearInterval(this.enrageInterval);
+      clearInterval(this.downInterval);
+
+      let path = this.deathImages[0];
+      this.img = this.imageCache[path];
+
+      this.flyOff();
+    }
+  }
+
+  flyOff() {
+    const flyOffInterval = setInterval(() => {
+        this.y -= 5;
+
+        if (this.y <= -400) {
+            clearInterval(flyOffInterval);
+        }
+    }, 1000 / 120);
+}
 }

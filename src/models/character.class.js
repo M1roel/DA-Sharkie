@@ -125,6 +125,7 @@ class Character extends MoveableObject {
   idleLimit = 15 * 1000;
   bottleCount = 0;
   finslap_sound = new Audio("/src/audio/finslap.mp3");
+  bubble_sound = new Audio("/src/audio/bubble_shot.mp3");
 
   constructor() {
     super().loadImg("/public/img/1.Sharkie/1.IDLE/1.png");
@@ -269,6 +270,7 @@ class Character extends MoveableObject {
       if (!this.isDead()) {
         this.startShot();
         this.shotBubble();
+        this.world.checkBubbleCollision();
       }
     }, 1000 / 10);
   }
@@ -279,10 +281,12 @@ class Character extends MoveableObject {
         this.shotPressed = true;
         this.shotInProgress = true;
         this.createBubble("normal");
+        this.bubble_sound.play();
       } else if (this.world.keyboard.Q && !this.shotInProgress) {
         this.shotPressed = true;
         this.shotInProgress = true;
         this.createBubble("poison");
+        this.bubble_sound.play();
       }
     }
   }
