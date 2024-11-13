@@ -114,6 +114,15 @@ class Character extends MoveableObject {
     "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png",
     "/public/img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png"
   ];
+  IMAGES_WITHOUT_BUBBLE = [
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/1.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/2.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/3.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/4.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/5.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/6.png",
+    "/public/img/1.Sharkie/4.Attack/Bubble trap/Op2 (Without Bubbles)/7.png"
+  ]
 
   world;
   slapInProgress = false;
@@ -123,7 +132,6 @@ class Character extends MoveableObject {
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
-  bottleCount = 0;
   finslap_sound = new Audio("/src/audio/finslap.mp3");
   bubble_sound = new Audio("/src/audio/bubble_shot.mp3");
 
@@ -139,6 +147,7 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_SHOCK);
     this.loadImgs(this.IMAGES_WITH_BUBBLE);
     this.loadImgs(this.IMAGES_WITH_PBUBBLE);
+    this.loadImgs(this.IMAGES_WITHOUT_BUBBLE);
     this.hitboxWidth = 160;
     this.hitboxHeight = 160;
     this.animate();
@@ -285,8 +294,13 @@ class Character extends MoveableObject {
       } else if (this.world.keyboard.Q && !this.shotInProgress) {
         this.shotPressed = true;
         this.shotInProgress = true;
+        if(this.world.bottleStatusbar.bottleCollect === 0) {
+          this.loadAnimation("IMAGES_WITHOUT_BUBBLE");
+        } else {
         this.createBubble("poison");
         this.bubble_sound.play();
+        this.world.bottleStatusbar.bottleCollect--;
+        }
       }
     }
   }
