@@ -42,7 +42,20 @@ class World {
       this.checkFinSlapCollision();
       this.checkBubbleCollision();
       this.checkAndRemoveBubbles();
+      this.removeDeadEnemies();
     }, 100);
+  }
+
+  removeDeadEnemies() {
+    this.level.enemies = this.level.enemies.filter((enemy) => {
+      if (enemy instanceof Jellyfish && enemy.isDead) {
+        return enemy.y > -100;
+      }
+      if (enemy instanceof Fish && enemy.isDead) {
+        return enemy.x >= -enemy.width && enemy.x <= canvas.width;
+      }
+      return true;
+    });
   }
 
   checkEnemyCollisions() {
@@ -75,14 +88,12 @@ class World {
   }
 
   checkBubbleCollision() {
-    this.throwableObjects.forEach((bubble) => {
-      console.log("Check enemy collision");
-      this.level.enemies.forEach((enemy) => {        
+    this.throwableObjects.forEach((bubble, bubbleIndex) => {
+      this.level.enemies.forEach((enemy) => {
         if (bubble.isColliding(enemy)) {
-          console.log("Bubble trifft auf Enemy!");
           if (enemy instanceof Jellyfish && !enemy.isDead) {
             enemy.handleBubbleHit();
-            console.log("Bubble hat eine Qualle getroffen!");
+            this.throwableObjects.splice(bubbleIndex, 1);
           }
         }
       });

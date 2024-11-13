@@ -142,26 +142,28 @@ class Jellyfish extends MoveableObject {
 
   handleBubbleHit() {
     if (!this.hitByBubble) {
-        this.hitByBubble = true;
-        this.isDead = true;
+      this.hitByBubble = true;
+      this.isDead = true;
 
-        clearInterval(this.upInterval);
-        clearInterval(this.animationInterval);
-        clearInterval(this.enrageInterval);
-        clearInterval(this.downInterval);
+      clearInterval(this.upInterval);
+      clearInterval(this.animationInterval);
+      clearInterval(this.enrageInterval);
+      clearInterval(this.downInterval);
 
-        let path = this.deathImages[0];
-        this.img = this.imageCache[path];
+      let path = this.deathImages[0];
+      this.img = this.imageCache[path];
 
-        const flyOffInterval = setInterval(() => {
-            this.x += 5;
-            this.y -= 5;
-
-            if (this.y + this.height < 0 || this.x > canvas.width) {
-                clearInterval(flyOffInterval);
-            }
-        }, 1000 / 60);
+      this.flyOff();
     }
-}
+  }
 
+  flyOff() {
+    const flyOffInterval = setInterval(() => {
+        this.y -= 5;
+
+        if (this.y <= -400) {
+            clearInterval(flyOffInterval);
+        }
+    }, 1000 / 120);
+}
 }
