@@ -3,8 +3,8 @@ class DrawableObject {
   y = 300;
   height = 200;
   width = 200;
-  hitboxWidth = 100;
-  hitboxHeight = 10;
+  hitboxWidth = 50;
+  hitboxHeight = 20;
   enrageWidth = 100;
   enrageHeight = 0;
   img;
