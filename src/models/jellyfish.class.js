@@ -10,6 +10,8 @@ class Jellyfish extends MoveableObject {
   enrageInterval;
   upInterval;
   animationInterval;
+  hitByBubble = false;
+  isDead = false;
 
   constructor(color) {
     super();
@@ -139,8 +141,8 @@ class Jellyfish extends MoveableObject {
   }
 
   handleBubbleHit() {
-    if (!this.hasBeenSlapped) {
-        this.hasBeenSlapped = true;
+    if (!this.hitByBubble) {
+        this.hitByBubble = true;
         this.isDead = true;
 
         clearInterval(this.upInterval);

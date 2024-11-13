@@ -41,6 +41,7 @@ class World {
       this.checkItemCollisions("bottle");
       this.checkFinSlapCollision();
       this.checkBubbleCollision();
+      this.checkAndRemoveBubbles();
     }, 100);
   }
 
@@ -75,19 +76,18 @@ class World {
 
   checkBubbleCollision() {
     this.throwableObjects.forEach((bubble) => {
-        this.level.enemies.forEach((enemy) => {
-            if (bubble.isColliding(enemy)) {
-                console.log("Bubble trifft auf Enemy!");
-
-                if (enemy instanceof Jellyfish && !enemy.isDead) {
-                    enemy.handleBubbleHit();
-                    bubble.handleCollision();
-                    console.log("Bubble hat eine Qualle getroffen!");
-                }
-            }
-        });
+      console.log("Check enemy collision");
+      this.level.enemies.forEach((enemy) => {        
+        if (bubble.isColliding(enemy)) {
+          console.log("Bubble trifft auf Enemy!");
+          if (enemy instanceof Jellyfish && !enemy.isDead) {
+            enemy.handleBubbleHit();
+            console.log("Bubble hat eine Qualle getroffen!");
+          }
+        }
+      });
     });
-}
+  }
 
   checkItemCollisions(type) {
     const items = type === "coin" ? this.level.coins : this.level.bottles;
@@ -203,6 +203,15 @@ class World {
     if (this.charakter.x > 4250 && !this.endbossShow) {
       this.endbossShow = true;
       this.level.endboss.startAnimation();
+    }
+  }
+
+  checkAndRemoveBubbles() {
+    for (let i = this.throwableObjects.length - 1; i >= 0; i--) {
+      let bubble = this.throwableObjects[i];
+      if (bubble.y > 500) {
+        this.throwableObjects.splice(i, 1);
+      }
     }
   }
 }
