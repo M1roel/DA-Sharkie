@@ -52,7 +52,7 @@ class World {
         return enemy.y > -100;
       }
       if (enemy instanceof Fish && enemy.isDead) {
-        return enemy.x >= -enemy.width && enemy.x <= canvas.width;
+        return enemy.y > -100;
       }
       return true;
     });
