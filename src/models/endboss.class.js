@@ -17,6 +17,11 @@ class Endboss extends MoveableObject {
     super().loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImgs(this.IMAGES_INTRODUCE);
     this.loadImgs(this.IMAGES_FLOATING);
+    this.animate();
+  }
+
+  animate() {
+    this.moveLeft();
   }
 
   startAnimation() {
