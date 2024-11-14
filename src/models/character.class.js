@@ -182,7 +182,7 @@ class Character extends MoveableObject {
         } else {
           this.createBubble("poison");
           this.bubble_sound.play();
-          this.world.bottleStatusbar.bottleCollect--;
+          this.world.bottleStatusbar.decreaseBottleCount();
         }
       }
     }

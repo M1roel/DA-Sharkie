@@ -80,4 +80,9 @@ class StatusBar extends DrawableObject {
     this.bottleCollect++;
     this.setBottleCollect(this.bottleCollect);
   }
+
+  decreaseBottleCount() {
+    this.bottleCollect--;
+    this.setBottleCollect(this.bottleCollect);
+  }
 }
