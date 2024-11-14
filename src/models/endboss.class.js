@@ -12,13 +12,17 @@ class Endboss extends MoveableObject {
 
   world;
   endboss_sound = new Audio('/src/audio/endboss.mp3');
-
+  hitByBubble = false;
+  isDead = false;
   currentImage = 0;
 
   constructor() {
     super().loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImgs(this.IMAGES_INTRODUCE);
     this.loadImgs(this.IMAGES_FLOATING);
+    this.loadImgs(this.IMAGES_ATTACK);
+    this.loadImgs(this.IMAGES_HURT);
+    this.loadImgs(this.IMAGES_DEAD);
     this.animate();
   }
 
