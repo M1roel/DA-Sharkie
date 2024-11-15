@@ -206,6 +206,7 @@ class Character extends MoveableObject {
     const bubbleX = this.x + 100 * direction;
     const bubbleY = this.y + 20;
     const bubble = new ThrowableObject(bubbleX, bubbleY, type);
+    console.log("Blase erstellt:", bubble);
     bubble.throw(direction);
     this.world.throwableObjects.push(bubble);
   }

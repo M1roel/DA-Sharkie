@@ -1,8 +1,6 @@
 class Endboss extends MoveableObject {
   x = 4650;
   y = 0;
-  width = 400;
-  height = 400;
 
   IMAGES_INTRODUCE = ["/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/2.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/3.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/4.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/5.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/6.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/7.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/8.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/9.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/10.png"];
   IMAGES_ATTACK = ["/public/img/2.Enemy/3 Final Enemy/Attack/1.png", "/public/img/2.Enemy/3 Final Enemy/Attack/2.png", "/public/img/2.Enemy/3 Final Enemy/Attack/3.png", "/public/img/2.Enemy/3 Final Enemy/Attack/4.png", "/public/img/2.Enemy/3 Final Enemy/Attack/5.png", "/public/img/2.Enemy/3 Final Enemy/Attack/6.png"];
@@ -18,7 +16,8 @@ class Endboss extends MoveableObject {
   lifes = 5;
 
   constructor() {
-    super().loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
+    super();
+    this.loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImgs(this.IMAGES_INTRODUCE);
     this.loadImgs(this.IMAGES_FLOATING);
     this.loadImgs(this.IMAGES_ATTACK);
@@ -87,7 +86,7 @@ class Endboss extends MoveableObject {
 
   // Animationen für den verletzten Endboss
   playHurtAnimation() {
-    this.loadAnimation("IMAGES_HURT");
+    this.loadAnimation(this.IMAGES_HURT);
     // Wählen Sie hier, wie lange die Verletzungsanimation laufen soll
     setTimeout(() => {
       this.currentImage = 0;
@@ -97,7 +96,7 @@ class Endboss extends MoveableObject {
 
   // Animation für das Ableben des Endbosses
   playDeathAnimation() {
-    this.loadAnimation("IMAGES_DEAD");
+    this.loadAnimation(this.IMAGES_DEAD);
     setTimeout(() => {
       // Weitere Aktionen, die nach dem Tod des Endbosses ablaufen sollen, wie z.B. das Entfernen aus dem Spiel
       this.flyOff();
