@@ -100,6 +100,10 @@ class World {
     });
   }
 
+  checkPbubbelCollision() {
+    
+  }
+
   checkItemCollisions(type) {
     const items = type === "coin" ? this.level.coins : this.level.bottles;
     items.forEach((item, index) => {
