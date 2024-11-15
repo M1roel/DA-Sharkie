@@ -14,6 +14,7 @@ class Endboss extends MoveableObject {
   isDead = false;
   currentImage = 0;
   lifes = 2;
+  intervalId = null;
 
   constructor() {
     super();
@@ -56,7 +57,14 @@ class Endboss extends MoveableObject {
   }
 
   animateInfinite() {
-    setInterval(() => {
+    if (this.intervalId) {
+      clearInterval(this.intervalId); // Sicherstellen, dass keine alte Animation läuft
+    }
+    this.intervalId = setInterval(() => {
+      if (this.isDead) {
+        clearInterval(this.intervalId); // Stoppe die Animation nach dem Tod
+        return;
+      }
       let i = this.currentImage % this.IMAGES_FLOATING.length;
       let path = this.IMAGES_FLOATING[i];
       this.img = this.imageCache[path];
@@ -66,10 +74,9 @@ class Endboss extends MoveableObject {
 
   handleBubbleHit() {
     if (this.isDead || this.hitByBubble) return;
-
     this.hitByBubble = true;
     this.lifes--;
-
+    console.log(this.lifes);
     if (this.lifes <= 0) {
       this.isDead = true;
       this.playDeathAnimation();
@@ -90,6 +97,13 @@ class Endboss extends MoveableObject {
   }
 
   playDeathAnimation() {
+    if (this.IMAGES_DEAD.length > 0) {
     this.loadAnimation("IMAGES_DEAD");
+  } else {
+    console.error('Keine Bilder für Todesanimation gefunden!');
+  }
+    setTimeout(() => {
+      console.log("Endboss ist tot und Animation beendet.");
+    }, 2000);
   }
 }
