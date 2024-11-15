@@ -13,7 +13,7 @@ class Endboss extends MoveableObject {
   hitByBubble = false;
   isDead = false;
   currentImage = 0;
-  lifes = 5;
+  lifes = 2;
 
   constructor() {
     super();
@@ -65,41 +65,31 @@ class Endboss extends MoveableObject {
   }
 
   handleBubbleHit() {
-    // Überprüfen, ob der Endboss bereits getroffen oder tot ist
     if (this.isDead || this.hitByBubble) return;
 
     this.hitByBubble = true;
     this.lifes--;
 
-    // Überprüfen, ob der Endboss besiegt wurde
     if (this.lifes <= 0) {
       this.isDead = true;
       this.playDeathAnimation();
     } else {
       this.playHurtAnimation();
-      // Nach kurzer Zeit zurücksetzen, damit weitere Treffer möglich sind
       setTimeout(() => {
         this.hitByBubble = false;
       }, 500);
     }
   }
 
-  // Animationen für den verletzten Endboss
   playHurtAnimation() {
-    this.loadAnimation(this.IMAGES_HURT);
-    // Wählen Sie hier, wie lange die Verletzungsanimation laufen soll
+    this.loadAnimation("IMAGES_HURT");
     setTimeout(() => {
       this.currentImage = 0;
-      this.loadAnimation(this.IMAGES_FLOATING); // Zurück zur Standardanimation
-    }, 1000); // Beispiel: 1 Sekunde
+      this.loadAnimation("IMAGES_FLOATING");
+    }, 1000);
   }
 
-  // Animation für das Ableben des Endbosses
   playDeathAnimation() {
-    this.loadAnimation(this.IMAGES_DEAD);
-    setTimeout(() => {
-      // Weitere Aktionen, die nach dem Tod des Endbosses ablaufen sollen, wie z.B. das Entfernen aus dem Spiel
-      this.flyOff();
-    }, 2000); // Dauer der Todesanimation
+    this.loadAnimation("IMAGES_DEAD");
   }
 }

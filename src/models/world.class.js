@@ -103,21 +103,14 @@ class World {
 
   checkPbubbelCollision() {
     this.throwableObjects.forEach((bubble, bubbleIndex) => {
-        console.log("Prüfe Blase:", bubble); // Debug
-        console.log("Endboss-Position:", this.level.endboss.x, this.level.endboss.y); // Debug
-
-        if (bubble.type === "poison") {
-            console.log("Giftblase gefunden:", bubble); // Debug
-            if (this.level.endboss && bubble.isColliding(this.level.endboss)) {
-                console.log("Kollision erkannt! Blase trifft Endboss."); // Debug
-                this.level.endboss.handleBubbleHit();
-                this.throwableObjects.splice(bubbleIndex, 1);
-            } else {
-                console.log("Keine Kollision mit Endboss."); // Debug
-            }
+      if (bubble.type === "poison") {
+        if (this.level.endboss && bubble.isColliding(this.level.endboss)) {
+          this.level.endboss.handleBubbleHit();
+          this.throwableObjects.splice(bubbleIndex, 1);
         }
+      }
     });
-}
+  }
 
   checkItemCollisions(type) {
     const items = type === "coin" ? this.level.coins : this.level.bottles;
