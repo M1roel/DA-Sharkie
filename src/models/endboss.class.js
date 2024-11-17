@@ -58,11 +58,11 @@ class Endboss extends MoveableObject {
 
   animateInfinite() {
     if (this.intervalId) {
-      clearInterval(this.intervalId); // Sicherstellen, dass keine alte Animation läuft
+      clearInterval(this.intervalId);
     }
     this.intervalId = setInterval(() => {
       if (this.isDead) {
-        clearInterval(this.intervalId); // Stoppe die Animation nach dem Tod
+        clearInterval(this.intervalId);
         return;
       }
       let i = this.currentImage % this.IMAGES_FLOATING.length;
