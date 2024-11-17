@@ -3,6 +3,11 @@
   src: url(/src/fonts/ocean.otf);
 }
 
+@font-face {
+    font-family: "Lucky";
+    src: url(/src/fonts/lucky.ttf);
+}
+
 body {
   display: flex;
   align-items: center;
@@ -36,4 +41,34 @@ canvas {
 
 .button {
     cursor: pointer;
+}
+
+.guide {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.guide-instruction img{
+    width: 500px;
+}
+
+.guide-bubble {
+    display: flex;
+    flex-direction: column;
+    font-family: "Lucky";
+    font-size: 26px;
+    color: white;
+}
+
+.guide-bubble-e,
+.guide-bubble-q {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.guide-bubble img {
+    width: 50px;
 }
