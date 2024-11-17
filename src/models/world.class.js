@@ -198,14 +198,30 @@ class World {
       this.flipImageBack(mo);
     }
     this.drawFrame(mo);
+    this.drawHitboxFrame(mo);
   }
 
   drawFrame(mo) {
-    if (mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish) {
+    if (mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish || mo instanceof Endboss) {
       this.ctx.beginPath();
       this.ctx.lineWidth = "5";
       this.ctx.strokeStyle = "blue";
       this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
+      this.ctx.stroke();
+    }
+  }
+
+  drawHitboxFrame(mo) {
+    if (mo.hitboxWidth && mo.hitboxHeight) { // Überprüfen, ob Hitbox definiert ist
+      this.ctx.beginPath();
+      this.ctx.lineWidth = "2";
+      this.ctx.strokeStyle = "red";
+      this.ctx.rect(
+        mo.x + (mo.width - mo.hitboxWidth) / 2, // Zentriere die Hitbox auf der X-Achse
+        mo.y + (mo.height - mo.hitboxHeight) / 2, // Zentriere die Hitbox auf der Y-Achse
+        mo.hitboxWidth,
+        mo.hitboxHeight
+      );
       this.ctx.stroke();
     }
   }
