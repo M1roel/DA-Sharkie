@@ -4,10 +4,11 @@ let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
+  world = new World(canvas, keyboard, level1);
 }
 
 function startGame() {
+  createLevel();
   document.getElementById("start-screen").classList.add("hidden");
   document.getElementById("game-container").classList.remove("hidden");
   init();
