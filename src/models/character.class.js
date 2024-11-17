@@ -39,7 +39,7 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_WITH_BUBBLE);
     this.loadImgs(this.IMAGES_WITH_PBUBBLE);
     this.loadImgs(this.IMAGES_WITHOUT_BUBBLE);
-    this.hitboxWidth = 120;
+    this.hitboxWidth = 100;
     this.hitboxHeight = 100;
     this.animate();
     window.addEventListener("keyup", () => {
@@ -206,7 +206,6 @@ class Character extends MoveableObject {
     const bubbleX = this.x + 100 * direction;
     const bubbleY = this.y + 20;
     const bubble = new ThrowableObject(bubbleX, bubbleY, type);
-    console.log("Blase erstellt:", bubble);
     bubble.throw(direction);
     this.world.throwableObjects.push(bubble);
   }
