@@ -5,7 +5,8 @@ class DrawableObject {
   width = 200;
   hitboxWidth = 100;
   hitboxHeight = 100;
-  enrageWidth = 100;
+  enrageWidth = 1
+  50;
   enrageHeight = 0;
   img;
   imageCache = {};

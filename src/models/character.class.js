@@ -39,8 +39,8 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_WITH_BUBBLE);
     this.loadImgs(this.IMAGES_WITH_PBUBBLE);
     this.loadImgs(this.IMAGES_WITHOUT_BUBBLE);
-    this.hitboxWidth = 160;
-    this.hitboxHeight = 160;
+    this.hitboxWidth = 120;
+    this.hitboxHeight = 100;
     this.animate();
     window.addEventListener("keyup", () => {
       this.shotPressed = false;
