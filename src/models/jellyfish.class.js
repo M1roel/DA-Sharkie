@@ -18,6 +18,8 @@ class Jellyfish extends MoveableObject {
     this.color = color;
     this.x = 500 + Math.random() * 4000;
     this.y = 20 + Math.random() * 400;
+    this.hitboxWidth = 150;
+    this.hitboxHeight = 100;
     this.height = 100;
     this.width = 100;
     this.enrageActive = false;
