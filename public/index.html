@@ -7,30 +7,41 @@
     <link rel="stylesheet" href="/src/css/style.css" />
   </head>
   <body>
-    <div id="start-screen" class="screen">
-      <h1>Sharkie</h1>
-      <img class="button" src="/public/img/6.Botones/Start/2.png" alt="start button" onclick="startGame()" />
-      <div class="guide">
-        <div class="guide-instruction">
-          <img src="/public/img/6.Botones/Instructions 2.png" alt="arrow keys" />
-        </div>
-        <div class="guide-bubble">
-          <div class="guide-bubble-e">
-            <img src="/public/img/6.Botones/Key/E Key.png" alt="e key normal bubble attack" />
-            <p>/ Normal Bubble Attack</p>
+
+    <section>
+      <div id="start-screen" class="screen">
+        <h1>Sharkie</h1>
+        <img class="button" src="/public/img/6.Botones/Start/2.png" alt="start button" onclick="startGame()" />
+        <div class="guide">
+          <div class="guide-instruction">
+            <img src="/public/img/6.Botones/Instructions 2.png" alt="arrow keys" />
           </div>
-          <div class="guide-bubble-q">
-            <img src="/public/img/6.Botones/Key/Q Key.png" alt="q key poison bubble attack" />
-            <p>/ Poisoned Bubble Attack</p>
+          <div class="guide-bubble">
+            <div class="guide-bubble-e">
+              <img src="/public/img/6.Botones/Key/E Key.png" alt="e key normal bubble attack" />
+              <p>/ Normal Bubble Attack</p>
+            </div>
+            <div class="guide-bubble-q">
+              <img src="/public/img/6.Botones/Key/Q Key.png" alt="q key poison bubble attack" />
+              <p>/ Poisoned Bubble Attack</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div id="game-container" class="screen hidden">
-      <h1>Sharkie</h1>
-      <canvas id="canvas" width="720" height="480"> </canvas>
-    </div>
+    <section>
+      <div id="game-container" class="screen hidden">
+        <h1>Sharkie</h1>
+        <canvas id="canvas" width="720" height="480"> </canvas>
+      </div>
+    </section>
+
+    <section>
+      <div id="game-over">
+        
+      </div> 
+    </section>
 
     <script src="/src/models/drawable-object.class.js"></script>
     <script src="/src/models/moveable-object.class.js"></script>
