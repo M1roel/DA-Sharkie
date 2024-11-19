@@ -1,9 +1,11 @@
 class StatusBar extends DrawableObject {
   IMAGES_LIFE = ["/public/img/4. Marcadores/Purple/100_ .png", "/public/img/4. Marcadores/Purple/80_ .png", "/public/img/4. Marcadores/green/Life/60_  copia 3.png", "/public/img/4. Marcadores/green/Life/40_  copia 3.png", "/public/img/4. Marcadores/orange/20_ copia 2.png", "/public/img/4. Marcadores/orange/0_  copia.png"];
+  IMAGES_ENDBOSS_LIFE = ["/public/img/4. Marcadores/Purple/100_ .png", "/public/img/4. Marcadores/Purple/80_ .png", "/public/img/4. Marcadores/green/Life/60_  copia 3.png", "/public/img/4. Marcadores/green/Life/40_  copia 3.png", "/public/img/4. Marcadores/orange/20_ copia 2.png", "/public/img/4. Marcadores/orange/0_  copia.png"];
   IMAGES_COIN = ["/public/img/4. Marcadores/Purple/100__1.png", "/public/img/4. Marcadores/Purple/80_ _1.png", "/public/img/4. Marcadores/green/Coin/60_  copia 4.png", "/public/img/4. Marcadores/green/Coin/40_  copia 4.png", "/public/img/4. Marcadores/orange/20_  copia.png", "/public/img/4. Marcadores/orange/0_  copia 2.png"];
   IMAGES_BOTTLE = ["/public/img/4. Marcadores/Purple/100_.png", "/public/img/4. Marcadores/Purple/80_.png", "/public/img/4. Marcadores/green/poisoned bubbles/60_ copia 2.png", "/public/img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png", "/public/img/4. Marcadores/orange/20_ copia.png", "/public/img/4. Marcadores/orange/0_ copia.png"];
 
   percentageEnergy = 100;
+  percentageEndbossEnergy = 100;
   coinsCollect = 0;
   bottleCollect = 0;
 
@@ -32,6 +34,12 @@ class StatusBar extends DrawableObject {
     this.img = this.imageCache[path];
   }
 
+  setPercentageEndbossEnergy(percentageEndbossEnergy) {
+    this.percentageEndbossEnergy = percentageEndbossEnergy;
+    let path = this.IMAGES_ENDBOSS_LIFE[this.endbossLifeImageIndex()];
+    this.img = this.imageCache[path];
+  }
+
   setCoinsCollect(coinsCollect) {
     this.coinsCollect = coinsCollect;
     let path = this.IMAGES_COIN[this.coinsImageIndex()];
@@ -50,6 +58,15 @@ class StatusBar extends DrawableObject {
     else if (this.percentageEnergy > 60) return 2;
     else if (this.percentageEnergy > 40) return 3;
     else if (this.percentageEnergy > 5) return 4;
+    else return 5;
+  }
+
+  endbossLifeImageIndex() {
+    if (this.percentageEndbossEnergy == 100) return 0;
+    else if (this.percentageEndbossEnergy > 80) return 1;
+    else if (this.percentageEndbossEnergy > 60) return 2;
+    else if (this.percentageEndbossEnergy > 40) return 3;
+    else if (this.percentageEndbossEnergy > 5) return 4;
     else return 5;
   }
 
