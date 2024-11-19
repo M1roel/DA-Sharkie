@@ -19,6 +19,9 @@ class StatusBar extends DrawableObject {
     if (type === "life") {
       this.loadImgs(this.IMAGES_LIFE);
       this.setPercentageEnergy(100);
+    } else if (type === "endbossLife") {
+      this.loadImgs(this.IMAGES_ENDBOSS_LIFE);
+      this.setPercentageEndbossEnergy(100)
     } else if (type === "coin") {
       this.loadImgs(this.IMAGES_COIN);
       this.setCoinsCollect(0);
