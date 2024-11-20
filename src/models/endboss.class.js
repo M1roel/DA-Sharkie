@@ -12,7 +12,7 @@ class Endboss extends MoveableObject {
   endboss_sound = new Audio("/src/audio/endboss.mp3");
   hitByBubble = false;
   hurtInterval = null;
-  isDead = false;
+  isBossDead = false;
   currentImage = 0;
   lifes = 4;
   intervalId = null;
@@ -58,44 +58,48 @@ class Endboss extends MoveableObject {
   }
 
   startInfiniteAnimation() {
+    if (this.isBossDead) {
+        console.log("Infinite Animation gestoppt, da der Boss tot ist.");
+        return;
+    }
     this.animateInfinite();
-  }
+}
 
   animateInfinite() {
+    if (this.isBossDead) {
+        console.log("Endboss ist tot, keine weiteren Animationen erlaubt.");
+        return;
+    }
     if (this.intervalId) {
-      clearInterval(this.intervalId);
+        clearInterval(this.intervalId);
     }
     this.intervalId = setInterval(() => {
-      if (this.isDead) {
-        clearInterval(this.intervalId);
-        return;
-      }
-      let i = this.currentImage % this.IMAGES_FLOATING.length;
-      let path = this.IMAGES_FLOATING[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+        let i = this.currentImage % this.IMAGES_FLOATING.length;
+        let path = this.IMAGES_FLOATING[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }, 1000 / 5);
-  }
+}
 
   handleBubbleHit() {
-    if (this.isDead || this.hitByBubble) return;
+    if (this.isBossDead || this.hitByBubble) return;
     this.hitByBubble = true;
     this.lifes--;
     if (this.lifes <= 0) {
-      this.isDead = true;
+      this.isBossDead = true;
       this.playDeathAnimation();
     } else {
       this.playHurtAnimation(this.IMAGES_HURT);
     setTimeout(() => {
       this.hitByBubble = false;
-      if (!this.isDead) {
+      if (!this.isBossDead) {
         this.startInfiniteAnimation();
       }
     }, this.IMAGES_HURT.length * 200);
     }
   }
 
-  playHurtAnimation(array) {
+  playHurtAnimation() {
     this.clearAnimation();
     this.intervalId = setInterval(() => {
       let i = this.currentImage % this.IMAGES_HURT.length;
@@ -105,19 +109,32 @@ class Endboss extends MoveableObject {
     }, 1000 / 5);
   }
 
-  playDeathAnimation() {
-    this.clearAnimation();
-    this.intervalId = setInterval(() => {
-      let i = this.currentImage % this.IMAGES_DEAD.length;
-      let path = this.IMAGES_DEAD[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
-      if (this.currentImage >= this.IMAGES_DEAD.length) {
-        clearInterval(this.intervalId);
-        console.log("Endboss ist tot und Animation beendet.");
-      }
-    }, 1000 / 5);
+  isBossDead() {
+    return this.lifes == 0;
   }
+
+  playDeathAnimation() {
+    this.clearAnimation(); // Beendet alle anderen Animationen
+    this.currentImage = 0; // Startet bei der ersten Frame der Todesanimation
+    this.deathAnimationFinished = false; // Setzt den Status der Animation zurück
+
+    const frameDuration = 1000 / 5; // Dauer pro Frame (z. B. 200 ms)
+
+    const animateDeath = () => {
+        if (this.currentImage < this.IMAGES_DEAD.length) {
+            let path = this.IMAGES_DEAD[this.currentImage];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+            setTimeout(animateDeath, frameDuration); // Plane den nächsten Frame
+        } else {
+            // Animation abgeschlossen, Flag setzen und letztes Bild beibehalten
+            this.deathAnimationFinished = true;
+            console.log("Todesanimation abgeschlossen. Letztes Bild beibehalten.");
+        }
+    };
+
+    animateDeath(); // Startet die Animation
+}
 
   clearAnimation() {
     if (this.intervalId) {
