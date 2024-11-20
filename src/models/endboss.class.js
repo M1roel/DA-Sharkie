@@ -11,9 +11,10 @@ class Endboss extends MoveableObject {
   world;
   endboss_sound = new Audio("/src/audio/endboss.mp3");
   hitByBubble = false;
+  hurtInterval = null;
   isDead = false;
   currentImage = 0;
-  lifes = 2;
+  lifes = 4;
   intervalId = null;
 
   constructor() {
@@ -80,34 +81,48 @@ class Endboss extends MoveableObject {
     if (this.isDead || this.hitByBubble) return;
     this.hitByBubble = true;
     this.lifes--;
-    console.log(this.lifes);
     if (this.lifes <= 0) {
       this.isDead = true;
       this.playDeathAnimation();
     } else {
-      this.playHurtAnimation();
-      setTimeout(() => {
-        this.hitByBubble = false;
-      }, 500);
+      this.playHurtAnimation(this.IMAGES_HURT);
+    setTimeout(() => {
+      this.hitByBubble = false;
+      if (!this.isDead) {
+        this.startInfiniteAnimation();
+      }
+    }, this.IMAGES_HURT.length * 200);
     }
   }
 
-  playHurtAnimation() {
-    this.loadAnimation("IMAGES_HURT");
-    setTimeout(() => {
-      this.currentImage = 0;
-      this.loadAnimation("IMAGES_FLOATING");
-    }, 1000);
+  playHurtAnimation(array) {
+    this.clearAnimation();
+    this.intervalId = setInterval(() => {
+      let i = this.currentImage % this.IMAGES_HURT.length;
+      let path = this.IMAGES_HURT[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, 1000 / 5);
   }
 
   playDeathAnimation() {
-    if (this.IMAGES_DEAD.length > 0) {
-    this.loadAnimation("IMAGES_DEAD");
-  } else {
-    console.error('Keine Bilder für Todesanimation gefunden!');
+    this.clearAnimation();
+    this.intervalId = setInterval(() => {
+      let i = this.currentImage % this.IMAGES_DEAD.length;
+      let path = this.IMAGES_DEAD[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+      if (this.currentImage >= this.IMAGES_DEAD.length) {
+        clearInterval(this.intervalId);
+        console.log("Endboss ist tot und Animation beendet.");
+      }
+    }, 1000 / 5);
   }
-    setTimeout(() => {
-      console.log("Endboss ist tot und Animation beendet.");
-    }, 2000);
+
+  clearAnimation() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
   }
 }
