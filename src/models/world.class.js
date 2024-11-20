@@ -241,7 +241,7 @@ class World {
   }
 
   checkPlayerPosition() {
-    if (this.charakter.x > 4250 && !this.endbossShow) {
+    if (this.charakter.x > 4050 && !this.endbossShow) {
       this.endbossShow = true;
       this.level.endboss.startAnimation();
     }

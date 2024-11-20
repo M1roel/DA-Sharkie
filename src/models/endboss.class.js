@@ -58,28 +58,28 @@ class Endboss extends MoveableObject {
   }
 
   startInfiniteAnimation() {
-    if (this.isBossDead) {
-        console.log("Infinite Animation gestoppt, da der Boss tot ist.");
-        return;
+    if (this.isBossDead || this.deathAnimationFinished) {
+      console.log("Infinite Animation gestoppt, da der Boss tot ist.");
+      return;
     }
     this.animateInfinite();
-}
+  }
 
   animateInfinite() {
     if (this.isBossDead) {
-        console.log("Endboss ist tot, keine weiteren Animationen erlaubt.");
-        return;
+      console.log("Endboss ist tot, keine weiteren Animationen erlaubt.");
+      return;
     }
     if (this.intervalId) {
-        clearInterval(this.intervalId);
+      clearInterval(this.intervalId);
     }
     this.intervalId = setInterval(() => {
-        let i = this.currentImage % this.IMAGES_FLOATING.length;
-        let path = this.IMAGES_FLOATING[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+      let i = this.currentImage % this.IMAGES_FLOATING.length;
+      let path = this.IMAGES_FLOATING[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
     }, 1000 / 5);
-}
+  }
 
   handleBubbleHit() {
     if (this.isBossDead || this.hitByBubble) return;
@@ -90,12 +90,12 @@ class Endboss extends MoveableObject {
       this.playDeathAnimation();
     } else {
       this.playHurtAnimation(this.IMAGES_HURT);
-    setTimeout(() => {
-      this.hitByBubble = false;
-      if (!this.isBossDead) {
-        this.startInfiniteAnimation();
-      }
-    }, this.IMAGES_HURT.length * 200);
+      setTimeout(() => {
+        this.hitByBubble = false;
+        if (!this.isBossDead) {
+          this.startInfiniteAnimation();
+        }
+      }, this.IMAGES_HURT.length * 200);
     }
   }
 
@@ -114,32 +114,32 @@ class Endboss extends MoveableObject {
   }
 
   playDeathAnimation() {
-    this.clearAnimation(); // Beendet alle anderen Animationen
-    this.currentImage = 0; // Startet bei der ersten Frame der Todesanimation
-    this.deathAnimationFinished = false; // Setzt den Status der Animation zurück
+    this.clearAnimation();
+    this.currentImage = 0;
+    this.deathAnimationFinished = false;
 
-    const frameDuration = 1000 / 5; // Dauer pro Frame (z. B. 200 ms)
+    const frameDuration = 1000 / 5;
 
     const animateDeath = () => {
-        if (this.currentImage < this.IMAGES_DEAD.length) {
-            let path = this.IMAGES_DEAD[this.currentImage];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-            setTimeout(animateDeath, frameDuration); // Plane den nächsten Frame
-        } else {
-            // Animation abgeschlossen, Flag setzen und letztes Bild beibehalten
-            this.deathAnimationFinished = true;
-            console.log("Todesanimation abgeschlossen. Letztes Bild beibehalten.");
-        }
+      if (this.currentImage < this.IMAGES_DEAD.length) {
+        let path = this.IMAGES_DEAD[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+        setTimeout(animateDeath, frameDuration);
+      } else {
+        this.deathAnimationFinished = true;
+        console.log("Todesanimation abgeschlossen.");
+      }
     };
 
-    animateDeath(); // Startet die Animation
-}
+    animateDeath();
+  }
 
   clearAnimation() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
+    this.currentImage = 0;
   }
 }
