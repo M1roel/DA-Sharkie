@@ -14,7 +14,7 @@ class Endboss extends MoveableObject {
   hurtInterval = null;
   isBossDead = false;
   currentImage = 0;
-  lifes = 4;
+  lifes = 2;
   intervalId = null;
 
   constructor() {
@@ -86,8 +86,13 @@ class Endboss extends MoveableObject {
     this.hitByBubble = true;
     this.lifes--;
     if (this.lifes <= 0) {
-      this.isBossDead = true;
-      this.loadAnimation("IMAGES_DEAD");
+      this.clearAnimation();
+    this.intervalDeath = setInterval(() => {
+      let i = this.currentImage % this.IMAGES_DEAD.length;
+      let path = this.IMAGES_DEAD[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, 1000 / 5);
     } else {
       this.playHurtAnimation(this.IMAGES_HURT);
       setTimeout(() => {
