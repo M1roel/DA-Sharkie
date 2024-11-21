@@ -87,7 +87,7 @@ class Endboss extends MoveableObject {
     this.lifes--;
     if (this.lifes <= 0) {
       this.isBossDead = true;
-      this.playDeathAnimation();
+      this.loadAnimation("IMAGES_DEAD");
     } else {
       this.playHurtAnimation(this.IMAGES_HURT);
       setTimeout(() => {
