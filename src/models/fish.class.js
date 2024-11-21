@@ -42,6 +42,7 @@ class Fish extends MoveableObject {
   bubbleswimInterval;
   swimInterval;
   isDead = false;
+  allowMovement = true;
 
   constructor(color) {
     super();

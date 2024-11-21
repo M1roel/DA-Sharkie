@@ -24,9 +24,17 @@ class MoveableObject extends DrawableObject {
   }
 
   moveLeft() {
-    setInterval(() => {
-      this.x -= this.speed;
-    }, 1000 / 60);
+    if (!this.allowMovement) return;
+    if (!this.moveInterval) {
+      this.moveInterval = setInterval(() => {
+        if (this.allowMovement) {
+          this.x -= this.speed;
+        } else {
+          clearInterval(this.moveInterval);
+          this.moveInterval = null;
+        }
+      }, 1000 / 60);
+    }
   }
 
   moveUp() {
@@ -42,13 +50,8 @@ class MoveableObject extends DrawableObject {
   }
 
   isColliding(mo) {
-    return (
-        (this.x + this.hitboxWidth) >= mo.x &&
-        this.x <= (mo.x + mo.hitboxWidth) &&
-        (this.y + this.hitboxHeight) >= mo.y &&
-        this.y <= (mo.y + mo.hitboxHeight)
-    );
-}
+    return this.x + this.hitboxWidth >= mo.x && this.x <= mo.x + mo.hitboxWidth && this.y + this.hitboxHeight >= mo.y && this.y <= mo.y + mo.hitboxHeight;
+  }
 
   isNear(mo) {
     return this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
@@ -96,7 +99,7 @@ class MoveableObject extends DrawableObject {
   }
 
   loadAnimation(array) {
-    if ((array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") && this.deathAnimationFinished) {
+    if (((array === "IMAGES_DEAD" && this.deathAnimationFinished) || array === "IMAGES_DEAD_SHOCK") && this.deathAnimationFinished) {
       let lastImageIndex = this[array].length - 1;
       let path = this[array][lastImageIndex];
       this.img = this.imageCache[path];

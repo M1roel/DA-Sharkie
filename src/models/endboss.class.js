@@ -16,10 +16,11 @@ class Endboss extends MoveableObject {
   currentImage = 0;
   lifes = 2;
   intervalId = null;
+  deathEndbossAnimationFinished = false;
+  allowMovement = true;
 
   constructor() {
-    super();
-    this.loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
+    super().loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImgs(this.IMAGES_INTRODUCE);
     this.loadImgs(this.IMAGES_FLOATING);
     this.loadImgs(this.IMAGES_ATTACK);
@@ -33,7 +34,9 @@ class Endboss extends MoveableObject {
   }
 
   animate() {
-    this.moveLeft();
+    if (this.allowMovement) {
+      this.moveLeft();
+    }
   }
 
   startAnimation() {
@@ -86,13 +89,8 @@ class Endboss extends MoveableObject {
     this.hitByBubble = true;
     this.lifes--;
     if (this.lifes <= 0) {
-      this.clearAnimation();
-    this.intervalDeath = setInterval(() => {
-      let i = this.currentImage % this.IMAGES_DEAD.length;
-      let path = this.IMAGES_DEAD[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
-    }, 1000 / 5);
+      this.isBossDead = true;
+      this.playDeathAnimation();
     } else {
       this.playHurtAnimation(this.IMAGES_HURT);
       setTimeout(() => {
@@ -114,17 +112,14 @@ class Endboss extends MoveableObject {
     }, 1000 / 5);
   }
 
-  isBossDead() {
-    return this.lifes == 0;
-  }
-
   playDeathAnimation() {
     this.clearAnimation();
+    this.allowMovement = false;
     this.currentImage = 0;
-    this.deathAnimationFinished = false;
-
+    this.deathEndbossAnimationFinished = false;
+  
     const frameDuration = 1000 / 5;
-
+  
     const animateDeath = () => {
       if (this.currentImage < this.IMAGES_DEAD.length) {
         let path = this.IMAGES_DEAD[this.currentImage];
@@ -132,11 +127,11 @@ class Endboss extends MoveableObject {
         this.currentImage++;
         setTimeout(animateDeath, frameDuration);
       } else {
-        this.deathAnimationFinished = true;
+        this.deathEndbossAnimationFinished = true;
         console.log("Todesanimation abgeschlossen.");
       }
     };
-
+  
     animateDeath();
   }
 

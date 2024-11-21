@@ -214,13 +214,13 @@ class World {
   }
 
   drawHitboxFrame(mo) {
-    if (mo.hitboxWidth && mo.hitboxHeight) { // Überprüfen, ob Hitbox definiert ist
+    if (mo.hitboxWidth && mo.hitboxHeight) {
       this.ctx.beginPath();
       this.ctx.lineWidth = "2";
       this.ctx.strokeStyle = "red";
       this.ctx.rect(
-        mo.x + (mo.width - mo.hitboxWidth) / 2, // Zentriere die Hitbox auf der X-Achse
-        mo.y + (mo.height - mo.hitboxHeight) / 2, // Zentriere die Hitbox auf der Y-Achse
+        mo.x + (mo.width - mo.hitboxWidth) / 2,
+        mo.y + (mo.height - mo.hitboxHeight) / 2,
         mo.hitboxWidth,
         mo.hitboxHeight
       );
