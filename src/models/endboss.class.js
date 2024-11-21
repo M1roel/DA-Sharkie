@@ -20,7 +20,8 @@ class Endboss extends MoveableObject {
   allowMovement = true;
 
   constructor() {
-    super().loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
+    super();
+    this.loadImg("/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImgs(this.IMAGES_INTRODUCE);
     this.loadImgs(this.IMAGES_FLOATING);
     this.loadImgs(this.IMAGES_ATTACK);
@@ -61,7 +62,7 @@ class Endboss extends MoveableObject {
   }
 
   startInfiniteAnimation() {
-    if (this.isBossDead || this.deathAnimationFinished) {
+    if (this.isBossDead || this.deathEndbossAnimationFinished) {
       console.log("Infinite Animation gestoppt, da der Boss tot ist.");
       return;
     }
@@ -69,7 +70,7 @@ class Endboss extends MoveableObject {
   }
 
   animateInfinite() {
-    if (this.isBossDead) {
+    if (this.isBossDead || this.deathEndbossAnimationFinished) {
       console.log("Endboss ist tot, keine weiteren Animationen erlaubt.");
       return;
     }
@@ -117,9 +118,9 @@ class Endboss extends MoveableObject {
     this.allowMovement = false;
     this.currentImage = 0;
     this.deathEndbossAnimationFinished = false;
-  
+
     const frameDuration = 1000 / 5;
-  
+
     const animateDeath = () => {
       if (this.currentImage < this.IMAGES_DEAD.length) {
         let path = this.IMAGES_DEAD[this.currentImage];
@@ -128,11 +129,19 @@ class Endboss extends MoveableObject {
         setTimeout(animateDeath, frameDuration);
       } else {
         this.deathEndbossAnimationFinished = true;
+        this.setLastDeathFrame();
         console.log("Todesanimation abgeschlossen.");
       }
     };
-  
+
     animateDeath();
+  }
+
+  setLastDeathFrame() {
+    let lastImageIndex = this.IMAGES_DEAD.length - 1;
+    let path = this.IMAGES_DEAD[lastImageIndex];
+    this.img = this.imageCache[path];
+    console.log("Letztes Bild der Todesanimation gesetzt.");
   }
 
   clearAnimation() {

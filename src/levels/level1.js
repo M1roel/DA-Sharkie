@@ -3,8 +3,8 @@ let level1;
 function createLevel() {
   const backgroundObjects = [];
   const backgroundWidth = 719;
-  const fishCount = 10;
-  const jellyfishCount = 5;
+  const fishCount = 0;
+  const jellyfishCount = 0;
 
   backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
 
