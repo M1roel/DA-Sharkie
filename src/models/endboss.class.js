@@ -118,9 +118,9 @@ class Endboss extends MoveableObject {
     this.allowMovement = false;
     this.currentImage = 0;
     this.deathEndbossAnimationFinished = false;
-
+  
     const frameDuration = 1000 / 5;
-
+  
     const animateDeath = () => {
       if (this.currentImage < this.IMAGES_DEAD.length) {
         let path = this.IMAGES_DEAD[this.currentImage];
@@ -131,9 +131,10 @@ class Endboss extends MoveableObject {
         this.deathEndbossAnimationFinished = true;
         this.setLastDeathFrame();
         console.log("Todesanimation abgeschlossen.");
+        this.showYouWinScreen(); // Zeige den "You Win"-Bildschirm an
       }
     };
-
+  
     animateDeath();
   }
 
@@ -151,4 +152,9 @@ class Endboss extends MoveableObject {
     }
     this.currentImage = 0;
   }
+
+  showYouWinScreen() {
+    document.getElementById('you-win').classList.remove('hidden');
+    document.getElementById('game-container').classList.add('hidden');
+  }  
 }

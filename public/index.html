@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/src/css/style.css" />
   </head>
   <body>
-
     <section>
       <div id="start-screen" class="screen">
         <h1>Sharkie</h1>
@@ -38,9 +37,16 @@
     </section>
 
     <section>
-      <div id="game-over">
-        
-      </div> 
+      <div id="game-over"></div>
+    </section>
+
+    <section>
+      <div id="you-win" class="you-win hidden">
+        <img src="/public/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You Win" />
+        <div class="try-again-button">
+          <img src="/public/img/6.Botones/Try again/Recurso 17.png" alt="Try Again Button" onclick="startGame()" />
+        </div>
+      </div>
     </section>
 
     <script src="/src/models/drawable-object.class.js"></script>
