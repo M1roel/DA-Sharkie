@@ -64,8 +64,10 @@ class Fish extends MoveableObject {
     this.y = 20 + Math.random() * 400;
     this.height = 100;
     this.width = 100;
-    this.hitboxWidth = 150;
-    this.hitboxHeight = 10;
+    this.hitboxX = 50;
+    this.hitboxY = 50;
+    this.hitboxWidth = 80;
+    this.hitboxHeight = 80;
     this.enrageActive = false;
     this.speed = 0.15 + Math.random() * 0.9;
 

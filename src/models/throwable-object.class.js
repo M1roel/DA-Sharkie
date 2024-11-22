@@ -7,7 +7,11 @@ class ThrowableObject extends MoveableObject {
         this.type = type;
         this.loadImageForType();
         this.height = 50;
-        this.width = 50;
+        this.width = 50;        
+        this.hitboxX = 50;
+        this.hitboxY = 50;
+        this.hitboxWidth = 50;
+        this.hitboxHeight = 60;
     }
 
     loadImageForType() {
