@@ -174,11 +174,13 @@ class Character extends MoveableObject {
       if (this.world.keyboard.E && !this.shotInProgress) {
         this.shotPressed = true;
         this.shotInProgress = true;
+        this.currentImage = 0;
         this.createBubble("normal");
         this.bubble_sound.play();
       } else if (this.world.keyboard.Q && !this.shotInProgress) {
         this.shotPressed = true;
         this.shotInProgress = true;
+        this.currentImage = 0;
         if (this.world.bottleStatusbar.bottleCollect === 0) {
           this.loadAnimation("IMAGES_WITHOUT_BUBBLE");
         } else {
@@ -192,8 +194,16 @@ class Character extends MoveableObject {
 
   shotBubble() {
     if (this.shotInProgress) {
-      if (this.currentImage < this.IMAGES_WITH_BUBBLE.length) {
-        let path = this.IMAGES_WITH_BUBBLE[this.currentImage];
+      let imagesToUse;
+
+      if (this.world.keyboard.E) {
+        imagesToUse = this.IMAGES_WITH_BUBBLE;
+      } else if (this.world.keyboard.Q) {
+        imagesToUse = this.world.bottleStatusbar.bottleCollect > 0 ? this.IMAGES_WITH_PBUBBLE : this.IMAGES_WITHOUT_BUBBLE;
+      }
+
+      if (this.currentImage < imagesToUse.length) {
+        let path = imagesToUse[this.currentImage];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else {
