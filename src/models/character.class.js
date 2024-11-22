@@ -205,8 +205,8 @@ class Character extends MoveableObject {
 
   createBubble(type) {
     const direction = this.otherDirection ? -1 : 1;
-    const bubbleX = this.x + 100 * direction;
-    const bubbleY = this.y + 20;
+    const bubbleX = this.x + 150 * direction;
+    const bubbleY = this.y + 50;
     const bubble = new ThrowableObject(bubbleX, bubbleY, type);
     bubble.throw(direction);
     this.world.throwableObjects.push(bubble);
