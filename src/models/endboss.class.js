@@ -63,7 +63,6 @@ class Endboss extends MoveableObject {
 
   startInfiniteAnimation() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
-      console.log("Infinite Animation gestoppt, da der Boss tot ist.");
       return;
     }
     this.animateInfinite();
@@ -71,7 +70,6 @@ class Endboss extends MoveableObject {
 
   animateInfinite() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
-      console.log("Endboss ist tot, keine weiteren Animationen erlaubt.");
       return;
     }
     if (this.intervalId) {
@@ -130,8 +128,7 @@ class Endboss extends MoveableObject {
       } else {
         this.deathEndbossAnimationFinished = true;
         this.setLastDeathFrame();
-        console.log("Todesanimation abgeschlossen.");
-        this.showYouWinScreen(); // Zeige den "You Win"-Bildschirm an
+        this.showYouWinScreen();
       }
     };
   
@@ -142,7 +139,6 @@ class Endboss extends MoveableObject {
     let lastImageIndex = this.IMAGES_DEAD.length - 1;
     let path = this.IMAGES_DEAD[lastImageIndex];
     this.img = this.imageCache[path];
-    console.log("Letztes Bild der Todesanimation gesetzt.");
   }
 
   clearAnimation() {
