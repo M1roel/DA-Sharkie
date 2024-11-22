@@ -41,7 +41,7 @@ class Character extends MoveableObject {
     this.loadImgs(this.IMAGES_WITHOUT_BUBBLE);
     this.hitboxX = 120;
     this.hitboxY = 120;
-    this.hitboxWidth = 50;
+    this.hitboxWidth = 100;
     this.hitboxHeight = 60;
     this.height = 200;
     this.width = 200;
