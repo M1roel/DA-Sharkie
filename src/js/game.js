@@ -11,6 +11,7 @@ function startGame() {
   createLevel();
   document.getElementById("start-screen").classList.add("hidden");
   document.getElementById("game-container").classList.remove("hidden");
+  document.getElementById("you-win").classList.add("hidden");
   init();
 }
 

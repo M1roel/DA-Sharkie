@@ -26,7 +26,7 @@ body {
 }
 
 h1 {
-  font-size: 10vw;
+  font-size: 70px;
 }
 
 #start-screen {
@@ -58,7 +58,7 @@ canvas {
 .guide {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 3vh;
 }
 
