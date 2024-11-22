@@ -50,8 +50,14 @@ class MoveableObject extends DrawableObject {
   }
 
   isColliding(mo) {
-    return this.x + this.hitboxWidth >= mo.x && this.x <= mo.x + mo.hitboxWidth && this.y + this.hitboxHeight >= mo.y && this.y <= mo.y + mo.hitboxHeight;
-  }
+    // Prüfe, ob die Hitbox von `this` mit der Hitbox von `mo` kollidiert.
+    return (
+        this.x + this.hitboxX + this.hitboxWidth >= mo.x + mo.hitboxX &&
+        this.x + this.hitboxX <= mo.x + mo.hitboxX + mo.hitboxWidth &&
+        this.y + this.hitboxY + this.hitboxHeight >= mo.y + mo.hitboxY &&
+        this.y + this.hitboxY <= mo.y + mo.hitboxY + mo.hitboxHeight
+    );
+}
 
   isNear(mo) {
     return this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;

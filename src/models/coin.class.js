@@ -1,11 +1,14 @@
 class Coin extends DrawableObject {
+  constructor(x, y) {
+    super().loadImg("/public/img/4. Marcadores/1. Coins/1.png");
 
-    constructor(x, y) {
-        super().loadImg('/public/img/4. Marcadores/1. Coins/1.png');
-
-        this.x = x;
-        this.y = y;
-        this.height = 50;
-        this.width = 50;
-    }
+    this.x = x;
+    this.y = y;
+    this.height = 50;
+    this.width = 50;
+    this.hitboxX = 50;
+    this.hitboxY = 50;
+    this.hitboxWidth = 50;
+    this.hitboxHeight = 60;
+  }
 }
