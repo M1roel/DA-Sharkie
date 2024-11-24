@@ -76,12 +76,27 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
-function toggleFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    elem.msRequestFullscreen();
+async function toggleFullscreen() {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (err) {
+    console.error(`Fehler beim Umschalten des Vollbildmodus: ${err}`);
   }
 }
+
+document.addEventListener("fullscreenchange", () => {
+  const fullscreenIcon = document.getElementById("fullscreen-mode");
+  const windowIcon = document.getElementById("window-mode");
+
+  if (document.fullscreenElement) {
+    fullscreenIcon.classList.add("hidden");
+    windowIcon.classList.remove("hidden");
+  } else {
+    fullscreenIcon.classList.remove("hidden");
+    windowIcon.classList.add("hidden");
+  }
+});
