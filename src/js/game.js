@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+var elem = document.getElementById("game-container");
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -74,3 +75,13 @@ window.addEventListener("keyup", (e) => {
     keyboard.Q = false;
   }
 });
+
+function toggleFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
+}
