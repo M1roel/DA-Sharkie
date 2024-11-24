@@ -100,3 +100,13 @@ document.addEventListener("fullscreenchange", () => {
     windowIcon.classList.add("hidden");
   }
 });
+
+function checkOrientation() {
+  if (window.innerHeight > window.innerWidth) {
+    alert("Bitte drehen Sie Ihr Gerät in den Horizontalmodus, um das Spiel zu spielen.");
+  }
+}
+
+window.addEventListener("orientationchange", checkOrientation);
+
+window.addEventListener("load", checkOrientation);

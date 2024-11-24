@@ -136,3 +136,42 @@ canvas {
   cursor: pointer;
   margin-left: 20px;
 }
+
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  body {
+    font-size: 6vw;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 60px;
+  }
+
+  .screen {
+    padding: 20px;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .guide-instruction img {
+    max-width: 400px;
+  }
+
+  .button {
+    width: 40%;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .icons img {
+    width: 24px;
+  }
+}
