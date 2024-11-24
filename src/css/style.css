@@ -16,7 +16,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Hält das Bild fest */
+  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
   margin: 0;
