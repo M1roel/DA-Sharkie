@@ -152,8 +152,7 @@ canvas {
   }
 
   .guide {
-    width: 80vw;
-    flex-direction: column;
+    display: none;
   }
 
   .screen {
@@ -171,7 +170,7 @@ canvas {
     height: auto !important;
   }
 
-  .guide-instruction img {
+  /*.guide-instruction img {
     width: 40vw;
   }
 
@@ -182,10 +181,10 @@ canvas {
   .guide-bubble-e img,
   .guide-bubble-q img {
     max-width: 5vw;
-  }
+  }*/
 
   .button {
-    width: 20%;
+    width: 40%;
   }
 
   .icons {
@@ -200,6 +199,35 @@ canvas {
 
   #orientation-lock img {
     display: none !important;
+  }
+
+  #joystick-area {
+    position: fixed;
+    bottom: 10%;
+    left: 10%;
+    width: 150px;
+    height: 150px;
+    z-index: 1000;
+  }
+  
+  #joystick-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+  }
+  
+  #joystick-knob {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    touch-action: none; /* Wichtig für mobile Geräte */
   }
 
 }
