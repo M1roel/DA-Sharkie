@@ -278,4 +278,8 @@ canvas {
       transform: rotate(50deg);
     }
   }
+
+  #button-area {
+    display: none !important;
+  }
 }
