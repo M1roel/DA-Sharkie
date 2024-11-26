@@ -103,9 +103,7 @@ document.addEventListener("fullscreenchange", () => {
 
 function checkOrientation() {
   const orientationLock = document.getElementById("orientation-lock");
-  const isPortrait = document.fullscreenElement
-    ? screen.height > screen.width
-    : window.innerHeight > window.innerWidth;
+  const isPortrait = document.fullscreenElement ? screen.height > screen.width : window.innerHeight > window.innerWidth;
 
   orientationLock.style.display = isPortrait ? "flex" : "none";
 }
@@ -115,14 +113,14 @@ window.addEventListener("load", checkOrientation);
 document.addEventListener("fullscreenchange", checkOrientation);
 
 let joystick = {
-  base: document.getElementById('joystick-base'),
-  knob: document.getElementById('joystick-knob'),
+  base: document.getElementById("joystick-base"),
+  knob: document.getElementById("joystick-knob"),
   active: false,
   startX: 0,
   startY: 0,
   knobX: 0,
   knobY: 0,
-  maxDistance: 15, // Maximale Entfernung des Knopfs vom Zentrum
+  maxDistance: 15,
 };
 
 const keyboard2 = {
@@ -132,45 +130,38 @@ const keyboard2 = {
   RIGHT: false,
 };
 
-// Event-Listener für den Joystick
-joystick.knob.addEventListener('touchstart', (e) => {
+joystick.knob.addEventListener("touchstart", (e) => {
   joystick.active = true;
   const touch = e.touches[0];
   joystick.startX = touch.clientX;
   joystick.startY = touch.clientY;
 });
 
-document.addEventListener('touchmove', (e) => {
+document.addEventListener("touchmove", (e) => {
   if (!joystick.active) return;
 
   const touch = e.touches[0];
   const deltaX = touch.clientX - joystick.startX;
   const deltaY = touch.clientY - joystick.startY;
 
-  const distance = Math.min(
-    Math.sqrt(deltaX ** 2 + deltaY ** 2),
-    joystick.maxDistance
-  );
+  const distance = Math.min(Math.sqrt(deltaX ** 2 + deltaY ** 2), joystick.maxDistance);
   const angle = Math.atan2(deltaY, deltaX);
 
-  // Neue Position für den Joystick-Knopf
   joystick.knobX = distance * Math.cos(angle);
   joystick.knobY = distance * Math.sin(angle);
 
   joystick.knob.style.transform = `translate(calc(-50% + ${joystick.knobX}px), calc(-50% + ${joystick.knobY}px))`;
 
-  // Richtungen berechnen
-  keyboard.UP = deltaY < -10; // Nach oben
-  keyboard.DOWN = deltaY > 10; // Nach unten
-  keyboard.LEFT = deltaX < -10; // Nach links
-  keyboard.RIGHT = deltaX > 10; // Nach rechts;
+  keyboard.UP = deltaY < -10;
+  keyboard.DOWN = deltaY > 10;
+  keyboard.LEFT = deltaX < -10;
+  keyboard.RIGHT = deltaX > 10;
 });
 
-document.addEventListener('touchend', () => {
+document.addEventListener("touchend", () => {
   joystick.active = false;
   joystick.knob.style.transform = `translate(-50%, -50%)`;
 
-  // Eingaben zurücksetzen
   keyboard.UP = false;
   keyboard.DOWN = false;
   keyboard.LEFT = false;
