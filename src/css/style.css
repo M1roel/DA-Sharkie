@@ -27,7 +27,6 @@ body {
   text-shadow: -2px -2px 0 black, 4px -4px 0 black, -1px 4px 0 black, 1px 4px 0 black;
 }
 
-
 h1 {
   font-size: 70px;
 }
@@ -130,7 +129,6 @@ canvas {
   align-items: center;
   flex-direction: row;
   margin-bottom: 20px;
-
 }
 
 .icons img {
@@ -203,13 +201,13 @@ canvas {
 
   #joystick-area {
     position: fixed;
-    bottom: 10%;
-    left: 10%;
-    width: 150px;
-    height: 150px;
+    bottom: 40%;
+    left: 1%;
+    width: 80px;
+    height: 80px;
     z-index: 1000;
   }
-  
+
   #joystick-base {
     position: absolute;
     width: 100%;
@@ -217,11 +215,11 @@ canvas {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
   }
-  
+
   #joystick-knob {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     top: 50%;
@@ -229,11 +227,9 @@ canvas {
     transform: translate(-50%, -50%);
     touch-action: none; /* Wichtig für mobile Geräte */
   }
-
 }
 
 @media only screen and (max-width: 768px) and (orientation: portrait) {
-
   #orientation-lock {
     position: fixed;
     top: 0;
@@ -246,16 +242,17 @@ canvas {
     align-items: center;
     z-index: 1000;
   }
-  
+
   #orientation-lock img {
     max-width: 50%;
     max-height: 50%;
     object-fit: contain;
     animation: rotate 2s infinite;
   }
-  
+
   @keyframes rotate {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(0deg);
     }
     25% {

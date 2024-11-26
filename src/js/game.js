@@ -122,7 +122,7 @@ let joystick = {
   startY: 0,
   knobX: 0,
   knobY: 0,
-  maxDistance: 50, // Maximale Entfernung des Knopfs vom Zentrum
+  maxDistance: 15, // Maximale Entfernung des Knopfs vom Zentrum
 };
 
 const keyboard2 = {
