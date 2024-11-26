@@ -102,8 +102,12 @@ document.addEventListener("fullscreenchange", () => {
 });
 
 function checkOrientation() {
+  const orientationLock = document.getElementById("orientation-lock");
+
   if (window.innerHeight > window.innerWidth) {
-    alert("Bitte drehen Sie Ihr Gerät in den Horizontalmodus, um das Spiel zu spielen.");
+    orientationLock.style.display = "flex";
+  } else {
+    orientationLock.style.display = "none";
   }
 }
 
