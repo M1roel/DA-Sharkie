@@ -151,9 +151,14 @@ canvas {
     display: none !important;
   }
 
+  .guide {
+    width: 80vw;
+    flex-direction: column;
+  }
+
   .screen {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,13 +171,21 @@ canvas {
     height: auto !important;
   }
 
-  .guide-instruction img,
+  .guide-instruction img {
+    width: 40vw;
+  }
+
   .guide-bubble {
-    max-width: 200px;
+    width: 40vw;
+  }
+
+  .guide-bubble-e img,
+  .guide-bubble-q img {
+    max-width: 5vw;
   }
 
   .button {
-    width: 10%;
+    width: 20%;
   }
 
   .icons {
@@ -197,8 +210,8 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(255, 255, 255, 1);
     display: none;
     justify-content: center;
