@@ -145,7 +145,7 @@ canvas {
   }
 
   h1 {
-    font-size: 60px;
+    font-size: 20px;
   }
 
   .screen {
@@ -153,16 +153,16 @@ canvas {
   }
 
   canvas {
-    width: 100%;
-    height: auto;
+    width: 100% !important;
+    height: auto !important;
   }
 
   .guide-instruction img {
-    max-width: 400px;
+    max-width: 10px;
   }
 
   .button {
-    width: 40%;
+    width: 10%;
   }
 
   .icons {
