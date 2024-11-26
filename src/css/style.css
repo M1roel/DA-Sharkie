@@ -17,8 +17,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   margin: 0;
   font-family: "Ocean";
   color: #9ed1fd;
@@ -34,7 +34,7 @@ h1 {
 
 #start-screen {
   text-align: center;
-  padding: 5vh 2vw;
+  /*padding: 5vh 2vw;*/
 }
 
 canvas {
@@ -50,7 +50,7 @@ canvas {
   width: 100%;
   height: 100%;
   text-align: center;
-  padding: 50px;
+  /*padding: 50px;*/
 }
 
 .button {
@@ -139,7 +139,7 @@ canvas {
   margin-left: 20px;
 }
 
-@media only screen and (max-width: 768px) and (orientation: landscape) {
+@media only screen and (max-width: 1025px) and (orientation: landscape) {
   body {
     font-size: 6vw;
     flex-direction: row;
@@ -158,7 +158,7 @@ canvas {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    /*padding: 20px;*/
   }
 
   canvas {
@@ -199,35 +199,29 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 1);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
   }
-
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(-50deg);
-    }
-    50% {
-      transform: rotate(0deg);
-    }
-    75% {
-      transform: rotate(50deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
+  
   #orientation-lock img {
     max-width: 50%;
     max-height: 50%;
     object-fit: contain;
     animation: rotate 2s infinite;
+  }
+  
+  @keyframes rotate {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-50deg);
+    }
+    75% {
+      transform: rotate(50deg);
+    }
   }
 }

@@ -103,14 +103,13 @@ document.addEventListener("fullscreenchange", () => {
 
 function checkOrientation() {
   const orientationLock = document.getElementById("orientation-lock");
+  const isPortrait = document.fullscreenElement
+    ? screen.height > screen.width
+    : window.innerHeight > window.innerWidth;
 
-  if (window.innerHeight > window.innerWidth) {
-    orientationLock.style.display = "flex";
-  } else {
-    orientationLock.style.display = "none";
-  }
+  orientationLock.style.display = isPortrait ? "flex" : "none";
 }
 
-window.addEventListener("orientationchange", checkOrientation);
-
+window.addEventListener("resize", checkOrientation);
 window.addEventListener("load", checkOrientation);
+document.addEventListener("fullscreenchange", checkOrientation);
