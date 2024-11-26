@@ -144,21 +144,29 @@ canvas {
     align-items: flex-start;
   }
 
-  h1 {
-    font-size: 20px;
+  h1,
+  .icons {
+    display: none !important;
   }
 
   .screen {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     padding: 20px;
   }
 
   canvas {
-    width: 100% !important;
+    width: 70% !important;
     height: auto !important;
   }
 
-  .guide-instruction img {
-    max-width: 10px;
+  .guide-instruction img,
+  .guide-bubble {
+    max-width: 200px;
   }
 
   .button {
