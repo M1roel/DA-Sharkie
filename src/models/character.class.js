@@ -198,13 +198,13 @@ class Character extends MoveableObject {
     if (this.shotInProgress) {
       let imagesToUse;
 
-      if (this.world.keyboard.E) {
+      if (this.world && this.world.keyboard && this.world.keyboard.E) {
         imagesToUse = this.IMAGES_WITH_BUBBLE;
-      } else if (this.world.keyboard.Q) {
-        imagesToUse = this.world.bottleStatusbar.bottleCollect > 0 ? this.IMAGES_WITH_PBUBBLE : this.IMAGES_WITHOUT_BUBBLE;
+      } else if (this.world && this.world.keyboard && this.world.keyboard.Q) {
+        imagesToUse = this.world.bottleStatusbar && this.world.bottleStatusbar.bottleCollect > 0 ? this.IMAGES_WITH_PBUBBLE : this.IMAGES_WITHOUT_BUBBLE;
       }
 
-      if (this.currentImage < imagesToUse.length) {
+      if (imagesToUse && this.currentImage < imagesToUse.length) {
         let path = imagesToUse[this.currentImage];
         this.img = this.imageCache[path];
         this.currentImage++;
