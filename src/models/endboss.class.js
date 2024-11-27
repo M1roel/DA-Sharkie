@@ -91,7 +91,7 @@ class Endboss extends MoveableObject {
     this.clearAnimation();
     this.currentImage = 0;
 
-    const attackDuration = 1000 / 5;
+    const attackDuration = 1000 / 10;
 
     const performAttack = () => {
       if (this.currentImage < this.IMAGES_ATTACK.length) {

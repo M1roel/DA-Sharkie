@@ -3,9 +3,7 @@ class DrawableObject {
   y = 300;
   height = 200;
   width = 200;
-  hitboxWidth = 100;
-  hitboxHeight = 100;
-  enrageWidth = 160;
+  enrageWidth = 60;
   enrageHeight = 0;
   img;
   imageCache = {};
