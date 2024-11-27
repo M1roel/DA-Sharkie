@@ -28,10 +28,10 @@ class Endboss extends MoveableObject {
     this.loadImgs(this.IMAGES_HURT);
     this.loadImgs(this.IMAGES_DEAD);
     this.animate();
-    this.hitboxX = 250;
-    this.hitboxY = 250;
-    this.hitboxWidth = 300;
-    this.hitboxHeight = 300;
+    this.hitboxX = 80;
+    this.hitboxY = 80;
+    this.hitboxWidth = 250;
+    this.hitboxHeight = 250;
     this.width = 300;
     this.height = 300;
   }
