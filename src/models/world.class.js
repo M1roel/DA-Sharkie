@@ -2,7 +2,7 @@ class World {
   charakter = new Character();
   level = level1;
   lifeStatusbar = new StatusBar(20, 10, "life");
-  endbossLifeStatusbar = new StatusBar (500, 10, "endbossLife");
+  endbossLifeStatusbar = new StatusBar(500, 10, "endbossLife");
   coinStatusbar = new StatusBar(20, 55, "coin");
   bottleStatusbar = new StatusBar(20, 100, "bottle");
   throwableObjects = [];
@@ -24,6 +24,7 @@ class World {
     this.startBackgroundSound();
     this.checkCollisions();
     this.checkEnrage();
+    this.checkEndbossAttack();
   }
 
   setWorld() {
@@ -157,6 +158,15 @@ class World {
     }, 500);
   }
 
+  checkEndbossAttack() {
+    const endboss = this.level.endboss;
+    setInterval(() => {
+      if (this.charakter.isNear(endboss)) {
+        endboss.animateAttack();
+      }
+    }, 500);
+  }
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -227,12 +237,7 @@ class World {
       this.ctx.beginPath();
       this.ctx.lineWidth = "2";
       this.ctx.strokeStyle = "red";
-      this.ctx.rect(
-        mo.x + (mo.width - mo.hitboxWidth) / 2,
-        mo.y + (mo.height - mo.hitboxHeight) / 2,
-        mo.hitboxWidth,
-        mo.hitboxHeight
-      );
+      this.ctx.rect(mo.x + (mo.width - mo.hitboxWidth) / 2, mo.y + (mo.height - mo.hitboxHeight) / 2, mo.hitboxWidth, mo.hitboxHeight);
       this.ctx.stroke();
     }
   }

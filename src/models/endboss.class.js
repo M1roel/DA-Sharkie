@@ -85,6 +85,28 @@ class Endboss extends MoveableObject {
     }, 1000 / 5);
   }
 
+  animateAttack() {
+    if (this.isBossDead) return;
+
+    this.clearAnimation();
+    this.currentImage = 0;
+
+    const attackDuration = 1000 / 5;
+
+    const performAttack = () => {
+      if (this.currentImage < this.IMAGES_ATTACK.length) {
+        let path = this.IMAGES_ATTACK[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+        setTimeout(performAttack, attackDuration);
+      } else {
+        this.currentImage = 0;
+        this.startInfiniteAnimation();
+      }
+    };
+    performAttack();
+  }
+
   handleBubbleHit() {
     if (this.isBossDead || this.hitByBubble) return;
     this.hitByBubble = true;
@@ -118,9 +140,9 @@ class Endboss extends MoveableObject {
     this.allowMovement = false;
     this.currentImage = 0;
     this.deathEndbossAnimationFinished = false;
-  
+
     const frameDuration = 1000 / 5;
-  
+
     const animateDeath = () => {
       if (this.currentImage < this.IMAGES_DEAD.length) {
         let path = this.IMAGES_DEAD[this.currentImage];
@@ -133,7 +155,7 @@ class Endboss extends MoveableObject {
         this.showYouWinScreen();
       }
     };
-  
+
     animateDeath();
   }
 
@@ -152,7 +174,7 @@ class Endboss extends MoveableObject {
   }
 
   showYouWinScreen() {
-    document.getElementById('you-win').classList.remove('hidden');
-    document.getElementById('game-container').classList.add('hidden');
-  }  
+    document.getElementById("you-win").classList.remove("hidden");
+    document.getElementById("game-container").classList.add("hidden");
+  }
 }
