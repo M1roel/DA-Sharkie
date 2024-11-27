@@ -50,7 +50,6 @@ class MoveableObject extends DrawableObject {
   }
 
   isColliding(mo) {
-    // Prüfe, ob die Hitbox von `this` mit der Hitbox von `mo` kollidiert.
     return (
         this.x + this.hitboxX + this.hitboxWidth >= mo.x + mo.hitboxX &&
         this.x + this.hitboxX <= mo.x + mo.hitboxX + mo.hitboxWidth &&
@@ -82,7 +81,7 @@ class MoveableObject extends DrawableObject {
   }
 
   handleHitAnimation(source) {
-    if (source === "fish") {
+    if (source === "fish" || source === "endboss") {
       if (this instanceof Character) {
         this.loadAnimation("IMAGES_POISONED");
       }

@@ -38,6 +38,7 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.checkEnemyCollisions();
+      this.checkBossCollision();
       this.checkItemCollisions("coin");
       this.checkItemCollisions("bottle");
       this.checkFinSlapCollision();
@@ -75,6 +76,14 @@ class World {
         this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
       }
     });
+  }
+
+  checkBossCollision() {
+    const endboss = this.level.endboss;
+    if (this.charakter.isColliding(endboss)) {
+      this.charakter.hit("endboss");
+      this.lifeStatusbar.setPercentageEnergy(this.charakter.energy); // Aktualisiert die Lebensanzeige
+    }
   }
 
   checkFinSlapCollision() {
