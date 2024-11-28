@@ -253,12 +253,15 @@ class Character extends MoveableObject {
   }
 
   handleVerticalMovement() {
-    if (this.world.keyboard.UP) {
-      this.y -= 3;
+    const minY = -90;
+    const maxY = 320;
+
+    if (this.world.keyboard.UP && this.y > minY) {
+        this.y -= 3;
     }
 
-    if (this.world.keyboard.DOWN) {
-      this.y += 3;
+    if (this.world.keyboard.DOWN && this.y < maxY) {
+        this.y += 3;
     }
   }
 }
