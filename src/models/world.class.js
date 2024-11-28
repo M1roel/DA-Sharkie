@@ -220,11 +220,11 @@ class World {
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
-    this.drawFrame(mo);
-    this.drawHitboxFrame(mo);
+    /*this.drawFrame(mo);
+    this.drawHitboxFrame(mo);*/
   }
 
-  drawFrame(mo) {
+  /*drawFrame(mo) {
     if (mo instanceof Character || mo instanceof Fish || mo instanceof Jellyfish || mo instanceof Endboss) {
       this.ctx.beginPath();
       this.ctx.lineWidth = "5";
@@ -232,9 +232,9 @@ class World {
       this.ctx.rect(mo.x, mo.y, mo.height, mo.width);
       this.ctx.stroke();
     }
-  }
+  }*/
 
-  drawHitboxFrame(mo) {
+  /*drawHitboxFrame(mo) {
     if (mo.hitboxWidth && mo.hitboxHeight) {
       this.ctx.beginPath();
       this.ctx.lineWidth = "2";
@@ -242,7 +242,7 @@ class World {
       this.ctx.rect(mo.x + (mo.width - mo.hitboxWidth) / 2, mo.y + (mo.height - mo.hitboxHeight) / 2, mo.hitboxWidth, mo.hitboxHeight);
       this.ctx.stroke();
     }
-  }
+  }*/
 
   flipImage(mo) {
     this.ctx.save();
