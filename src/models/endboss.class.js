@@ -18,6 +18,7 @@ class Endboss extends MoveableObject {
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;
+  bite_sound = new Audio("/src/audio/bite.mp3")
 
   constructor() {
     super();
@@ -95,6 +96,7 @@ class Endboss extends MoveableObject {
 
     const performAttack = () => {
       if (this.currentImage < this.IMAGES_ATTACK.length) {
+        this.bite_sound.play();
         let path = this.IMAGES_ATTACK[this.currentImage];
         this.img = this.imageCache[path];
         this.currentImage++;
