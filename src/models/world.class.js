@@ -83,7 +83,7 @@ class World {
     const endboss = this.level.endboss;
     if (this.charakter.isColliding(endboss)) {
       this.charakter.hit("endboss");
-      this.lifeStatusbar.setPercentageEnergy(this.charakter.energy); // Aktualisiert die Lebensanzeige
+      this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
     }
   }
 

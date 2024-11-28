@@ -13,6 +13,7 @@ function startGame() {
   document.getElementById("start-screen").classList.add("hidden");
   document.getElementById("game-container").classList.remove("hidden");
   document.getElementById("you-win").classList.add("hidden");
+  document.getElementById("game-over").classList.add("hidden");
   init();
 }
 

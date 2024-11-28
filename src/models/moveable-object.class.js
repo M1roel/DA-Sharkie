@@ -100,6 +100,7 @@ class MoveableObject extends DrawableObject {
     if ((array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") && this.currentImage >= this[array].length) {
       this.deathAnimationFinished = true;
       this.currentImage = this[array].length - 1;
+      this.showGameOverScreen();
     }
   }
 
@@ -115,5 +116,10 @@ class MoveableObject extends DrawableObject {
       this.currentImage++;
       this.checkDeathAnimationFinished(array);
     }
+  }
+
+  showGameOverScreen() {
+    document.getElementById("game-over").classList.remove("hidden");
+    document.getElementById("game-container").classList.add("hidden");
   }
 }

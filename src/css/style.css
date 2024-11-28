@@ -33,7 +33,6 @@ h1 {
 
 #start-screen {
   text-align: center;
-  /*padding: 5vh 2vw;*/
 }
 
 canvas {
@@ -49,7 +48,6 @@ canvas {
   width: 100%;
   height: 100%;
   text-align: center;
-  /*padding: 50px;*/
 }
 
 .button {
@@ -92,7 +90,8 @@ canvas {
   max-width: 50px;
 }
 
-#you-win {
+#you-win,
+#game-over {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +101,8 @@ canvas {
   position: relative;
 }
 
-#you-win img {
+#you-win img,
+#game-over img {
   width: 100%;
   height: 100%;
   object-fit: contain;

@@ -33,15 +33,20 @@
       <div id="game-container" class="screen hidden">
         <h1>Sharkie</h1>
         <div class="icons">
-          <img id="fullscreen-mode" src="/public/img/fullscreen.png" alt="Vollbild Modus" onclick="toggleFullscreen()" />
-          <img id="window-mode" class="hidden" src="/public/img/window.png" alt="Fenster Modus" onclick="toggleFullscreen()" />
+          <img id="fullscreen-mode" src="/public/img/fullscreen.png" alt="Fullscreen Mode" onclick="toggleFullscreen()" />
+          <img id="window-mode" class="hidden" src="/public/img/window.png" alt="Window Mode" onclick="toggleFullscreen()" />
         </div>
         <canvas id="canvas" width="720" height="480"> </canvas>
       </div>
     </section>
 
     <section>
-      <div id="game-over"></div>
+      <div id="game-over" class="game-over hidden">
+        <img src="/public/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="Game over screen">
+        <div class="try-again-button">
+          <img src="/public/img/6.Botones/Try again/Recurso 17.png" alt="Try Again Button" onclick="startGame()" />
+        </div>
+      </div>
     </section>
 
     <section>
