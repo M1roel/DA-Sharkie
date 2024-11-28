@@ -18,7 +18,9 @@ class Endboss extends MoveableObject {
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;
-  bite_sound = new Audio("/src/audio/bite.mp3")
+  bite_sound = new Audio("/src/audio/bite.mp3");  
+  endboss_hit_sound = new Audio("/src/audio/endboss_hit.mp3");
+  endboss_death_sound = new Audio("/src/audio/endboss_death.mp3");
 
   constructor() {
     super();
@@ -117,6 +119,7 @@ class Endboss extends MoveableObject {
       this.isBossDead = true;
       this.playDeathAnimation();
     } else {
+      this.endboss_hit_sound.play();
       this.playHurtAnimation(this.IMAGES_HURT);
       setTimeout(() => {
         this.hitByBubble = false;
@@ -142,6 +145,7 @@ class Endboss extends MoveableObject {
     this.allowMovement = false;
     this.currentImage = 0;
     this.deathEndbossAnimationFinished = false;
+    this.endboss_death_sound.play();
 
     const frameDuration = 1000 / 5;
 
