@@ -5,6 +5,7 @@ class MoveableObject extends DrawableObject {
   speed = 0.15;
   energy = 100;
   acceleration = 2.5;
+  game_over_sound = new Audio("/src/audio/game_over.mp3");
 
   applyGravity() {
     setInterval(() => {
@@ -119,6 +120,7 @@ class MoveableObject extends DrawableObject {
   }
 
   showGameOverScreen() {
+    this.game_over_sound.play();
     document.getElementById("game-over").classList.remove("hidden");
     document.getElementById("game-container").classList.add("hidden");
   }

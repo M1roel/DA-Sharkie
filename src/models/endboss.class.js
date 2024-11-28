@@ -21,6 +21,7 @@ class Endboss extends MoveableObject {
   bite_sound = new Audio("/src/audio/bite.mp3");  
   endboss_hit_sound = new Audio("/src/audio/endboss_hit.mp3");
   endboss_death_sound = new Audio("/src/audio/endboss_death.mp3");
+  you_win_sound = new Audio("/src/audio/you_win.mp3");
 
   constructor() {
     super();
@@ -145,6 +146,8 @@ class Endboss extends MoveableObject {
     this.allowMovement = false;
     this.currentImage = 0;
     this.deathEndbossAnimationFinished = false;
+    this.endboss_sound.pause();
+    this.endboss_sound.currentTime = 0;
     this.endboss_death_sound.play();
 
     const frameDuration = 1000 / 5;
@@ -180,6 +183,7 @@ class Endboss extends MoveableObject {
   }
 
   showYouWinScreen() {
+    this.you_win_sound.play();
     document.getElementById("you-win").classList.remove("hidden");
     document.getElementById("game-container").classList.add("hidden");
   }
