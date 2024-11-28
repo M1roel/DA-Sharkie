@@ -177,7 +177,9 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.lifeStatusbar);
-    this.addToMap(this.endbossLifeStatusbar);
+    if (this.endbossShow) {
+      this.addToMap(this.endbossLifeStatusbar);
+    }
     this.addToMap(this.coinStatusbar);
     this.addToMap(this.bottleStatusbar);
     this.ctx.translate(this.camera_x, 0);
