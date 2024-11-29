@@ -130,6 +130,7 @@ class Character extends MoveableObject {
   }
 
   animateSlap() {
+    console.log('Slap pressed');
     setInterval(() => {
       if (this.isDead()) {
         return;

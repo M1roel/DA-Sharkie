@@ -126,12 +126,42 @@ let joystick = {
   maxDistance: 15,
 };
 
-const keyboard2 = {
+let buttonattack = {
+  slap: document.getElementById("finslap-attack"),
+  bubble: document.getElementById("bubble-attack"),
+  pbubble: document.getElementById("pbubble-attack")
+}
+
+buttonattack.slap.addEventListener("touchstart", (e) => {
+  keyboard.SPACE = true;
+});
+
+buttonattack.slap.addEventListener("touchend", (e) => {
+  keyboard.SPACE = false;
+});
+
+buttonattack.bubble.addEventListener("touchstart", (e) => {
+  keyboard.E = true;
+});
+
+buttonattack.bubble.addEventListener("touchend", (e) => {
+  keyboard.E = false;
+});
+
+buttonattack.pbubble.addEventListener("touchstart", (e) => {
+  keyboard.Q = true;
+});
+
+buttonattack.pbubble.addEventListener("touchend", (e) => {
+  keyboard.Q = false;
+});
+
+/*const keyboard2 = {
   UP: false,
   DOWN: false,
   LEFT: false,
   RIGHT: false,
-};
+};*/
 
 joystick.knob.addEventListener("touchstart", (e) => {
   joystick.active = true;
