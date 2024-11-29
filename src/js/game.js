@@ -2,6 +2,11 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 var elem = document.getElementById("game-container");
+let buttonattack = {
+  slap: document.getElementById("finslap-attack"),
+  bubble: document.getElementById("bubble-attack"),
+  pbubble: document.getElementById("pbubble-attack"),
+};
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -126,42 +131,25 @@ let joystick = {
   maxDistance: 15,
 };
 
-let buttonattack = {
-  slap: document.getElementById("finslap-attack"),
-  bubble: document.getElementById("bubble-attack"),
-  pbubble: document.getElementById("pbubble-attack")
+function setupAttackButton(button, key) {
+  let isPressed = false;
+
+  button.addEventListener("touchstart", () => {
+    if (!isPressed) {
+      isPressed = true;
+      keyboard[key] = true;
+    }
+  });
+
+  button.addEventListener("touchend", () => {
+    isPressed = false;
+    keyboard[key] = false;
+  });
 }
 
-buttonattack.slap.addEventListener("touchstart", (e) => {
-  keyboard.SPACE = true;
-});
-
-buttonattack.slap.addEventListener("touchend", (e) => {
-  keyboard.SPACE = false;
-});
-
-buttonattack.bubble.addEventListener("touchstart", (e) => {
-  keyboard.E = true;
-});
-
-buttonattack.bubble.addEventListener("touchend", (e) => {
-  keyboard.E = false;
-});
-
-buttonattack.pbubble.addEventListener("touchstart", (e) => {
-  keyboard.Q = true;
-});
-
-buttonattack.pbubble.addEventListener("touchend", (e) => {
-  keyboard.Q = false;
-});
-
-/*const keyboard2 = {
-  UP: false,
-  DOWN: false,
-  LEFT: false,
-  RIGHT: false,
-};*/
+setupAttackButton(buttonattack.slap, "SPACE");
+setupAttackButton(buttonattack.bubble, "E");
+setupAttackButton(buttonattack.pbubble, "Q");
 
 joystick.knob.addEventListener("touchstart", (e) => {
   joystick.active = true;
