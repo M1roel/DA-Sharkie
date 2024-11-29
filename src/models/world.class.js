@@ -30,8 +30,8 @@ class World {
   }
 
   registerGlobalActions() {
-    window.animateSlap = () => this.character.animateSlap();
-    window.animateShot = () => this.character.animateShot();
+    window.animateSlap = () => this.charakter.animateSlap();
+    window.animateShot = () => this.charakter.animateShot();
   }
 
   setWorld() {
