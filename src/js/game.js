@@ -24,65 +24,20 @@ function startGame() {
   
 }
 
-window.addEventListener("keydown", (e) => {
-  if (e.keyCode == 39) {
-    keyboard.RIGHT = true;
+function handleKeyEvent(e, isPressed) {
+  switch (e.keyCode) {
+    case 39: keyboard.RIGHT = isPressed; break;
+    case 37: keyboard.LEFT = isPressed; break;
+    case 38: keyboard.UP = isPressed; break;
+    case 40: keyboard.DOWN = isPressed; break;
+    case 32: keyboard.SPACE = isPressed; break;
+    case 69: keyboard.E = isPressed; break;
+    case 81: keyboard.Q = isPressed; break;
   }
+}
 
-  if (e.keyCode == 37) {
-    keyboard.LEFT = true;
-  }
-
-  if (e.keyCode == 38) {
-    keyboard.UP = true;
-  }
-
-  if (e.keyCode == 40) {
-    keyboard.DOWN = true;
-  }
-
-  if (e.keyCode == 32) {
-    keyboard.SPACE = true;
-  }
-
-  if (e.keyCode == 69) {
-    keyboard.E = true;
-  }
-
-  if (e.keyCode == 81) {
-    keyboard.Q = true;
-  }
-});
-
-window.addEventListener("keyup", (e) => {
-  if (e.keyCode == 39) {
-    keyboard.RIGHT = false;
-  }
-
-  if (e.keyCode == 37) {
-    keyboard.LEFT = false;
-  }
-
-  if (e.keyCode == 38) {
-    keyboard.UP = false;
-  }
-
-  if (e.keyCode == 40) {
-    keyboard.DOWN = false;
-  }
-
-  if (e.keyCode == 32) {
-    keyboard.SPACE = false;
-  }
-
-  if (e.keyCode == 69) {
-    keyboard.E = false;
-  }
-
-  if (e.keyCode == 81) {
-    keyboard.Q = false;
-  }
-});
+window.addEventListener("keydown", (e) => handleKeyEvent(e, true));
+window.addEventListener("keyup", (e) => handleKeyEvent(e, false));
 
 async function toggleFullscreen() {
   try {
