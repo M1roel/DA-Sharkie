@@ -87,17 +87,11 @@ let joystick = {
 };
 
 function setupAttackButton(button, key) {
-  let isPressed = false;
-
   button.addEventListener("touchstart", () => {
-    if (!isPressed) {
-      isPressed = true;
-      keyboard[key] = true;
-    }
+    keyboard[key] = true;
   });
 
   button.addEventListener("touchend", () => {
-    isPressed = false;
     keyboard[key] = false;
   });
 }
