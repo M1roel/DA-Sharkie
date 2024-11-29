@@ -21,18 +21,31 @@ function startGame() {
   document.getElementById("you-win").classList.add("hidden");
   document.getElementById("game-over").classList.add("hidden");
   init();
-  
 }
 
 function handleKeyEvent(e, isPressed) {
   switch (e.keyCode) {
-    case 39: keyboard.RIGHT = isPressed; break;
-    case 37: keyboard.LEFT = isPressed; break;
-    case 38: keyboard.UP = isPressed; break;
-    case 40: keyboard.DOWN = isPressed; break;
-    case 32: keyboard.SPACE = isPressed; break;
-    case 69: keyboard.E = isPressed; break;
-    case 81: keyboard.Q = isPressed; break;
+    case 39:
+      keyboard.RIGHT = isPressed;
+      break;
+    case 37:
+      keyboard.LEFT = isPressed;
+      break;
+    case 38:
+      keyboard.UP = isPressed;
+      break;
+    case 40:
+      keyboard.DOWN = isPressed;
+      break;
+    case 32:
+      keyboard.SPACE = isPressed;
+      break;
+    case 69:
+      keyboard.E = isPressed;
+      break;
+    case 81:
+      keyboard.Q = isPressed;
+      break;
   }
 }
 
