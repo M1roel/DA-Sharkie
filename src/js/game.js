@@ -6,6 +6,7 @@ var elem = document.getElementById("game-container");
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, level1);
+  world.registerGlobalActions();
 }
 
 function startGame() {
@@ -15,6 +16,7 @@ function startGame() {
   document.getElementById("you-win").classList.add("hidden");
   document.getElementById("game-over").classList.add("hidden");
   init();
+  
 }
 
 window.addEventListener("keydown", (e) => {

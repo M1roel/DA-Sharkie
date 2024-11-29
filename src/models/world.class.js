@@ -1,5 +1,5 @@
 class World {
-  charakter = new Character();
+  charakter;
   level = level1;
   lifeStatusbar = new StatusBar(20, 10, "life");
   endbossLifeStatusbar = new StatusBar(500, 10, "endbossLife");
@@ -16,6 +16,7 @@ class World {
   bottle_sound = new Audio("/src/audio/bottle_collect.mp3");
 
   constructor(canvas, keyboard) {
+    this.charakter = new Character();
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -25,6 +26,12 @@ class World {
     this.checkCollisions();
     this.checkEnrage();
     this.checkEndbossAttack();
+    this.registerGlobalActions();
+  }
+
+  registerGlobalActions() {
+    window.animateSlap = () => this.character.animateSlap();
+    window.animateShot = () => this.character.animateShot();
   }
 
   setWorld() {
