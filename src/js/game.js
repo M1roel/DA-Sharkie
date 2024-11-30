@@ -198,3 +198,26 @@ function getAllSounds() {
     world.level.endboss.you_win_sound,
   ];
 }
+
+function showStartScreen() {
+  document.getElementById("game-container").classList.add("hidden");
+  document.getElementById("you-win").classList.add("hidden");
+  document.getElementById("game-over").classList.add("hidden");
+  document.getElementById("start-screen").classList.remove("hidden");
+  stopAllSounds();
+  resetGameState();
+}
+
+function resetGameState() {
+  canvas = null;
+  world = null;
+  keyboard = new Keyboard();
+}
+
+function stopAllSounds() {
+  const allSounds = getAllSounds();
+  allSounds.forEach((sound) => {
+    if (sound) sound.pause();
+    if (sound) sound.currentTime = 0;
+  });
+}
