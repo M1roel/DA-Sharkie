@@ -100,11 +100,17 @@ let joystick = {
 };
 
 function setupAttackButton(button, key) {
+  let touchPressed = false;
+
   button.addEventListener("touchstart", () => {
-    keyboard[key] = true;
+    if (!touchPressed) {
+      touchPressed = true;
+      keyboard[key] = true;
+    }
   });
 
   button.addEventListener("touchend", () => {
+    touchPressed = false;
     keyboard[key] = false;
   });
 }
