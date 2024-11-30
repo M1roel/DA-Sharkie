@@ -214,6 +214,13 @@ class Fish extends MoveableObject {
     }, 1000 / 5);
   }
 
+  /**
+ * Handles the effect of a fin slap hit on the enemy. If the enemy has not already been slapped, 
+ * it marks the enemy as slapped, sets it as dead, stops the enemy's swimming and enrage intervals, 
+ * and starts an animation for the enemy to "fly off" in a specific direction.
+ * 
+ * @param {Object} enemy - The enemy that is being hit by the fin slap. It must have properties like `hasBeenSlapped`, `x`, and `y`.
+ */
   handleFinSlapHit(enemy) {
     if (!enemy.hasBeenSlapped) {
       enemy.hasBeenSlapped = true;

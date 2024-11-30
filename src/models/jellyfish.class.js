@@ -13,6 +13,13 @@ class Jellyfish extends MoveableObject {
   hitByBubble = false;
   isDead = false;
 
+  /**
+   * Creates an instance of a Jellyfish with a specified color (LILA or YELLOW).
+   * The jellyfish is placed at a random position and initializes its properties
+   * and animations based on the color.
+   *
+   * @param {string} color - The color of the jellyfish ("LILA" or "YELLOW").
+   */
   constructor(color) {
     super();
     this.color = color;
@@ -45,11 +52,17 @@ class Jellyfish extends MoveableObject {
     this.animate();
   }
 
+  /**
+   * Starts the jellyfish's animation, causing it to move upwards and animate its swimming.
+   */
   animate() {
     this.moveUp();
     this.animateMoveUp();
   }
 
+  /**
+   * Moves the jellyfish upwards until it reaches the target position, then starts sinking back down.
+   */
   moveUp() {
     const targetY = this.y - 100;
     this.upInterval = setInterval(() => {
@@ -62,18 +75,27 @@ class Jellyfish extends MoveableObject {
     }, 1000 / 60);
   }
 
+  /**
+   * Animates the jellyfish's upward swimming movement by playing the current swimming animation.
+   */
   animateMoveUp() {
     this.animationInterval = setInterval(() => {
       this.playSwimAnimation();
     }, 1000 / 5);
   }
 
+  /**
+   * Plays the swimming animation by cycling through the jellyfish's current images.
+   */
   playSwimAnimation() {
     let path = this.currentImages[this.currentImage];
     this.img = this.imageCache[path];
     this.currentImage = (this.currentImage + 1) % this.currentImages.length;
   }
 
+  /**
+   * Makes the jellyfish sink back to its original position after moving upwards.
+   */
   sinkBack() {
     const initialY = this.y + 100;
     const downInterval = setInterval(() => {
@@ -87,6 +109,9 @@ class Jellyfish extends MoveableObject {
     }, 1000 / 15);
   }
 
+  /**
+   * Activates the enraged state of the jellyfish, causing it to move faster and change appearance.
+   */
   getEnrage() {
     if (!this.enrageActive) {
       this.enrageActive = true;
@@ -95,6 +120,9 @@ class Jellyfish extends MoveableObject {
     }
   }
 
+  /**
+   * Resets the jellyfish's enraged state, returning it to normal speed and animation.
+   */
   resetEnrage() {
     if (this.enrageActive) {
       this.enrageActive = false;
@@ -106,6 +134,11 @@ class Jellyfish extends MoveableObject {
     }
   }
 
+  /**
+   * Animates the jellyfish's enraged state by cycling through the enrage images.
+   *
+   * @param {Array} array - The array of enrage images to cycle through.
+   */
   animateEnrage(array) {
     let initialLoopComplete = false;
 
@@ -127,6 +160,11 @@ class Jellyfish extends MoveableObject {
     }, 1000 / 15);
   }
 
+  /**
+   * Reverses the enraged state animation by cycling through the enrage images in reverse order.
+   *
+   * @param {Array} array - The array of enrage images to cycle through.
+   */
   animateEnrageReverse(array) {
     let reverseIndex = array.length - 1;
     this.currentImage = reverseIndex;
@@ -144,6 +182,9 @@ class Jellyfish extends MoveableObject {
     }, 1000 / 15);
   }
 
+  /**
+   * Handles the event when the jellyfish is hit by a bubble. The jellyfish dies and starts the death animation.
+   */
   handleBubbleHit() {
     if (!this.hitByBubble) {
       this.hitByBubble = true;
@@ -161,13 +202,16 @@ class Jellyfish extends MoveableObject {
     }
   }
 
+  /**
+   * Makes the jellyfish "fly off" after being hit by a bubble, moving it upwards off the screen.
+   */
   flyOff() {
     const flyOffInterval = setInterval(() => {
-        this.y -= 5;
+      this.y -= 5;
 
-        if (this.y <= -400) {
-            clearInterval(flyOffInterval);
-        }
+      if (this.y <= -400) {
+        clearInterval(flyOffInterval);
+      }
     }, 1000 / 120);
-}
+  }
 }
