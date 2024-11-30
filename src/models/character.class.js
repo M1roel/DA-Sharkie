@@ -65,9 +65,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Animates the character's movement based on the current state (e.g., idle, swimming, dead).
- * Updates the animation at a rate of 5 frames per second.
- */
+   * Animates the character's movement based on the current state (e.g., idle, swimming, dead).
+   * Updates the animation at a rate of 5 frames per second.
+   */
   animateMovement() {
     setInterval(() => {
       if (this.isDead()) {
@@ -85,11 +85,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Animates the character's long idle state.
- * The animation triggers when the character is idle for a certain period.
- * Checks if the character is dead or if the idle state should be reset.
- * Updates the idle timer and starts the long idle animation when conditions are met.
- */
+   * Animates the character's long idle state after a period of inactivity.
+   * Resets if the character is dead or an idle reset is triggered.
+   */
   animateLongIdle() {
     setInterval(() => {
       if (this.isDead()) {
@@ -107,12 +105,10 @@ class Character extends MoveableObject {
   }
 
   /**
- * Checks if any key is pressed that should reset the long idle state.
- * If any of the specified keys are pressed (e.g., movement keys, space, or action keys),
- * it resets the long idle timer and returns true.
- * 
- * @returns {boolean} True if an idle reset is triggered, otherwise false.
- */
+   * Resets the long idle state if any movement or action key is pressed.
+   *
+   * @returns {boolean} True if an idle reset is triggered, otherwise false.
+   */
   checkForIdleReset() {
     if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.SPACE || this.world.keyboard.UP || this.world.keyboard.DOWN || this.world.keyboard.E || this.world.keyboard.Q) {
       this.resetLongIdle();
@@ -122,28 +118,26 @@ class Character extends MoveableObject {
   }
 
   /**
- * Starts the long idle animation by setting the appropriate flags.
- * Sets the `longIdleInProgress` flag to true and resets the current animation image.
- */
+   * Starts the long idle animation by setting the appropriate flags.
+   * Sets the `longIdleInProgress` flag to true and resets the current animation image.
+   */
   startLongIdle() {
     this.longIdleInProgress = true;
     this.currentImage = 0;
   }
 
   /**
- * Resets the long idle state.
- * Clears the idle timer and stops the long idle animation by setting the appropriate flags.
- */
+   * Resets the long idle state.
+   * Clears the idle timer and stops the long idle animation by setting the appropriate flags.
+   */
   resetLongIdle() {
     this.idleTimer = 0;
     this.longIdleInProgress = false;
   }
 
   /**
- * Updates the long idle animation by cycling through a set of images.
- * If the long idle animation is in progress, it updates the current animation frame.
- * After reaching the initial set of frames, it loops back through a subset of the frames.
- */
+   * Updates the long idle animation by cycling through images and looping after the initial frames.
+   */
   longIdleAnimation() {
     if (this.longIdleInProgress) {
       if (this.currentImage < 9) {
@@ -160,11 +154,8 @@ class Character extends MoveableObject {
   }
 
   /**
- * Animates the slap action for the character.
- * Calls methods to start the slap animation, update the slap animation frame,
- * and check for collisions related to the slap.
- * Runs at a rate of 10 frames per second.
- */
+   * Animates the slap action and checks for collisions at a rate of 10 frames per second.
+   */
   animateSlap() {
     setInterval(() => {
       if (this.isDead()) {
@@ -177,10 +168,8 @@ class Character extends MoveableObject {
   }
 
   /**
- * Initiates the slap action when the SPACE key is pressed.
- * Resets the current animation frame and sets the `slapInProgress` flag to true 
- * if a slap is not already in progress.
- */
+   * Initiates the slap action when the SPACE key is pressed and resets the animation frame.
+   */
   startSlap() {
     if (this.world.keyboard.SPACE && !this.slapInProgress) {
       this.slapInProgress = true;
@@ -189,10 +178,8 @@ class Character extends MoveableObject {
   }
 
   /**
- * Updates the slap animation by cycling through the slap images.
- * If the slap action is in progress, it advances through the frames, plays the slap sound,
- * and resets the animation once it reaches the end of the image sequence.
- */
+   * Updates the slap animation, cycles frames, plays the slap sound, and resets the animation.
+   */
   slapAnimation() {
     if (this.slapInProgress) {
       if (this.currentImage < this.IMAGES_SLAP.length) {
@@ -208,10 +195,8 @@ class Character extends MoveableObject {
   }
 
   /**
- * Animates the shot action by managing the shot process, bubble animation, 
- * and checking for bubble collisions.
- * Runs at a rate of 10 frames per second.
- */
+   * Animates the shot action, bubble animation, and checks for collisions at 10 frames per second.
+   */
   animateShot() {
     setInterval(() => {
       if (!this.isDead()) {
@@ -223,10 +208,8 @@ class Character extends MoveableObject {
   }
 
   /**
- * Initiates the shot action based on the key pressed (E or Q).
- * Starts either a normal shot or a poison shot, depending on the keyboard input,
- * if no shot is already in progress and the shot has not been pressed yet.
- */
+   * Initiates a normal or poison shot based on the key pressed (E or Q).
+   */
   startShot() {
     if (!this.shotPressed && !this.shotInProgress) {
       if (this.world.keyboard.E) {
@@ -265,10 +248,10 @@ class Character extends MoveableObject {
   }
 
   /**
- * Handles the animation and progress of the shot bubble.
- * Updates the shot bubble image based on the current state.
- * If the shot is completed, it resets the shot state.
- */
+   * Handles the animation and progress of the shot bubble.
+   * Updates the shot bubble image based on the current state.
+   * If the shot is completed, it resets the shot state.
+   */
   shotBubble() {
     if (this.shotInProgress) {
       const imagesToUse = this.getImagesToUse();
@@ -322,12 +305,10 @@ class Character extends MoveableObject {
   }
 
   /**
- * Creates a new bubble object and adds it to the world's throwable objects.
- * The bubble's position is calculated based on the character's current state,
- * and its direction is determined by the character's facing direction.
- * 
- * @param {string} type - The type of the bubble to create (e.g., "normal" or "poison").
- */
+   * Creates a new bubble at the character's position and adds it to the throwable objects.
+   *
+   * @param {string} type - The type of the bubble (e.g., "normal" or "poison").
+   */
   createBubble(type) {
     const bubbleX = this.calculateBubbleX();
     const bubbleY = this.y + 50;
@@ -354,11 +335,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Updates the camera's position to follow the character's movement.
- * The camera's X position is adjusted based on the character's X position, 
- * with an offset of 100 units to keep the character in view.
- * Runs at 60 frames per second.
- */
+   * Updates the camera position to follow the character with a 100-unit offset.
+   * Runs at 60 frames per second.
+   */
   updateCamera() {
     setInterval(() => {
       this.world.camera_x = -this.x + 100;
@@ -366,10 +345,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Handles the character's movement by updating the position based on user input.
- * Moves the character horizontally and vertically if the character is not dead.
- * Runs at 60 frames per second.
- */
+   * Updates the character's position based on user input, moving horizontally and vertically if not dead.
+   * Runs at 60 frames per second.
+   */
   moveCharacter() {
     setInterval(() => {
       if (this.isDead()) {
@@ -381,12 +359,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Handles the character's horizontal movement based on keyboard input.
- * Moves the character to the right if the RIGHT key is pressed, as long as the 
- * character hasn't reached the end of the level. Moves the character to the left 
- * if the LEFT key is pressed, as long as the character isn't at the left edge.
- * Also updates the character's facing direction.
- */
+   * Handles the character's horizontal movement based on keyboard input.
+   * Moves left or right, updating the direction and ensuring level boundaries.
+   */
   handleHorizontalMovement() {
     if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
       this.x += 3;
@@ -400,11 +375,9 @@ class Character extends MoveableObject {
   }
 
   /**
- * Handles the character's vertical movement based on keyboard input.
- * Moves the character up if the UP key is pressed, as long as the character hasn't
- * reached the minimum Y position. Moves the character down if the DOWN key is pressed,
- * as long as the character hasn't reached the maximum Y position.
- */
+   * Handles the character's vertical movement based on keyboard input.
+   * Moves up or down, respecting the minimum and maximum Y positions.
+   */
   handleVerticalMovement() {
     const minY = -90;
     const maxY = 320;
