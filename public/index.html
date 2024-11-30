@@ -35,6 +35,8 @@
         <div class="icons">
           <img id="fullscreen-mode" src="/public/img/fullscreen.png" alt="Fullscreen Mode" onclick="toggleFullscreen()" />
           <img id="window-mode" class="hidden" src="/public/img/window.png" alt="Window Mode" onclick="toggleFullscreen()" />
+          <img id="mute-icon" src="/public/img/mute.png" alt="Mute Sounds" onclick="toggleMute()" />
+          <img id="unmute-icon" class="hidden" src="/public/img/unmute.png" alt="Unmute Sounds" onclick="toggleMute()" />
         </div>
         <canvas id="canvas" width="720" height="480"> </canvas>
       </div>
@@ -42,7 +44,7 @@
 
     <section>
       <div id="game-over" class="game-over hidden">
-        <img src="/public/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="Game over screen">
+        <img src="/public/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="Game over screen" />
         <div class="try-again-button">
           <img src="/public/img/6.Botones/Try again/Recurso 17.png" alt="Try Again Button" onclick="startGame()" />
         </div>
@@ -72,7 +74,6 @@
       <img src="/public/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png" alt="Bubble Attack" id="bubble-attack" class="button-phone" onclick="animateShot()" />
       <img src="/public/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png" alt="Poison Bubble Attack" id="pbubble-attack" class="button-phone" onclick="animateShot()" />
     </div>
-    
 
     <script src="/src/models/drawable-object.class.js"></script>
     <script src="/src/models/moveable-object.class.js"></script>

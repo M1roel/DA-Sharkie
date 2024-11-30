@@ -7,6 +7,7 @@ let buttonattack = {
   bubble: document.getElementById("bubble-attack"),
   pbubble: document.getElementById("pbubble-attack"),
 };
+let isMuted = false;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -156,3 +157,44 @@ document.addEventListener("touchend", () => {
   keyboard.LEFT = false;
   keyboard.RIGHT = false;
 });
+
+function toggleMute() {
+  isMuted = !isMuted;
+  toggleIcons(isMuted);
+  muteAllSounds(isMuted);
+}
+
+function toggleIcons(isMuted) {
+  const muteIcon = document.getElementById("mute-icon");
+  const unmuteIcon = document.getElementById("unmute-icon");
+
+  if (isMuted) {
+    muteIcon.classList.add("hidden");
+    unmuteIcon.classList.remove("hidden");
+  } else {
+    muteIcon.classList.remove("hidden");
+    unmuteIcon.classList.add("hidden");
+  }
+}
+
+function muteAllSounds(isMuted) {
+  const allSounds = getAllSounds();
+  allSounds.forEach((sound) => {
+    if (sound) sound.muted = isMuted;
+  });
+}
+
+function getAllSounds() {
+  return [
+    world.background_sound,
+    world.coin_sound,
+    world.bottle_sound,
+    world.charakter.finslap_sound,
+    world.charakter.bubble_sound,
+    world.level.endboss.endboss_sound,
+    world.level.endboss.bite_sound,
+    world.level.endboss.endboss_hit_sound,
+    world.level.endboss.endboss_death_sound,
+    world.level.endboss.you_win_sound,
+  ];
+}
