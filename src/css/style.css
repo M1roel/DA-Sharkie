@@ -229,6 +229,7 @@ canvas {
   }
 
   #button-area {
+    display: flex !important;
     position: absolute;
     right: 10px;
     top: 50%;
@@ -245,7 +246,7 @@ canvas {
   }
 }
 
-@media only screen and (max-width: 768px) and (orientation: portrait) {
+@media only screen and (max-width: 1025px) and (orientation: portrait) {
   #orientation-lock {
     position: fixed;
     top: 0;

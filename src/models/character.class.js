@@ -210,6 +210,7 @@ class Character extends MoveableObject {
         this.currentImage++;
       } else {
         this.shotInProgress = false;
+        this.shotPressed = false;
         this.currentImage = 0;
       }
     }
