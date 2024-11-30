@@ -9,6 +9,13 @@ class StatusBar extends DrawableObject {
   coinsCollect = 0;
   bottleCollect = 0;
 
+  /**
+   * Creates a new status bar for displaying the player's stats (life, endboss life, coins, or bottles).
+   * 
+   * @param {number} x - The x-coordinate position of the status bar.
+   * @param {number} y - The y-coordinate position of the status bar.
+   * @param {string} type - The type of the status bar ('life', 'endbossLife', 'coin', 'bottle').
+   */
   constructor(x, y, type) {
     super();
     this.x = x;
@@ -31,30 +38,55 @@ class StatusBar extends DrawableObject {
     }
   }
 
+  /**
+   * Sets the energy percentage for the player and updates the corresponding image.
+   * 
+   * @param {number} percentageEnergy - The new energy percentage (0 to 100).
+   */
   setPercentageEnergy(percentageEnergy) {
     this.percentageEnergy = percentageEnergy;
     let path = this.IMAGES_LIFE[this.lifeImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * Sets the endboss's energy percentage and updates the corresponding image.
+   * 
+   * @param {number} percentageEndbossEnergy - The new energy percentage of the endboss (0 to 5).
+   */
   setPercentageEndbossEnergy(percentageEndbossEnergy) {
     this.percentageEndbossEnergy = percentageEndbossEnergy;
     let path = this.IMAGES_ENDBOSS_LIFE[this.endbossLifeImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * Sets the collected coins count and updates the corresponding image.
+   * 
+   * @param {number} coinsCollect - The number of coins collected by the player.
+   */
   setCoinsCollect(coinsCollect) {
     this.coinsCollect = coinsCollect;
     let path = this.IMAGES_COIN[this.coinsImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * Sets the collected bottles count and updates the corresponding image.
+   * 
+   * @param {number} bottleCollect - The number of bottles collected by the player.
+   */
   setBottleCollect(bottleCollect) {
     this.bottleCollect = bottleCollect;
     let path = this.IMAGES_BOTTLE[this.bottleImageIndex()];
     this.img = this.imageCache[path];
   }
 
+   /**
+   * Determines the index of the image to display based on the player's current energy percentage.
+   * 
+   * @returns {number} - The index of the corresponding life image based on the energy percentage.
+   */
   lifeImageIndex() {
     if (this.percentageEnergy == 100) return 0;
     else if (this.percentageEnergy > 80) return 1;
@@ -64,6 +96,11 @@ class StatusBar extends DrawableObject {
     else return 5;
   }
 
+  /**
+   * Determines the index of the image to display based on the endboss's current energy percentage.
+   * 
+   * @returns {number} - The index of the corresponding endboss life image.
+   */
   endbossLifeImageIndex() {
     if (this.percentageEndbossEnergy == 5) return 0;
     else if (this.percentageEndbossEnergy > 3) return 1;
@@ -73,6 +110,11 @@ class StatusBar extends DrawableObject {
     else return 5;
   }
 
+  /**
+   * Determines the index of the image to display based on the number of coins collected.
+   * 
+   * @returns {number} - The index of the corresponding coin image based on the coins collected.
+   */
   coinsImageIndex() {
     if (this.coinsCollect == 10) return 0;
     else if (this.coinsCollect > 8) return 1;
@@ -82,6 +124,11 @@ class StatusBar extends DrawableObject {
     else return 5;
   }
 
+  /**
+   * Determines the index of the image to display based on the number of bottles collected.
+   * 
+   * @returns {number} - The index of the corresponding bottle image based on the bottles collected.
+   */
   bottleImageIndex() {
     if (this.bottleCollect == 10) return 0;
     else if (this.bottleCollect > 8) return 1;
@@ -91,16 +138,25 @@ class StatusBar extends DrawableObject {
     else return 5;
   }
 
+  /**
+   * Increases the coin count by one and updates the coin status on the status bar.
+   */
   increaseCoinCount() {
     this.coinsCollect++;
     this.setCoinsCollect(this.coinsCollect);
   }
 
+  /**
+   * Increases the bottle count by one and updates the bottle status on the status bar.
+   */
   increaseBottleCount() {
     this.bottleCollect++;
     this.setBottleCollect(this.bottleCollect);
   }
 
+  /**
+   * Decreases the bottle count by one and updates the bottle status on the status bar.
+   */
   decreaseBottleCount() {
     this.bottleCollect--;
     this.setBottleCollect(this.bottleCollect);
