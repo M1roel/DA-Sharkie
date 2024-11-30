@@ -14,7 +14,7 @@ class Endboss extends MoveableObject {
   hurtInterval = null;
   isBossDead = false;
   currentImage = 0;
-  lifes = 2;
+  lifes = 5;
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;

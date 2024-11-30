@@ -5,7 +5,7 @@ class StatusBar extends DrawableObject {
   IMAGES_BOTTLE = ["/public/img/4. Marcadores/Purple/100_.png", "/public/img/4. Marcadores/Purple/80_.png", "/public/img/4. Marcadores/green/poisoned bubbles/60_ copia 2.png", "/public/img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png", "/public/img/4. Marcadores/orange/20_ copia.png", "/public/img/4. Marcadores/orange/0_ copia.png"];
 
   percentageEnergy = 100;
-  percentageEndbossEnergy = 100;
+  percentageEndbossEnergy = 5;
   coinsCollect = 0;
   bottleCollect = 0;
 
@@ -21,7 +21,7 @@ class StatusBar extends DrawableObject {
       this.setPercentageEnergy(100);
     } else if (type === "endbossLife") {
       this.loadImgs(this.IMAGES_ENDBOSS_LIFE);
-      this.setPercentageEndbossEnergy(100)
+      this.setPercentageEndbossEnergy(5)
     } else if (type === "coin") {
       this.loadImgs(this.IMAGES_COIN);
       this.setCoinsCollect(0);
@@ -65,11 +65,11 @@ class StatusBar extends DrawableObject {
   }
 
   endbossLifeImageIndex() {
-    if (this.percentageEndbossEnergy == 100) return 0;
-    else if (this.percentageEndbossEnergy > 80) return 1;
-    else if (this.percentageEndbossEnergy > 60) return 2;
-    else if (this.percentageEndbossEnergy > 40) return 3;
-    else if (this.percentageEndbossEnergy > 5) return 4;
+    if (this.percentageEndbossEnergy == 5) return 0;
+    else if (this.percentageEndbossEnergy > 3) return 1;
+    else if (this.percentageEndbossEnergy > 2) return 2;
+    else if (this.percentageEndbossEnergy > 1) return 3;
+    else if (this.percentageEndbossEnergy > 0) return 4;
     else return 5;
   }
 

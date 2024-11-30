@@ -107,16 +107,23 @@ class World {
   }
 
   checkBubbleCollision() {
-    this.throwableObjects.forEach((bubble, bubbleIndex) => {
-      this.level.enemies.forEach((enemy) => {
-        if (bubble.isColliding(enemy)) {
-          if (enemy instanceof Jellyfish && !enemy.isDead) {
-            enemy.handleBubbleHit();
+    const endboss = this.level.endboss;
+    if (endboss) {
+      this.throwableObjects.forEach((bubble, bubbleIndex) => {
+        this.level.enemies.forEach((enemy) => {
+          if (bubble.isColliding(enemy)) {
+            if (enemy instanceof Jellyfish && !enemy.isDead) {
+              enemy.handleBubbleHit();
+              this.throwableObjects.splice(bubbleIndex, 1);
+            }
+          } else if (bubble.isColliding(endboss)) {
+            endboss.handleBubbleHit();
+            this.endbossLifeStatusbar.setPercentageEndbossEnergy(endboss.lifes);
             this.throwableObjects.splice(bubbleIndex, 1);
           }
-        }
+        });
       });
-    });
+    }
   }
 
   checkPbubbelCollision() {
