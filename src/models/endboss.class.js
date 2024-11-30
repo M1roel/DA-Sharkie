@@ -40,17 +40,27 @@ class Endboss extends MoveableObject {
     this.height = 300;
   }
 
+  /**
+ * Animates the character's movement to the left if allowed.
+ */
   animate() {
     if (this.allowMovement) {
       this.moveLeft();
     }
   }
 
+  /**
+ * Starts the animation sequence once and plays the end boss sound.
+ */
   startAnimation() {
     this.animateOnce();
     this.endboss_sound.play();
   }
 
+  /**
+ * Animates a sequence of images once and then loops the animation.
+ * After completing the sequence, it starts an infinite loop of the animation.
+ */
   animateOnce() {
     setTimeout(() => {
       let i = this.currentImage % this.IMAGES_INTRODUCE.length;
@@ -67,6 +77,9 @@ class Endboss extends MoveableObject {
     }, 1000 / 8);
   }
 
+  /**
+ * Starts the infinite animation if the boss is not dead and the death animation is not finished.
+ */
   startInfiniteAnimation() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
       return;
@@ -74,6 +87,9 @@ class Endboss extends MoveableObject {
     this.animateInfinite();
   }
 
+  /**
+ * Animates the boss infinitely by cycling through the floating images at a set interval.
+ */
   animateInfinite() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
       return;
@@ -89,28 +105,42 @@ class Endboss extends MoveableObject {
     }, 1000 / 5);
   }
 
-  animateAttack() {
-    if (this.isBossDead) return;
+  /**
+ * Initiates the attack animation process if the boss is not dead.
+ */
+startAttackAnimation() {
+  if (this.isBossDead) return;
+  this.clearAnimation();
+  this.currentImage = 0;
+  this.performAttack();
+}
 
-    this.clearAnimation();
-    this.currentImage = 0;
-
-    const attackDuration = 1000 / 10;
-
-    const performAttack = () => {
-      if (this.currentImage < this.IMAGES_ATTACK.length) {
-        this.bite_sound.play();
-        let path = this.IMAGES_ATTACK[this.currentImage];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-        setTimeout(performAttack, attackDuration);
-      } else {
-        this.currentImage = 0;
-        this.startInfiniteAnimation();
-      }
-    };
-    performAttack();
+/**
+ * Performs the attack animation by iterating through the attack images.
+ * Plays the attack sound and updates the current image for each frame.
+ */
+performAttack() {
+  const attackDuration = 1000 / 10;
+  
+  if (this.currentImage < this.IMAGES_ATTACK.length) {
+    this.bite_sound.play();
+    let path = this.IMAGES_ATTACK[this.currentImage];
+    this.img = this.imageCache[path];
+    this.currentImage++;
+    setTimeout(() => this.performAttack(), attackDuration);
+  } else {
+    this.resetAttack();
   }
+}
+
+/**
+ * Resets the attack animation and starts the infinite animation loop.
+ */
+resetAttack() {
+  this.currentImage = 0;
+  this.startInfiniteAnimation();
+}
+
 
   handleBubbleHit() {
     if (this.isBossDead || this.hitByBubble) return;
@@ -168,12 +198,18 @@ class Endboss extends MoveableObject {
     animateDeath();
   }
 
+  /**
+ * Sets the last frame of the death animation to show the final image.
+ */
   setLastDeathFrame() {
     let lastImageIndex = this.IMAGES_DEAD.length - 1;
     let path = this.IMAGES_DEAD[lastImageIndex];
     this.img = this.imageCache[path];
   }
 
+  /**
+ * Clears the current animation, stopping any running intervals and resetting the animation state.
+ */
   clearAnimation() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -182,6 +218,9 @@ class Endboss extends MoveableObject {
     this.currentImage = 0;
   }
 
+  /**
+ * Displays the "You Win" screen and plays the victory sound.
+ */
   showYouWinScreen() {
     this.you_win_sound.play();
     document.getElementById("you-win").classList.remove("hidden");

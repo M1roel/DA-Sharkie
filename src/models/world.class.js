@@ -176,7 +176,7 @@ class World {
     const endboss = this.level.endboss;
     setInterval(() => {
       if (this.charakter.isNear(endboss)) {
-        endboss.animateAttack();
+        endboss.startAttackAnimation();
       }
     }, 500);
   }
