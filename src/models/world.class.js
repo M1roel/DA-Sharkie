@@ -51,7 +51,7 @@ class World {
       this.checkItemCollisions("bottle");
       this.checkFinSlapCollision();
       this.checkBubbleCollision();
-      this.checkPbubbelCollision();
+      this.checkPbubbleCollision();
       this.checkAndRemoveBubbles();
       this.removeDeadEnemies();
     }, 100);
@@ -106,36 +106,37 @@ class World {
     }
   }
 
-  checkBubbleCollision() {
-    const endboss = this.level.endboss;
-    if (endboss) {
-      this.throwableObjects.forEach((bubble, bubbleIndex) => {
-        this.level.enemies.forEach((enemy) => {
-          if (bubble.isColliding(enemy)) {
-            if (enemy instanceof Jellyfish && !enemy.isDead) {
-              enemy.handleBubbleHit();
-              this.throwableObjects.splice(bubbleIndex, 1);
-            }
-          } else if (bubble.isColliding(endboss)) {
-            endboss.handleBubbleHit();
-            this.endbossLifeStatusbar.setPercentageEndbossEnergy(endboss.lifes);
-            this.throwableObjects.splice(bubbleIndex, 1);
-          }
-        });
-      });
-    }
-  }
-
-  checkPbubbelCollision() {
+ /**
+ * Checks if Poison Bubbles collide with the Endboss.
+ * Only Poison Bubbles can hit the Endboss.
+ */
+checkPbubbleCollision() {
+  const endboss = this.level.endboss;
+  if (endboss) {
     this.throwableObjects.forEach((bubble, bubbleIndex) => {
-      if (bubble.type === "poison") {
-        if (this.level.endboss && bubble.isColliding(this.level.endboss)) {
-          this.level.endboss.handleBubbleHit();
-          this.throwableObjects.splice(bubbleIndex, 1);
-        }
+      if (bubble.type === "poison" && bubble.isColliding(endboss)) {
+        endboss.handleBubbleHit();
+        this.endbossLifeStatusbar.setPercentageEndbossEnergy(endboss.lifes);
+        this.throwableObjects.splice(bubbleIndex, 1);
       }
     });
   }
+}
+
+/**
+ * Checks if normal Bubbles collide with enemies (Jellyfish).
+ */
+checkBubbleCollision() {
+  this.throwableObjects.forEach((bubble, bubbleIndex) => {
+    this.level.enemies.forEach((enemy) => {
+      if (bubble.isColliding(enemy) && enemy instanceof Jellyfish && !enemy.isDead) {
+        enemy.handleBubbleHit();
+        this.throwableObjects.splice(bubbleIndex, 1);
+      }
+    });
+  });
+}
+
 
   checkItemCollisions(type) {
     const items = type === "coin" ? this.level.coins : this.level.bottles;
