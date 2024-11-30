@@ -99,6 +99,7 @@ canvas {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   position: relative;
+  z-index: 2;
 }
 
 #you-win img,
