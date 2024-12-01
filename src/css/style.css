@@ -8,6 +8,11 @@
   src: url(/src/fonts/lucky.ttf);
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url(/src/fonts/Roboto.ttf);
+}
+
 body {
   display: flex;
   align-items: center;
@@ -138,6 +143,20 @@ canvas {
   margin-left: 20px;
 }
 
+.imprint {
+  font-family: 'Lucky';
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  z-index: 2;
+}
+
 @media only screen and (max-width: 1025px) and (orientation: landscape) {
   body {
     font-size: 6vw;
@@ -174,7 +193,7 @@ canvas {
   .icons {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    width: 75%;
   }
 
   .icons img {
