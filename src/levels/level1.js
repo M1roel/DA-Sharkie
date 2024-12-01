@@ -23,7 +23,17 @@ function createLevel() {
 
   const fishArray = [];
   for (let i = 0; i < fishCount; i++) {
-    fishArray.push(createRandomFish());
+    generateUniqueFish();
+  }
+
+  function generateUniqueFish() {
+    let newFish;
+    let isValidPosition = false;
+    while (!isValidPosition) {
+      newFish = createRandomFish();
+      isValidPosition = fishArray.every((fish) => getDistance(fish, newFish) >= 200);
+    }
+    fishArray.push(newFish);
   }
 
   function createRandomJellyfish() {
@@ -34,7 +44,17 @@ function createLevel() {
 
   const jellyfishArray = [];
   for (let i = 0; i < jellyfishCount; i++) {
-    jellyfishArray.push(createRandomJellyfish());
+    generateUniqueJellyfish();
+  }
+
+  function generateUniqueJellyfish() {
+    let newJellyfish;
+    let isValidPosition = false;
+    while (!isValidPosition) {
+      newJellyfish = createRandomJellyfish();
+      isValidPosition = jellyfishArray.every((jellyfish) => getDistance(jellyfish, newJellyfish) >= 200);
+    }
+    jellyfishArray.push(newJellyfish);
   }
 
   function generateRandomItems(coinCount, bottleCount) {

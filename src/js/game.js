@@ -200,18 +200,20 @@ function getAllSounds() {
 }
 
 function showStartScreen() {
-  document.getElementById("game-container").classList.add("hidden");
-  document.getElementById("you-win").classList.add("hidden");
-  document.getElementById("game-over").classList.add("hidden");
-  document.getElementById("start-screen").classList.remove("hidden");
-  stopAllSounds();
-  resetGameState();
+  location.reload();
 }
 
 function resetGameState() {
-  canvas = null;
-  world = null;
-  keyboard = new Keyboard();
+  stopAllSounds();
+  clearAllIntervals();
+  world=null;
+  startGame();
+}
+
+function clearAllIntervals() {
+  for (let i = 0; i < 1000; i++) {
+    clearInterval(i);    
+  }
 }
 
 function stopAllSounds() {
