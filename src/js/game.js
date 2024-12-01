@@ -199,6 +199,11 @@ function getAllSounds() {
   ];
 }
 
+function toggleElement(selector, className) {
+  const element = document.querySelector(selector);
+  element.classList.contains(className) ? element.classList.remove(className) : element.classList.add(className);
+}
+
 function showStartScreen() {
   location.reload();
 }
