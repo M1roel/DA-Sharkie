@@ -145,8 +145,7 @@ canvas {
     align-items: flex-start;
   }
 
-  h1,
-  .icons {
+  h1 {
     display: none !important;
   }
 
@@ -161,26 +160,12 @@ canvas {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /*padding: 20px;*/
   }
 
   canvas {
     width: 70% !important;
     height: auto !important;
   }
-
-  /*.guide-instruction img {
-    width: 40vw;
-  }
-
-  .guide-bubble {
-    width: 40vw;
-  }
-
-  .guide-bubble-e img,
-  .guide-bubble-q img {
-    max-width: 5vw;
-  }*/
 
   .button {
     width: 40%;
