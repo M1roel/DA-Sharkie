@@ -1,6 +1,8 @@
 class Character extends MoveableObject {
   x = 100;
   y = 300;
+  lastAttackTime = 0;
+  attackDelay = 1500;
 
   IMAGES_IDLE = ["/public/img/1.Sharkie/1.IDLE/1.png", "/public/img/1.Sharkie/1.IDLE/2.png", "/public/img/1.Sharkie/1.IDLE/3.png", "/public/img/1.Sharkie/1.IDLE/4.png", "/public/img/1.Sharkie/1.IDLE/5.png", "/public/img/1.Sharkie/1.IDLE/6.png", "/public/img/1.Sharkie/1.IDLE/7.png", "/public/img/1.Sharkie/1.IDLE/8.png", "/public/img/1.Sharkie/1.IDLE/9.png", "/public/img/1.Sharkie/1.IDLE/10.png", "/public/img/1.Sharkie/1.IDLE/11.png", "/public/img/1.Sharkie/1.IDLE/12.png", "/public/img/1.Sharkie/1.IDLE/13.png", "/public/img/1.Sharkie/1.IDLE/14.png", "/public/img/1.Sharkie/1.IDLE/15.png", "/public/img/1.Sharkie/1.IDLE/16.png", "/public/img/1.Sharkie/1.IDLE/17.png", "/public/img/1.Sharkie/1.IDLE/18.png"];
   IMAGES_SWIM = ["/public/img/1.Sharkie/3.Swim/1.png", "/public/img/1.Sharkie/3.Swim/2.png", "/public/img/1.Sharkie/3.Swim/3.png", "/public/img/1.Sharkie/3.Swim/4.png", "/public/img/1.Sharkie/3.Swim/5.png", "/public/img/1.Sharkie/3.Swim/6.png"];
@@ -49,8 +51,15 @@ class Character extends MoveableObject {
     this.width = 200;
     this.animate();
     window.addEventListener("keyup", () => {
-      this.shotPressed = false;
+      if (this.world.keyboard.E || this.world.keyboard.Q || this.world.keyboard.SPACE) {
+        this.shotPressed = false;
+      }
     });
+  }
+
+  canAttack() {
+    const currentTime = Date.now();
+    return currentTime - this.lastAttackTime >= this.attackDelay;
   }
 
   /**
@@ -163,7 +172,11 @@ class Character extends MoveableObject {
       if (this.isDead()) {
         return;
       }
-      this.startSlap();
+      if (this.world.keyboard.SPACE && this.canAttack() && !this.slapInProgress) {
+        this.slapInProgress = true;
+        this.currentImage = 0;
+        this.lastAttackTime = Date.now(); // Zeitpunkt der letzten Attacke speichern
+      }
       this.slapAnimation();
       this.world.checkFinSlapCollision();
     }, 1000 / 10);
@@ -213,7 +226,7 @@ class Character extends MoveableObject {
    * Initiates a normal or poison shot based on the key pressed (E or Q).
    */
   startShot() {
-    if (!this.shotPressed && !this.shotInProgress) {
+    if (!this.shotPressed && !this.shotInProgress && this.canAttack()) {
       if (this.world.keyboard.E) {
         this.startNormalShot();
       } else if (this.world.keyboard.Q) {
@@ -231,6 +244,7 @@ class Character extends MoveableObject {
     this.currentImage = 0;
     this.createBubble("normal");
     this.bubble_sound.play();
+    this.lastAttackTime = Date.now();
   }
 
   /**
@@ -247,6 +261,7 @@ class Character extends MoveableObject {
       this.bubble_sound.play();
       this.world.bottleStatusbar.decreaseBottleCount();
     }
+    this.lastAttackTime = Date.now();
   }
 
   /**
