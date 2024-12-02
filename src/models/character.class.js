@@ -57,6 +57,12 @@ class Character extends MoveableObject {
     });
   }
 
+  /**
+ * Determines if the character is allowed to attack based on the attack delay.
+ * The attack is allowed if the time since the last attack is greater than or equal to the attack delay.
+ *
+ * @returns {boolean} True if the character can attack, false otherwise.
+ */
   canAttack() {
     const currentTime = Date.now();
     return currentTime - this.lastAttackTime >= this.attackDelay;
