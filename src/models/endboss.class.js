@@ -57,6 +57,7 @@ class Endboss extends MoveableObject {
   hitByBubble = false;
   hurtInterval = null;
   isBossDead = false;
+  introFinished = false;
   currentImage = 0;
   lifes = 5;
   intervalId = null;
@@ -99,6 +100,9 @@ class Endboss extends MoveableObject {
   startAnimation() {
     this.animateOnce();
     this.endboss_sound.play();
+    setTimeout(() => {
+      this.introFinished = true;
+    }, this.IMAGES_INTRODUCE.length * 1000 / 8);
   }
 
   /**
@@ -153,7 +157,10 @@ class Endboss extends MoveableObject {
    * Initiates the attack animation process if the boss is not dead.
    */
   startAttackAnimation() {
-    if (this.isBossDead) return;
+    if (this.isBossDead || !this.introFinished) {
+      return;
+    }
+  
     this.clearAnimation();
     this.currentImage = 0;
     this.performAttack();
