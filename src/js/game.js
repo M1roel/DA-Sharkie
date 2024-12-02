@@ -309,6 +309,12 @@ function stopAllSounds() {
   });
 }
 
+/**
+ * Disables the context menu (right-click menu) on the page by preventing the default action.
+ *
+ * @event contextmenu
+ * @param {Event} event - The context menu event.
+ */
 document.addEventListener('contextmenu', function(event) {
   event.preventDefault();
 });
