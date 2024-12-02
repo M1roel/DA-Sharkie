@@ -9,13 +9,6 @@ class StatusBar extends DrawableObject {
   coinsCollect = 0;
   bottleCollect = 0;
 
-  /**
-   * Creates a new status bar for displaying the player's stats (life, endboss life, coins, or bottles).
-   * 
-   * @param {number} x - The x-coordinate position of the status bar.
-   * @param {number} y - The y-coordinate position of the status bar.
-   * @param {string} type - The type of the status bar ('life', 'endbossLife', 'coin', 'bottle').
-   */
   constructor(x, y, type) {
     super();
     this.x = x;
