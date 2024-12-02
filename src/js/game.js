@@ -254,7 +254,16 @@ function toggleElement(selector, className) {
  * Reloads the page to show the start screen.
  */
 function showStartScreen() {
-  location.reload();
+  document.getElementById("game-container").classList.add("hidden");
+  document.getElementById("you-win").classList.add("hidden");
+  document.getElementById("game-over").classList.add("hidden");
+  document.getElementById("start-screen").classList.remove("hidden");
+  stopAllSounds();
+  clearAllIntervals();
+  clearAllTimeouts();
+  canvas = null;
+  world=null;
+  keyboard = new Keyboard();
 }
 
 /**
@@ -264,7 +273,9 @@ function resetGameState() {
   stopAllSounds();
   clearAllIntervals();
   clearAllTimeouts();
+  canvas = null;
   world=null;
+  keyboard = new Keyboard();
   startGame();
 }
 
