@@ -2,11 +2,55 @@ class Endboss extends MoveableObject {
   x = 4650;
   y = 0;
 
-  IMAGES_INTRODUCE = ["/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/2.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/3.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/4.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/5.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/6.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/7.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/8.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/9.png", "/public/img/2.Enemy/3 Final Enemy/1.Introduce/10.png"];
-  IMAGES_ATTACK = ["/public/img/2.Enemy/3 Final Enemy/Attack/1.png", "/public/img/2.Enemy/3 Final Enemy/Attack/2.png", "/public/img/2.Enemy/3 Final Enemy/Attack/3.png", "/public/img/2.Enemy/3 Final Enemy/Attack/4.png", "/public/img/2.Enemy/3 Final Enemy/Attack/5.png", "/public/img/2.Enemy/3 Final Enemy/Attack/6.png"];
-  IMAGES_FLOATING = ["/public/img/2.Enemy/3 Final Enemy/2.floating/1.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/2.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/3.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/4.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/5.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/6.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/7.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/8.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/9.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/10.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/11.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/12.png", "/public/img/2.Enemy/3 Final Enemy/2.floating/13.png"];
-  IMAGES_HURT = ["/public/img/2.Enemy/3 Final Enemy/Hurt/1.png", "/public/img/2.Enemy/3 Final Enemy/Hurt/2.png", "/public/img/2.Enemy/3 Final Enemy/Hurt/3.png", "/public/img/2.Enemy/3 Final Enemy/Hurt/4.png"];
-  IMAGES_DEAD = ["/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png", "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png", "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png", "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png", "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png", "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png"];
+  IMAGES_INTRODUCE = [
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/1.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/2.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/3.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/4.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/5.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/6.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/7.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/8.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/9.png",
+    "/public/img/2.Enemy/3 Final Enemy/1.Introduce/10.png",
+  ];
+  IMAGES_ATTACK = [
+    "/public/img/2.Enemy/3 Final Enemy/Attack/1.png",
+    "/public/img/2.Enemy/3 Final Enemy/Attack/2.png",
+    "/public/img/2.Enemy/3 Final Enemy/Attack/3.png",
+    "/public/img/2.Enemy/3 Final Enemy/Attack/4.png",
+    "/public/img/2.Enemy/3 Final Enemy/Attack/5.png",
+    "/public/img/2.Enemy/3 Final Enemy/Attack/6.png",
+  ];
+  IMAGES_FLOATING = [
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/1.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/2.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/3.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/4.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/5.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/6.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/7.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/8.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/9.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/10.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/11.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/12.png",
+    "/public/img/2.Enemy/3 Final Enemy/2.floating/13.png",
+  ];
+  IMAGES_HURT = [
+    "/public/img/2.Enemy/3 Final Enemy/Hurt/1.png",
+    "/public/img/2.Enemy/3 Final Enemy/Hurt/2.png",
+    "/public/img/2.Enemy/3 Final Enemy/Hurt/3.png",
+    "/public/img/2.Enemy/3 Final Enemy/Hurt/4.png",
+  ];
+  IMAGES_DEAD = [
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png",
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png",
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png",
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png",
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png",
+    "/public/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png",
+  ];
 
   world;
   endboss_sound = new Audio("/src/audio/endboss.mp3");
@@ -18,7 +62,7 @@ class Endboss extends MoveableObject {
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;
-  bite_sound = new Audio("/src/audio/bite.mp3");  
+  bite_sound = new Audio("/src/audio/bite.mp3");
   endboss_hit_sound = new Audio("/src/audio/endboss_hit.mp3");
   endboss_death_sound = new Audio("/src/audio/endboss_death.mp3");
   you_win_sound = new Audio("/src/audio/you_win.mp3");
@@ -41,8 +85,8 @@ class Endboss extends MoveableObject {
   }
 
   /**
- * Animates the character's movement to the left if allowed.
- */
+   * Animates the character's movement to the left if allowed.
+   */
   animate() {
     if (this.allowMovement) {
       this.moveLeft();
@@ -50,17 +94,17 @@ class Endboss extends MoveableObject {
   }
 
   /**
- * Starts the animation sequence once and plays the end boss sound.
- */
+   * Starts the animation sequence once and plays the end boss sound.
+   */
   startAnimation() {
     this.animateOnce();
     this.endboss_sound.play();
   }
 
   /**
- * Animates a sequence of images once and then loops the animation.
- * After completing the sequence, it starts an infinite loop of the animation.
- */
+   * Animates a sequence of images once and then loops the animation.
+   * After completing the sequence, it starts an infinite loop of the animation.
+   */
   animateOnce() {
     setTimeout(() => {
       let i = this.currentImage % this.IMAGES_INTRODUCE.length;
@@ -78,8 +122,8 @@ class Endboss extends MoveableObject {
   }
 
   /**
- * Starts the infinite animation if the boss is not dead and the death animation is not finished.
- */
+   * Starts the infinite animation if the boss is not dead and the death animation is not finished.
+   */
   startInfiniteAnimation() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
       return;
@@ -88,8 +132,8 @@ class Endboss extends MoveableObject {
   }
 
   /**
- * Animates the boss infinitely by cycling through the floating images at a set interval.
- */
+   * Animates the boss infinitely by cycling through the floating images at a set interval.
+   */
   animateInfinite() {
     if (this.isBossDead || this.deathEndbossAnimationFinished) {
       return;
@@ -106,61 +150,84 @@ class Endboss extends MoveableObject {
   }
 
   /**
- * Initiates the attack animation process if the boss is not dead.
- */
-startAttackAnimation() {
-  if (this.isBossDead) return;
-  this.clearAnimation();
-  this.currentImage = 0;
-  this.performAttack();
-}
-
-/**
- * Performs the attack animation by iterating through the attack images.
- * Plays the attack sound and updates the current image for each frame.
- */
-performAttack() {
-  const attackDuration = 1000 / 10;
-  
-  if (this.currentImage < this.IMAGES_ATTACK.length) {
-    this.bite_sound.play();
-    let path = this.IMAGES_ATTACK[this.currentImage];
-    this.img = this.imageCache[path];
-    this.currentImage++;
-    setTimeout(() => this.performAttack(), attackDuration);
-  } else {
-    this.resetAttack();
+   * Initiates the attack animation process if the boss is not dead.
+   */
+  startAttackAnimation() {
+    if (this.isBossDead) return;
+    this.clearAnimation();
+    this.currentImage = 0;
+    this.performAttack();
   }
-}
 
-/**
- * Resets the attack animation and starts the infinite animation loop.
- */
-resetAttack() {
-  this.currentImage = 0;
-  this.startInfiniteAnimation();
-}
+  /**
+   * Performs the attack animation by iterating through the attack images.
+   * Plays the attack sound and updates the current image for each frame.
+   */
+  performAttack() {
+    const attackDuration = 1000 / 10;
 
-
-  handleBubbleHit() {
-    if (this.isBossDead || this.hitByBubble) return;
-    this.hitByBubble = true;
-    this.lifes--;
-    if (this.lifes <= 0) {
-      this.isBossDead = true;
-      this.playDeathAnimation();
+    if (this.currentImage < this.IMAGES_ATTACK.length) {
+      this.bite_sound.play();
+      let path = this.IMAGES_ATTACK[this.currentImage];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+      setTimeout(() => this.performAttack(), attackDuration);
     } else {
-      this.endboss_hit_sound.play();
-      this.playHurtAnimation(this.IMAGES_HURT);
-      setTimeout(() => {
-        this.hitByBubble = false;
-        if (!this.isBossDead) {
-          this.startInfiniteAnimation();
-        }
-      }, this.IMAGES_HURT.length * 200);
+      this.resetAttack();
     }
   }
 
+  /**
+   * Resets the attack animation and starts the infinite animation loop.
+   */
+  resetAttack() {
+    this.currentImage = 0;
+    this.startInfiniteAnimation();
+  }
+
+  /**
+   * Handles the event when the endboss is hit by a bubble.
+   */
+  handleBubbleHit() {
+    if (this.isBossDead || this.hitByBubble) return;
+
+    this.hitByBubble = true;
+    this.lifes--;
+
+    if (this.lifes <= 0) {
+      this.handleBossDeath();
+    } else {
+      this.handleBossHurt();
+    }
+  }
+
+  /**
+   * Handles the logic and animations when the boss is hurt but not dead.
+   */
+  handleBossHurt() {
+    this.endboss_hit_sound.play();
+    this.playHurtAnimation(this.IMAGES_HURT);
+
+    setTimeout(() => {
+      this.hitByBubble = false;
+      if (!this.isBossDead) {
+        this.startInfiniteAnimation();
+      }
+    }, this.IMAGES_HURT.length * 200);
+  }
+
+  /**
+   * Handles the logic and animations when the boss dies.
+   */
+  handleBossDeath() {
+    this.isBossDead = true;
+    this.playDeathAnimation();
+  }
+
+  /**
+ * Plays the hurt animation at 5 FPS, cycling through hurt images.
+ * Clears any existing animation beforehand.
+ */
   playHurtAnimation() {
     this.clearAnimation();
     this.intervalId = setInterval(() => {
@@ -171,7 +238,20 @@ resetAttack() {
     }, 1000 / 5);
   }
 
+  /**
+   * Initiates the death animation for the boss.
+   */
   playDeathAnimation() {
+    this.prepareDeathState();
+    this.startDeathAnimation(() => {
+      this.completeDeathSequence();
+    });
+  }
+
+  /**
+   * Prepares the boss state for the death animation.
+   */
+  prepareDeathState() {
     this.clearAnimation();
     this.allowMovement = false;
     this.currentImage = 0;
@@ -179,7 +259,13 @@ resetAttack() {
     this.endboss_sound.pause();
     this.endboss_sound.currentTime = 0;
     this.endboss_death_sound.play();
+  }
 
+  /**
+   * Starts the death animation sequence.
+   * @param {Function} onComplete - Callback executed when the animation is finished.
+   */
+  startDeathAnimation(onComplete) {
     const frameDuration = 1000 / 5;
 
     const animateDeath = () => {
@@ -189,9 +275,7 @@ resetAttack() {
         this.currentImage++;
         setTimeout(animateDeath, frameDuration);
       } else {
-        this.deathEndbossAnimationFinished = true;
-        this.setLastDeathFrame();
-        this.showYouWinScreen();
+        onComplete();
       }
     };
 
@@ -199,8 +283,17 @@ resetAttack() {
   }
 
   /**
- * Sets the last frame of the death animation to show the final image.
- */
+   * Completes the death sequence by finalizing the boss state and showing the victory screen.
+   */
+  completeDeathSequence() {
+    this.deathEndbossAnimationFinished = true;
+    this.setLastDeathFrame();
+    this.showYouWinScreen();
+  }
+
+  /**
+   * Sets the last frame of the death animation to show the final image.
+   */
   setLastDeathFrame() {
     let lastImageIndex = this.IMAGES_DEAD.length - 1;
     let path = this.IMAGES_DEAD[lastImageIndex];
@@ -208,8 +301,8 @@ resetAttack() {
   }
 
   /**
- * Clears the current animation, stopping any running intervals and resetting the animation state.
- */
+   * Clears the current animation, stopping any running intervals and resetting the animation state.
+   */
   clearAnimation() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -219,8 +312,8 @@ resetAttack() {
   }
 
   /**
- * Displays the "You Win" screen and plays the victory sound.
- */
+   * Displays the "You Win" screen and plays the victory sound.
+   */
   showYouWinScreen() {
     this.you_win_sound.play();
     document.getElementById("you-win").classList.remove("hidden");
