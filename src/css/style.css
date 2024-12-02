@@ -156,7 +156,7 @@ canvas {
   right: 20px;
 }
 
-@media only screen and (max-width: 1025px) and (orientation: landscape) {
+@media only screen and (max-width: 1369px) and (orientation: landscape) {
   body {
     font-size: 6vw;
     flex-direction: row;
@@ -253,7 +253,7 @@ canvas {
   }
 }
 
-@media only screen and (max-width: 1025px) and (orientation: portrait) {
+@media only screen and (max-width: 1369px) and (orientation: portrait) {
   #orientation-lock {
     position: fixed;
     top: 0;

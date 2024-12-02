@@ -319,5 +319,7 @@ function stopAllSounds() {
  * @param {Event} event - The context menu event.
  */
 document.addEventListener('contextmenu', function(event) {
-  event.preventDefault();
+  if (window.innerWidth <= 1367) {
+    event.preventDefault();
+  }
 });
