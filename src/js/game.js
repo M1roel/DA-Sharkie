@@ -9,12 +9,18 @@ let buttonattack = {
 };
 let isMuted = false;
 
+/**
+ * Initializes the game environment by setting up the canvas, world, and registering global actions.
+ */
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, level1);
   world.registerGlobalActions();
 }
 
+/**
+ * Starts the game by creating the level, hiding the start screen, and displaying the game container.
+ */
 function startGame() {
   createLevel();
   document.getElementById("start-screen").classList.add("hidden");
@@ -24,6 +30,11 @@ function startGame() {
   init();
 }
 
+/**
+ * Handles keydown and keyup events to set or reset keyboard states.
+ * @param {KeyboardEvent} e - The keyboard event.
+ * @param {boolean} isPressed - Indicates whether the key is pressed (true) or released (false).
+ */
 function handleKeyEvent(e, isPressed) {
   switch (e.keyCode) {
     case 39:
@@ -53,6 +64,9 @@ function handleKeyEvent(e, isPressed) {
 window.addEventListener("keydown", (e) => handleKeyEvent(e, true));
 window.addEventListener("keyup", (e) => handleKeyEvent(e, false));
 
+/**
+ * Toggles fullscreen mode for the application.
+ */
 async function toggleFullscreen() {
   try {
     if (!document.fullscreenElement) {
@@ -65,6 +79,7 @@ async function toggleFullscreen() {
   }
 }
 
+// Update UI icons based on fullscreen state
 document.addEventListener("fullscreenchange", () => {
   const fullscreenIcon = document.getElementById("fullscreen-mode");
   const windowIcon = document.getElementById("window-mode");
@@ -78,6 +93,9 @@ document.addEventListener("fullscreenchange", () => {
   }
 });
 
+/**
+ * Checks the screen orientation and updates the orientation lock display accordingly.
+ */
 function checkOrientation() {
   const orientationLock = document.getElementById("orientation-lock");
   const isPortrait = document.fullscreenElement ? screen.height > screen.width : window.innerHeight > window.innerWidth;
@@ -85,6 +103,7 @@ function checkOrientation() {
   orientationLock.style.display = isPortrait ? "flex" : "none";
 }
 
+// Register event listeners for orientation changes
 window.addEventListener("resize", checkOrientation);
 window.addEventListener("load", checkOrientation);
 document.addEventListener("fullscreenchange", checkOrientation);
@@ -100,6 +119,11 @@ let joystick = {
   maxDistance: 15,
 };
 
+/**
+ * Sets up touch-based attack button functionality.
+ * @param {HTMLElement} button - The button element to configure.
+ * @param {string} key - The keyboard key to simulate.
+ */
 function setupAttackButton(button, key) {
   let touchPressed = false;
 
@@ -116,10 +140,12 @@ function setupAttackButton(button, key) {
   });
 }
 
+// Configure attack buttons
 setupAttackButton(buttonattack.slap, "SPACE");
 setupAttackButton(buttonattack.bubble, "E");
 setupAttackButton(buttonattack.pbubble, "Q");
 
+// Joystick touch interaction
 joystick.knob.addEventListener("touchstart", (e) => {
   joystick.active = true;
   const touch = e.touches[0];
@@ -158,12 +184,19 @@ document.addEventListener("touchend", () => {
   keyboard.RIGHT = false;
 });
 
+/**
+ * Toggles the mute state for all game sounds.
+ */
 function toggleMute() {
   isMuted = !isMuted;
   toggleIcons(isMuted);
   muteAllSounds(isMuted);
 }
 
+/**
+ * Updates the UI icons based on the mute state.
+ * @param {boolean} isMuted - The current mute state.
+ */
 function toggleIcons(isMuted) {
   const muteIcon = document.getElementById("mute-icon");
   const unmuteIcon = document.getElementById("unmute-icon");
@@ -177,6 +210,10 @@ function toggleIcons(isMuted) {
   }
 }
 
+/**
+ * Mutes or unmutes all game sounds.
+ * @param {boolean} isMuted - True to mute all sounds, false to unmute.
+ */
 function muteAllSounds(isMuted) {
   const allSounds = getAllSounds();
   allSounds.forEach((sound) => {
@@ -184,6 +221,10 @@ function muteAllSounds(isMuted) {
   });
 }
 
+/**
+ * Retrieves all sound elements used in the game.
+ * @returns {HTMLAudioElement[]} An array of audio elements.
+ */
 function getAllSounds() {
   return [
     world.background_sound,
@@ -199,28 +240,56 @@ function getAllSounds() {
   ];
 }
 
+/**
+ * Toggles a class for a given element.
+ * @param {string} selector - The CSS selector of the element.
+ * @param {string} className - The class to toggle.
+ */
 function toggleElement(selector, className) {
   const element = document.querySelector(selector);
   element.classList.contains(className) ? element.classList.remove(className) : element.classList.add(className);
 }
 
+/**
+ * Reloads the page to show the start screen.
+ */
 function showStartScreen() {
   location.reload();
 }
 
+/**
+ * Resets the game state, stops all sounds, clears intervals, and restarts the game.
+ */
 function resetGameState() {
   stopAllSounds();
   clearAllIntervals();
+  clearAllTimeouts();
   world=null;
   startGame();
 }
 
+/**
+ * Clears all active intervals.
+ */
 function clearAllIntervals() {
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 100; i++) {
     clearInterval(i);    
   }
 }
 
+/**
+ * Clears all active timeouts.
+ */
+function clearAllTimeouts() {
+  for (let i = 0; i < 50; i++) {
+    clearTimeout(i);
+    
+  }
+}
+
+/**
+ * Stops all sounds and resets their playback position.
+ */
 function stopAllSounds() {
   const allSounds = getAllSounds();
   allSounds.forEach((sound) => {
