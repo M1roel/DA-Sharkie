@@ -13,13 +13,6 @@ class Jellyfish extends MoveableObject {
   hitByBubble = false;
   isDead = false;
 
-  /**
-   * Creates an instance of a Jellyfish with a specified color (LILA or YELLOW).
-   * The jellyfish is placed at a random position and initializes its properties
-   * and animations based on the color.
-   *
-   * @param {string} color - The color of the jellyfish ("LILA" or "YELLOW").
-   */
   constructor(color) {
     super();
     this.color = color;
