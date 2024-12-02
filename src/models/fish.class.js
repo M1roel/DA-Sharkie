@@ -1,18 +1,4 @@
 class Fish extends MoveableObject {
-  /**
-   * Represents a fish object that can swim and react to enrage events.
-   * @extends MoveableObject
-   *
-   * @property {string[]} IMAGES_GREEN - Images of the fish in green color while swimming.
-   * @property {string[]} IMAGES_RED - Images of the fish in red color while swimming.
-   * @property {string[]} IMAGES_VIOLET - Images of the fish in violet color while swimming.
-   * @property {string[]} IMAGES_GREEN_ENRAGE - Images of the fish in green color when enraged.
-   * @property {string[]} IMAGES_RED_ENRAGE - Images of the fish in red color when enraged.
-   * @property {string[]} IMAGES_VIOLET_ENRAGE - Images of the fish in violet color when enraged.
-   * @property {string[]} IMAGES_GREEN_BUBBLESWIN - Images of the fish in green color while performing bubble swim.
-   * @property {string[]} IMAGES_RED_BUBBLESWIN - Images of the fish in red color while performing bubble swim.
-   * @property {string[]} IMAGES_VIOLET_BUBBLESWIN - Images of the fish in violet color while performing bubble swim.
-   */
   IMAGES_GREEN = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png"];
   IMAGES_RED = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/2.swim5.png"];
   IMAGES_VIOLET = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim2.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim3.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim4.png", "/public/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim5.png"];
@@ -26,16 +12,6 @@ class Fish extends MoveableObject {
   IMAGES_RED_DEAD = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/2.png"];
   IMAGES_VIOLET_DEAD = ["/public/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png"];
 
-  /**
-   * Represents a fish object that can swim and react to enrage events.
-   * @extends MoveableObject
-   *
-   * @property {number} currentImage - Current index of the displayed image.
-   * @property {number} currentSwimImage - Current index for the swimming animation.
-   * @property {number} enrageInterval - Interval for the enrage animation.
-   * @property {number} bubbleswimInterval - Interval for the bubble swim animation.
-   * @property {number} swimInterval - Interval for the swimming animation.
-   */
   currentImage = 0;
   currentSwimImage = 0;
   enrageInterval;
@@ -46,19 +22,6 @@ class Fish extends MoveableObject {
 
   constructor(color) {
     super();
-
-    /**
-     * Represents a fish object that can swim and react to enrage events.
-     * @extends MoveableObject
-     *
-     * @property {string} color - The color of the fish (GREEN, RED, or VIOLET).
-     * @property {number} x - The x-coordinate position of the fish.
-     * @property {number} y - The y-coordinate position of the fish.
-     * @property {number} height - The height of the fish.
-     * @property {number} width - The width of the fish.
-     * @property {boolean} enrageActive - Indicates if the fish is in enrage mode.
-     * @property {number} speed - The speed of the fish.
-     */
     this.color = color;
     this.x = 500 + Math.random() * 4000;
     this.y = 20 + Math.random() * 400;
