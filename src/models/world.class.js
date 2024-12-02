@@ -321,7 +321,7 @@ class World {
  * and if so, shows the endboss and starts its animation.
  */
   checkPlayerPosition() {
-    if (this.charakter.x > 4000 && !this.endbossShow) {
+    if (this.charakter.x > 3950 && !this.endbossShow) {
       this.endbossShow = true;
       this.level.endboss.startAnimation();
     }
