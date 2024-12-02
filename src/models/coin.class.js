@@ -6,9 +6,9 @@ class Coin extends DrawableObject {
     this.y = y;
     this.height = 50;
     this.width = 50;
-    this.hitboxX = 50;
+    this.hitboxX = 60;
     this.hitboxY = 50;
-    this.hitboxWidth = 25;
+    this.hitboxWidth = 70;
     this.hitboxHeight = 30;
   }
 }

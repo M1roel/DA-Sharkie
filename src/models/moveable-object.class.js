@@ -78,7 +78,22 @@ class MoveableObject extends DrawableObject {
    * @returns {boolean} - Returns true if the objects are colliding, false otherwise.
    */
   isColliding(mo) {
-    return this.x + this.hitboxX + this.hitboxWidth >= mo.x + mo.hitboxX && this.x + this.hitboxX <= mo.x + mo.hitboxX + mo.hitboxWidth && this.y + this.hitboxY + this.hitboxHeight >= mo.y + mo.hitboxY && this.y + this.hitboxY <= mo.y + mo.hitboxY + mo.hitboxHeight;
+    const thisRight = this.x + this.hitboxX + this.hitboxWidth;
+    const thisLeft = this.x + this.hitboxX;
+    const thisBottom = this.y + this.hitboxY + this.hitboxHeight;
+    const thisTop = this.y + this.hitboxY;
+  
+    const moRight = mo.x + mo.hitboxX + mo.hitboxWidth;
+    const moLeft = mo.x + mo.hitboxX;
+    const moBottom = mo.y + mo.hitboxY + mo.hitboxHeight;
+    const moTop = mo.y + mo.hitboxY;
+  
+    return (
+      thisRight >= moLeft &&
+      thisLeft <= moRight &&
+      thisBottom >= moTop &&
+      thisTop <= moBottom
+    );
   }
 
   /**
