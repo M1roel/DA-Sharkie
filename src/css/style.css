@@ -130,6 +130,7 @@ canvas {
 .imprint img,
 .controls img {
   width: 28px;
+  cursor: pointer;
 }
 
 .imprint-button {
