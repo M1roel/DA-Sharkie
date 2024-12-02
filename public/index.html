@@ -11,21 +11,17 @@
       <div id="start-screen" class="screen">
         <h1>Sharkie</h1>
         <img class="button" src="/public/img/6.Botones/Start/2.png" alt="start button" onclick="startGame()" />
-        <div class="guide">
-          <div class="guide-instruction">
-            <img src="/public/img/6.Botones/Instructions 2.png" alt="arrow keys" />
+        
+        <section>
+          <span class="controls-button" onclick="toggleElement('.controls', 'hidden')">Controls</span>
+          <div class="controls hidden">
+            <span>Arrow Keys - Movement</span><br />
+            <span>Space - Finslap to defeat Fish</span><br />
+            <span>E - normal Bubble shot to defeat jellyfish</span><br />
+            <span>Q - poisoned Bubble shot to defeat endboss</span><br />
+            <img src="/public/img/close.png" alt="close button" onclick="toggleElement('.controls', 'hidden')" />
           </div>
-          <div class="guide-bubble">
-            <div class="guide-bubble-e">
-              <img src="/public/img/6.Botones/Key/E Key.png" alt="e key normal bubble attack" />
-              <p>/ Normal Bubble Attack</p>
-            </div>
-            <div class="guide-bubble-q">
-              <img src="/public/img/6.Botones/Key/Q Key.png" alt="q key poison bubble attack" />
-              <p>/ Poisoned Bubble Attack</p>
-            </div>
-          </div>
-        </div>
+        </section>
         <section>
           <span class="imprint-button" onclick="toggleElement('.imprint', 'hidden')">Imprint</span>
           <div class="imprint hidden">

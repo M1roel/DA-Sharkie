@@ -62,39 +62,6 @@ canvas {
   height: auto;
 }
 
-.guide {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 3vh;
-}
-
-.guide-instruction img {
-  width: 80%;
-  max-width: 500px;
-}
-
-.guide-bubble {
-  display: flex;
-  flex-direction: column;
-  font-family: "Lucky";
-  font-size: 2vw;
-  color: white;
-}
-
-.guide-bubble-e,
-.guide-bubble-q {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 1vh 0;
-}
-
-.guide-bubble img {
-  width: 10vw;
-  max-width: 50px;
-}
-
 #you-win,
 #game-over {
   display: flex;
@@ -143,9 +110,10 @@ canvas {
   margin-left: 20px;
 }
 
-.imprint {
+.imprint,
+.controls {
   font-family: 'Lucky';
-  font-size: 20px;
+  font-size: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,17 +127,27 @@ canvas {
   z-index: 4;
 }
 
-.imprint img {
+.imprint img,
+.controls img {
   width: 32px;
 }
 
 .imprint-button {
   cursor: pointer;
   font-family: 'Lucky';
-  font-size: 20px;
+  font-size: 28px;
   position: fixed;
   bottom: 20px;
   left: 20px;
+}
+
+.controls-button {
+  cursor: pointer;
+  font-family: 'Lucky';
+  font-size: 28px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 @media only screen and (max-width: 1025px) and (orientation: landscape) {
