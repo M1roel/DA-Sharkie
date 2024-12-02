@@ -2,12 +2,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 var elem = document.getElementById("game-container");
+let isMuted = localStorage.getItem('isMuted') === 'true';
 let buttonattack = {
   slap: document.getElementById("finslap-attack"),
   bubble: document.getElementById("bubble-attack"),
   pbubble: document.getElementById("pbubble-attack"),
 };
-let isMuted = false;
 
 /**
  * Initializes the game environment by setting up the canvas, world, and registering global actions.
@@ -16,6 +16,8 @@ function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, level1);
   world.registerGlobalActions();
+  toggleIcons(isMuted);
+  muteAllSounds(isMuted);
 }
 
 /**
@@ -189,6 +191,7 @@ document.addEventListener("touchend", () => {
  */
 function toggleMute() {
   isMuted = !isMuted;
+  localStorage.setItem('isMuted', isMuted);
   toggleIcons(isMuted);
   muteAllSounds(isMuted);
 }
