@@ -97,17 +97,17 @@ class MoveableObject extends DrawableObject {
    * @param {string} source - The source of the hit, such as "fish", "endboss", or "jellyfish".
    */
   hit(source) {
-    if (this.isDead()) {
+    if (this.isDead() || !this.isVulnerable) {
       return;
     }
-
     this.energy -= 5;
-
+    this.isVulnerable = false;
+    setTimeout(() => {
+      this.isVulnerable = true;
+    }, 2000);
     this.idleTimer = 0;
     this.longIdleInProgress = false;
-
     this.handleHitAnimation(source);
-
     if (this.energy <= 0) {
       this.energy = 0;
       this.deathSource = source;
@@ -115,20 +115,54 @@ class MoveableObject extends DrawableObject {
   }
 
   /**
-   * Handles the animation when the object is hit by a certain source.
-   *
-   * @param {string} source - The source of the hit, which determines the animation to be played.
+   * Handles the hit animation based on the source of the damage.
+   * Prevents overlapping animations by using a flag.
+   * @param {string} source - The source of the hit (e.g., "fish", "endboss", "jellyfish").
    */
   handleHitAnimation(source) {
-    if (source === "fish" || source === "endboss") {
-      if (this instanceof Character) {
-        this.loadAnimation("IMAGES_POISONED");
-      }
-    } else if (source === "jellyfish") {
-      if (this instanceof Character) {
-        this.loadAnimation("IMAGES_SHOCK");
-      }
+    if (this.hitAnimationInProgress) return;
+    this.hitAnimationInProgress = true;
+
+    const animationFrames = this.getAnimationFrames(source);
+    if (animationFrames) {
+      this.startAnimation(animationFrames, 100);
+    } else {
+      this.hitAnimationInProgress = false;
     }
+  }
+
+  /**
+   * Determines the animation frames based on the source of the hit.
+   * @param {string} source - The source of the hit (e.g., "fish", "endboss", "jellyfish").
+   * @returns {string[] | null} - An array of image paths for the animation frames or null if no match is found.
+   */
+  getAnimationFrames(source) {
+    if (source === "fish" || source === "endboss") {
+      return this.IMAGES_POISONED;
+    } else if (source === "jellyfish") {
+      return this.IMAGES_SHOCK;
+    }
+    return null;
+  }
+
+  /**
+   * Starts an animation using the provided frames and speed.
+   * Updates the image at regular intervals until all frames are displayed.
+   * @param {string[]} animationFrames - Array of image paths for the animation.
+   * @param {number} animationSpeed - Interval in milliseconds between frames.
+   */
+  startAnimation(animationFrames, animationSpeed) {
+    this.currentImage = 0;
+    const interval = setInterval(() => {
+      if (this.currentImage < animationFrames.length) {
+        const path = animationFrames[this.currentImage];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      } else {
+        clearInterval(interval);
+        this.hitAnimationInProgress = false;
+      }
+    }, animationSpeed);
   }
 
   /**

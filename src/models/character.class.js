@@ -19,6 +19,8 @@ class Character extends MoveableObject {
   shotInProgress = false;
   longIdleInProgress = false;
   shotPressed = false;
+  isVulnerable = true;
+  hitAnimationInProgress = false;
   currentImage = 0;
   idleTimer = 0;
   idleLimit = 15 * 1000;
