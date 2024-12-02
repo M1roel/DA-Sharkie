@@ -308,3 +308,7 @@ function stopAllSounds() {
     if (sound) sound.currentTime = 0;
   });
 }
+
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
