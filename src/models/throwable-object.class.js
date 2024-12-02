@@ -1,13 +1,5 @@
 class ThrowableObject extends MoveableObject {
 
-    /**
-     * Creates a new throwable object with a specified position and type.
-     * The object can either be a "normal" bubble or a "poison" bubble.
-     * 
-     * @param {number} x - The x-coordinate of the throwable object.
-     * @param {number} y - The y-coordinate of the throwable object.
-     * @param {string} [type='normal'] - The type of the throwable object ('normal' or 'poison').
-     */
     constructor(x, y, type = 'normal') {
         super().loadImg("/public/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
         this.x = x;
