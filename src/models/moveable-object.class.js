@@ -7,6 +7,11 @@ class MoveableObject extends DrawableObject {
   acceleration = 2.5;
   game_over_sound = new Audio("/src/audio/game_over.mp3");
 
+  constructor() {
+    super();
+    this.character = { isVulnerable: true };
+  }
+
   /**
    * Applies gravity to the object by modifying its vertical speed and position.
    * Gravity is applied periodically.
@@ -82,18 +87,11 @@ class MoveableObject extends DrawableObject {
     const thisLeft = this.x + this.hitboxX;
     const thisBottom = this.y + this.hitboxY + this.hitboxHeight;
     const thisTop = this.y + this.hitboxY;
-  
     const moRight = mo.x + mo.hitboxX + mo.hitboxWidth;
     const moLeft = mo.x + mo.hitboxX;
     const moBottom = mo.y + mo.hitboxY + mo.hitboxHeight;
     const moTop = mo.y + mo.hitboxY;
-  
-    return (
-      thisRight >= moLeft &&
-      thisLeft <= moRight &&
-      thisBottom >= moTop &&
-      thisTop <= moBottom
-    );
+    return thisRight >= moLeft && thisLeft <= moRight && thisBottom >= moTop && thisTop <= moBottom;
   }
 
   /**
@@ -103,7 +101,15 @@ class MoveableObject extends DrawableObject {
    * @returns {boolean} - Returns true if the objects are near, false otherwise.
    */
   isNear(mo) {
-    return this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
+    const isNear = this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
+    if (isNear && this.character.isVulnerable) {
+      this.character.isVulnerable = false;
+
+      setTimeout(() => {
+        this.character.isVulnerable = true;
+      }, 2000);
+    }
+    return isNear;
   }
 
   /**
@@ -112,13 +118,13 @@ class MoveableObject extends DrawableObject {
    * @param {string} source - The source of the hit, such as "fish", "endboss", or "jellyfish".
    */
   hit(source) {
-    if (this.isDead() || !this.isVulnerable) {
+    if (this.isDead() || !(this.character && this.character.isVulnerable)) {
       return;
     }
     this.energy -= 5;
-    this.isVulnerable = false;
+    this.character.isVulnerable = false;
     setTimeout(() => {
-      this.isVulnerable = true;
+      this.character.isVulnerable = true;
     }, 2000);
     this.idleTimer = 0;
     this.longIdleInProgress = false;

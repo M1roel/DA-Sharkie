@@ -181,7 +181,7 @@ class Character extends MoveableObject {
       if (this.world.keyboard.SPACE && this.canAttack() && !this.slapInProgress) {
         this.slapInProgress = true;
         this.currentImage = 0;
-        this.lastAttackTime = Date.now(); // Zeitpunkt der letzten Attacke speichern
+        this.lastAttackTime = Date.now();
       }
       this.slapAnimation();
       this.world.checkFinSlapCollision();
