@@ -171,6 +171,9 @@ canvas {
     display: none;
   }
 
+  .icons {
+    display: none !important;
+  }
   .screen {
     width: 100vw;
     height: 100vh;
@@ -181,7 +184,7 @@ canvas {
   }
 
   canvas {
-    width: 70% !important;
+    width: 66% !important;
     height: auto !important;
   }
 
