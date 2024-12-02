@@ -156,7 +156,7 @@ canvas {
   right: 20px;
 }
 
-@media only screen and (max-width: 1369px) and (orientation: landscape) {
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
   body {
     font-size: 6vw;
     flex-direction: row;
