@@ -113,7 +113,7 @@ canvas {
 .imprint,
 .controls {
   font-family: 'Lucky';
-  font-size: 36px;
+  font-size: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,7 +129,7 @@ canvas {
 
 .imprint img,
 .controls img {
-  width: 32px;
+  width: 28px;
 }
 
 .imprint-button {
