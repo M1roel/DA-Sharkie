@@ -62,6 +62,11 @@ canvas {
   height: auto;
 }
 
+.home-button {
+  max-width: 50px !important;
+  height: auto !important;
+}
+
 #you-win,
 #game-over {
   display: flex;
