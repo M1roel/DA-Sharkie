@@ -138,7 +138,9 @@ class Character extends MoveableObject {
   idleLimit = 15 * 1000;
   bottleCount = 0;
   finslap_sound = new Audio("/src/audio/finslap.mp3");
-  bubble_sound = new Audio("/src/audio/bubble_shot.mp3");
+  bubble_sound = new Audio("/src/audio/bubble_shot.mp3");  
+  ouch_sound = new Audio("/src/audio/ouch.mp3");
+  shock_sound = new Audio("/src/audio/shock.mp3");
 
   constructor() {
     super().loadImg("/public/img/1.Sharkie/1.IDLE/1.png");
@@ -169,6 +171,14 @@ class Character extends MoveableObject {
         this.shotPressed = false;
       }
     });
+  }
+
+  playHitSound(source) {
+    if (source === "fish" || source === "endboss") {
+      this.ouch_sound.play();
+    } else if (source === "jellyfish") {
+      this.shock_sound.play();
+    }
   }
 
   /**

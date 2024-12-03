@@ -6,24 +6,10 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   acceleration = 2.5;
   game_over_sound = new Audio("/src/audio/game_over.mp3");
-  ouch_sound = new Audio("/src/audio/ouch.mp3");
-  shock_sound = new Audio("/src/audio/shock.mp3");
-
+  
   constructor() {
     super();
     this.character = { isVulnerable: true };
-  }
-
-  /**
- * Returns an array of audio elements used for game sounds.
- * @returns {HTMLAudioElement[]} Array of audio elements for the sounds.
- */
-  getSounds() {
-    return [
-      this.game_over_sound,
-      this.ouch_sound,
-      this.shock_sound
-    ];
   }
 
   /**
@@ -160,9 +146,9 @@ class MoveableObject extends DrawableObject {
    * */
   playHitSound(source) {
     if (source === "fish" || source === "endboss") {
-      this.ouch_sound.play();
+      this.character.ouch_sound.play();
     } else if (source === "jellyfish") {
-      this.shock_sound.play();
+      this.character.shock_sound.play();
     }
   }
 

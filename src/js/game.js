@@ -241,10 +241,8 @@ function getAllSounds() {
     world.level.endboss.endboss_hit_sound,
     world.level.endboss.endboss_death_sound,
     world.level.endboss.you_win_sound,
-    ...moveableObject.getSounds(),
-    moveableObject.game_over_sound,
-    moveableObject.ouch_sound,
-    moveableObject.shock_sound
+    world.charakter.ouch_sound,
+    world.charakter.shock_sound
   ];
 }
 
