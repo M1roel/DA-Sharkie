@@ -22,7 +22,7 @@ class MoveableObject extends DrawableObject {
     return [
       this.game_over_sound,
       this.ouch_sound,
-      this.shock_sound,
+      this.shock_sound
     ];
   }
 
