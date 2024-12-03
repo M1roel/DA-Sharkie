@@ -60,7 +60,7 @@ class Endboss extends MoveableObject {
   introFinished = false;
   currentImage = 0;
   lifes = 5;
-  speed = 0.6;
+  speed = 1;
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;
