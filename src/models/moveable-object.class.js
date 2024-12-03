@@ -15,6 +15,18 @@ class MoveableObject extends DrawableObject {
   }
 
   /**
+ * Returns an array of audio elements used for game sounds.
+ * @returns {HTMLAudioElement[]} Array of audio elements for the sounds.
+ */
+  getSounds() {
+    return [
+      this.game_over_sound,
+      this.ouch_sound,
+      this.shock_sound,
+    ];
+  }
+
+  /**
    * Applies gravity to the object by modifying its vertical speed and position.
    * Gravity is applied periodically.
    */

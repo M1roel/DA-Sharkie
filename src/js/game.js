@@ -8,6 +8,7 @@ let buttonattack = {
   bubble: document.getElementById("bubble-attack"),
   pbubble: document.getElementById("pbubble-attack"),
 };
+let moveableObject = new MoveableObject();
 
 /**
  * Initializes the game environment by setting up the canvas, world, and registering global actions.
@@ -240,8 +241,7 @@ function getAllSounds() {
     world.level.endboss.endboss_hit_sound,
     world.level.endboss.endboss_death_sound,
     world.level.endboss.you_win_sound,
-    world.moveableobject.ouch_sound,
-    world.moveableobject.shock_sound
+    ...moveableObject.getSounds()
   ];
 }
 
