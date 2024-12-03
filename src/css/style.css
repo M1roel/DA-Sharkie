@@ -52,7 +52,7 @@ canvas {
 
 .screen {
   width: 100%;
-  height: 100%;
+  height: auto;
   text-align: center;
 }
 
@@ -82,8 +82,8 @@ canvas {
 
 #you-win img,
 #game-over img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
 }
 

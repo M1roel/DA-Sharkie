@@ -32,7 +32,7 @@ class Fish extends MoveableObject {
     this.hitboxWidth = 80;
     this.hitboxHeight = 80;
     this.enrageActive = false;
-    this.speed = 0.15 + Math.random() * 0.9;
+    this.speed = 0.5 + Math.random() * 0.9;
 
     if (color === "GREEN") {
       this.loadImg(this.IMAGES_GREEN[0]);

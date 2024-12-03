@@ -240,6 +240,8 @@ function getAllSounds() {
     world.level.endboss.endboss_hit_sound,
     world.level.endboss.endboss_death_sound,
     world.level.endboss.you_win_sound,
+    world.moveableobject.ouch_sound,
+    world.moveableobject.shock_sound
   ];
 }
 

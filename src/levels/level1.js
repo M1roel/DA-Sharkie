@@ -9,8 +9,8 @@ function createLevel() {
   const jellyfishArray = [];
   const fishArray = [];
   const backgroundWidth = 719;
-  const fishCount = 5;
-  const jellyfishCount = 5;
+  const fishCount = 10;
+  const jellyfishCount = 10;
   const { coins, bottles } = generateRandomItems(10, 10);
   backgroundObjects.push(new BackgroundObject("/public/img/3. Background/Dark/1.png", -719));
 
