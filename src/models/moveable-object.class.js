@@ -6,6 +6,8 @@ class MoveableObject extends DrawableObject {
   energy = 100;
   acceleration = 2.5;
   game_over_sound = new Audio("/src/audio/game_over.mp3");
+  ouch_sound = new Audio("/src/audio/ouch.mp3");
+  shock_sound = new Audio("/src/audio/shock.mp3");
 
   constructor() {
     super();
@@ -131,9 +133,24 @@ class MoveableObject extends DrawableObject {
     this.idleTimer = 0;
     this.longIdleInProgress = false;
     this.handleHitAnimation(source);
+    this.playHitSound(source);
+
     if (this.energy <= 0) {
       this.energy = 0;
       this.deathSource = source;
+    }
+  }
+
+  /**
+   * Plays the appropriate sound based on the source of the hit.
+   *
+   * @param {string} source - The source of the hit (e.g., "fish", "endboss", "jellyfish").
+   * */
+  playHitSound(source) {
+    if (source === "fish" || source === "endboss") {
+      this.ouch_sound.play();
+    } else if (source === "jellyfish") {
+      this.shock_sound.play();
     }
   }
 
