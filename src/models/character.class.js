@@ -328,7 +328,8 @@ class Character extends MoveableObject {
    * Updates the slap animation, cycles frames, plays the slap sound, and resets the animation.
    */
   slapAnimation() {
-    if (this.slapInProgress) {
+    if (this.slapInProgress) {      
+      this.activateTemporaryInvulnerability();
       if (this.currentImage < this.IMAGES_SLAP.length) {
         let path = this.IMAGES_SLAP[this.currentImage];
         this.img = this.imageCache[path];
@@ -337,7 +338,6 @@ class Character extends MoveableObject {
       } else {
         this.slapInProgress = false;
         this.currentImage = 0;
-        this.activateTemporaryInvulnerability();
       }
     }
   }
@@ -363,7 +363,7 @@ class Character extends MoveableObject {
     this.isVulnerable = false;
     setTimeout(() => {
       this.isVulnerable = true;
-    }, 5000);
+    }, 500);
   }
 
   /**

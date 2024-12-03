@@ -105,6 +105,9 @@ class World {
         } else {
           return;
         }
+        if(enemy instanceof Fish) {
+          this.charakter.activateTemporaryInvulnerability();
+        }
         this.charakter.hit(sourceType);
         this.lifeStatusbar.setPercentageEnergy(this.charakter.energy);
       }
