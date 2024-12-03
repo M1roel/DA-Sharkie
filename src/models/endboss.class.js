@@ -1,5 +1,5 @@
 class Endboss extends MoveableObject {
-  x = 4650;
+  x = 4600;
   y = 0;
 
   IMAGES_INTRODUCE = [
@@ -60,6 +60,7 @@ class Endboss extends MoveableObject {
   introFinished = false;
   currentImage = 0;
   lifes = 5;
+  speed = 0.6;
   intervalId = null;
   deathEndbossAnimationFinished = false;
   allowMovement = true;
@@ -89,7 +90,9 @@ class Endboss extends MoveableObject {
    * Animates the character's movement to the left if allowed.
    */
   animate() {
-    if (this.allowMovement) {
+    console.log("allowMovement: ", this.allowMovement);
+    console.log("introFinished: ", this.introFinished);
+    if (this.allowMovement && this.introFinished) {
       this.moveLeft();
     }
   }
@@ -102,6 +105,7 @@ class Endboss extends MoveableObject {
     this.endboss_sound.play();
     setTimeout(() => {
       this.introFinished = true;
+      this.animate();
     }, this.IMAGES_INTRODUCE.length * 1000 / 8);
   }
 
