@@ -91,7 +91,12 @@ class MoveableObject extends DrawableObject {
     const moLeft = mo.x + mo.hitboxX;
     const moBottom = mo.y + mo.hitboxY + mo.hitboxHeight;
     const moTop = mo.y + mo.hitboxY;
-    return thisRight >= moLeft && thisLeft <= moRight && thisBottom >= moTop && thisTop <= moBottom;
+    return (
+      thisRight >= moLeft &&
+      thisLeft <= moRight &&
+      thisBottom >= moTop &&
+      thisTop <= moBottom
+    );
   }
 
   /**
@@ -101,14 +106,11 @@ class MoveableObject extends DrawableObject {
    * @returns {boolean} - Returns true if the objects are near, false otherwise.
    */
   isNear(mo) {
-    const isNear = this.x - this.enrageWidth < mo.x + mo.width && this.x + this.width + this.enrageWidth > mo.x && this.y - this.enrageHeight < mo.y + mo.height && this.y + this.height + this.enrageHeight > mo.y;
-    if (isNear && this.character.isVulnerable) {
-      this.character.isVulnerable = false;
-
-      setTimeout(() => {
-        this.character.isVulnerable = true;
-      }, 2000);
-    }
+    const isNear =
+      this.x - this.enrageWidth < mo.x + mo.width &&
+      this.x + this.width + this.enrageWidth > mo.x &&
+      this.y - this.enrageHeight < mo.y + mo.height &&
+      this.y + this.height + this.enrageHeight > mo.y;
     return isNear;
   }
 
@@ -118,14 +120,14 @@ class MoveableObject extends DrawableObject {
    * @param {string} source - The source of the hit, such as "fish", "endboss", or "jellyfish".
    */
   hit(source) {
-    if (this.isDead() || !(this.character && this.character.isVulnerable)) {
+    if (this.isDead() || (this.character && !this.character.isVulnerable)) {
       return;
     }
     this.energy -= 5;
     this.character.isVulnerable = false;
     setTimeout(() => {
       this.character.isVulnerable = true;
-    }, 2000);
+    }, 1000);
     this.idleTimer = 0;
     this.longIdleInProgress = false;
     this.handleHitAnimation(source);
@@ -201,7 +203,10 @@ class MoveableObject extends DrawableObject {
    * @param {string} array - The array representing the death animation images.
    */
   checkDeathAnimationFinished(array) {
-    if ((array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") && this.currentImage >= this[array].length) {
+    if (
+      (array === "IMAGES_DEAD" || array === "IMAGES_DEAD_SHOCK") &&
+      this.currentImage >= this[array].length
+    ) {
       this.deathAnimationFinished = true;
       this.currentImage = this[array].length - 1;
       this.showGameOverScreen();
@@ -214,7 +219,11 @@ class MoveableObject extends DrawableObject {
    * @param {string} array - The array representing the animation frames (e.g., "IMAGES_DEAD").
    */
   loadAnimation(array) {
-    if (((array === "IMAGES_DEAD" && this.deathAnimationFinished) || array === "IMAGES_DEAD_SHOCK") && this.deathAnimationFinished) {
+    if (
+      ((array === "IMAGES_DEAD" && this.deathAnimationFinished) ||
+        array === "IMAGES_DEAD_SHOCK") &&
+      this.deathAnimationFinished
+    ) {
       let lastImageIndex = this[array].length - 1;
       let path = this[array][lastImageIndex];
       this.img = this.imageCache[path];

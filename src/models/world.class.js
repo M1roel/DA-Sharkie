@@ -92,6 +92,9 @@ class World {
    * If a collision is detected, the character is damaged based on the type of enemy.
    */
   checkEnemyCollisions() {
+    if (!this.charakter.isVulnerable) {
+      return;
+    }
     this.level.enemies.forEach((enemy) => {
       if (this.charakter.isColliding(enemy)) {
         let sourceType;
