@@ -5,7 +5,6 @@ class MoveableObject extends DrawableObject {
   speed = 0.15;
   energy = 100;
   acceleration = 2.5;
-  game_over_sound = new Audio("/src/audio/game_over.mp3");
   
   constructor() {
     super();
@@ -131,24 +130,11 @@ class MoveableObject extends DrawableObject {
     this.idleTimer = 0;
     this.longIdleInProgress = false;
     this.handleHitAnimation(source);
-    this.playHitSound(source);
+    this.world.charakter.playHitSound(source);
 
     if (this.energy <= 0) {
       this.energy = 0;
       this.deathSource = source;
-    }
-  }
-
-  /**
-   * Plays the appropriate sound based on the source of the hit.
-   *
-   * @param {string} source - The source of the hit (e.g., "fish", "endboss", "jellyfish").
-   * */
-  playHitSound(source) {
-    if (source === "fish" || source === "endboss") {
-      this.character.ouch_sound.play();
-    } else if (source === "jellyfish") {
-      this.character.shock_sound.play();
     }
   }
 
@@ -255,7 +241,7 @@ class MoveableObject extends DrawableObject {
    * Displays the game over screen and plays the game over sound.
    */
   showGameOverScreen() {
-    this.game_over_sound.play();
+    this.world.charakter.game_over_sound.play();
     document.getElementById("game-over").classList.remove("hidden");
     document.getElementById("game-container").classList.add("hidden");
   }
