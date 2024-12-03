@@ -90,8 +90,6 @@ class Endboss extends MoveableObject {
    * Animates the character's movement to the left if allowed.
    */
   animate() {
-    console.log("allowMovement: ", this.allowMovement);
-    console.log("introFinished: ", this.introFinished);
     if (this.allowMovement && this.introFinished) {
       this.moveLeft();
     }
