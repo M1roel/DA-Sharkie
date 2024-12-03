@@ -16,14 +16,15 @@
 body {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   background-image: url("/public/img/background.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   font-family: "Ocean";
   color: #9ed1fd;
@@ -139,21 +140,24 @@ canvas {
 }
 
 .imprint-button {
+  display: flex;
   cursor: pointer;
   font-family: 'Lucky';
   font-size: 28px;
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .controls-button {
+  display: flex;
   cursor: pointer;
   font-family: 'Lucky';
   font-size: 28px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
